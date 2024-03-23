@@ -11,8 +11,8 @@ export default function App() {
     <View style={styles.container}>
     {/* <Login/> */}
     {/* <Setto/> */}
-    {/* <Register/> */}
-    <Month/>
+    <Register/>
+    {/* <Month/> */}
     </View>
   );
 }
