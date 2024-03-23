@@ -18,7 +18,7 @@ export default function App() {
     return (
         <SafeAreaView style={styles.container}>
             <Card style={styles.menubar}>
-                <Title style={justifyContent='center'}>This is menubar</Title>
+            <Title style={{textAlign: 'center'}}>This is menubar</Title>
             </Card>
             <Card style={styles.month}>
                 <View style={styles.week}>
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     },
     flatListContent: {
         alignItems: 'left',
-    
     },
     card: {
         marginTop:4,
