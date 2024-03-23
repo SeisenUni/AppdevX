@@ -9,8 +9,6 @@ import Register from './frontend/register.js';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Card><Text>Open udwdadwadp App.js to start working on your app!</Text></Card>
-      <StatusBar style="auto" />
     {/* <Login/> */}
     {/* <Setto/> */}
     {/* <Register/> */}
@@ -18,3 +16,11 @@ export default function App() {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
