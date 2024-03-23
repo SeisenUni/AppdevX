@@ -28,7 +28,8 @@ export default function App() {
                         style={styles.input}
                         onChangeText={setPassword}
                         value={password}
-                        placeholder="Password"  
+                        placeholder="Password" 
+                         
                     />
                     {/* <Paragraph>Gpu : NVIDIA GeForce RTX 4060 </Paragraph>
                     <Paragraph>RAM : 16 GB DDR5 4800 MHz </Paragraph>
