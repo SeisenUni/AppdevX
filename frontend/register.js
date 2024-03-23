@@ -49,9 +49,11 @@ export default function App() {
 
                   <Card style={styles.card1}>
 
+                    <View style={styles.cardContainer}>
                     <View style={styles.container}>
+
                       <Card style={styles.card}>
-                        <Text style={styles.text}>Create Account</Text> <br/>
+                        <Text style={styles.text}>Create Account</Text> 
                           
                          <TextInput 
                           style={styles.input}
@@ -87,10 +89,10 @@ export default function App() {
                             color="blue"
                             // onPress={onClickcreat}
                             />
-                            <br/>
                             <Text style={styles.text}>Planner</Text>
                             </View>
                       </Card>
+                    </View>
                     </View>
                     <View style={styles.center}>
 
