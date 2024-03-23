@@ -1,4 +1,4 @@
-// import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,TextInput, Button,Image, SafeAreaView } from 'react-native';
 import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
       fontSize: 30,
       fontWeight: 'bold',
       fontFamily: 'Cochin',
-      color:'blue'
+      color:'blue',
     },
     center: {
       justifyContent: 'center',
