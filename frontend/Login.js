@@ -19,9 +19,11 @@ export default function App() {
 
                   <Card style={styles.card1}>
 
-                    <View style={styles.container}>
+                    <View style={styles.cardContainer}>
+                      <View style={styles.container}>
+
                       <Card style={styles.card}>
-                        <Text style={styles.text}>Login</Text> <br/>
+                        <Text style={styles.text}>Login</Text> 
                           <TextInput 
                           style={styles.input}
                           onChangeText={setUsername}
@@ -42,16 +44,16 @@ export default function App() {
                             color="blue"
                             // onPress={}
                             />
-                            <br/>
                             <Button 
                             title="Create account"
                             color="blue"
                             // onPress={}
                             />
-                            <br/><br/>
+                            <Text> </Text>
                             <Text style={styles.text}>Planner</Text>
                             </View>
                       </Card>
+                      </View>
                     </View>
                     <View style={styles.center}>
 
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        borderRadius:5
     },
     card: {
       margin: 10,
