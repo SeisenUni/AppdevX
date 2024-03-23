@@ -1,49 +1,68 @@
 // import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,TextInput, Button,Image, SafeAreaView } from 'react-native';
 import React,{useState,useEffect} from 'react';
-import { Card } from 'react-native-paper';
+import { Card, Title } from 'react-native-paper';
 export default function App() {
     const Profile ={ uri:'https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg',
     width: 250,
     height: 150,};
 
-    const [username,setUsername]=useState("")
-    const [password,setPassword]=useState("")
+    const [username,setUsername]=useState("");
+    const [password,setPassword]=useState("");
+    const [login, setLogin] = useState(false);
 
     return(
-        <SafeAreaView>
-            <View style={styles.container}>
-            <View style={styles.cardContainer}>
-                <Card style={styles.card}>
-                <Card.Content>
-                    <Image source={NoteBook}/>
-                    <Title>Login your account</Title>
-                    <TextInput  
-                        style={styles.input}
-                        onChangeText={setUsername}
-                        value={username}
-                        placeholder="Username or Email"  
-                    />
-                    <TextInput  
-                        style={styles.input}
-                        onChangeText={setPassword}
-                        value={password}
-                        placeholder="Password"  
-                    />
-                    {/* <Paragraph>Gpu : NVIDIA GeForce RTX 4060 </Paragraph>
-                    <Paragraph>RAM : 16 GB DDR5 4800 MHz </Paragraph>
-                    <Paragraph>Stroage : 512GB SSD PCIe M.2 Gen4</Paragraph>
-                    <Paragraph>Price : 49,990.-</Paragraph> */}
+        <SafeAreaView style={styles.container}>
+            {/* <Text>Teest login</Text> */}
 
-          </Card.Content>
-        </Card>
+              <View style={styles.cardContainer}>
 
-        
-      </View>
-    </View>
+                  <Card style={styles.card1}>
+
+                    <View style={styles.container}>
+                      <Card style={styles.card}>
+                        <Text style={styles.text}>Login</Text> <br/>
+                          <TextInput 
+                          style={styles.input}
+                          onChangeText={setUsername}
+                          value={username}
+                          placeholder="Username or Email"
+                          />
+                          <TextInput 
+                          style={styles.input}
+                          onChangeText={setPassword}
+                          value={password}
+                          placeholder="Password"
+                          />
+                         
+                        <View style={styles.center}>
+
+                            <Button 
+                            title="Login"
+                            color="blue"
+                            // onPress={}
+                            />
+                            <br/>
+                            <Button 
+                            title="Create account"
+                            color="blue"
+                            // onPress={}
+                            />
+                            <br/><br/>
+                            <Text style={styles.text}>Planner</Text>
+                            </View>
+                      </Card>
+                    </View>
+                    <View style={styles.center}>
+
+                    <Text style={styles.text}>Login</Text>
+                    </View>
+                  </Card>
+
+              </View>
+           
         </SafeAreaView>
     );
-    
 
 }
 const styles = StyleSheet.create({
@@ -71,5 +90,36 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
+    card: {
+      margin: 10,
+      width:300,
+      height:400,
+      padding: 10,
+      borderWidth: 5,
+      borderRadius: 20,
+    },
+    card1: {
+      margin: 10,
+      width:900,
+      height:600,
+      padding: 10,
+      borderWidth: 5,
+      borderRadius: 10,
+    },
+    cardContainer: {
+      flexDirection: 'row',
+    },
+    text:{
+      fontSize: 30,
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      color:'blue'
+    },
+    center: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    icon: { 
+      marginLeft: 10, 
+  }, 
   });
-
