@@ -24,10 +24,9 @@ export default function App() {
           <Card style={styles.cardContainer}>
             <Title style={styles.title}>{"\n"}Setting</Title>
             <Card style={styles.cardContainerin1}>
-            <Card style={styles.cardContainer2}>
+            {/* <Card style={styles.cardContainer2}> */}
             <View style={styles.butsetting}>
               <Button title='Change Email'/>
-              <Button title='Reset Password'/>
             </View>
             <View style={styles.butsetting}>
               <Button title='Reset Password'/>
@@ -38,10 +37,10 @@ export default function App() {
             </Card>
 
             </Card>
-          </Card>
+          {/* </Card> */}
             <View style={styles.butleft}>
 
-            <Button title='exit' style={styles.exit} onPress={()=> setShow(!show)}/>
+            <Button title='exit' onPress={()=> setShow(!show)}/>
             </View>
           </View>
         </View>
@@ -74,9 +73,6 @@ const styles = StyleSheet.create({
     borderRadius:10,
     height:500,
     width:500,
-  },
-  exit:{
-    width:200
   },
   butleft:{
     backgroundColor:"white",
@@ -117,7 +113,7 @@ const styles = StyleSheet.create({
     width:500,
     marginTop:10,
     backgroundColor:'pink',
-    borderRadius:5
+    borderRadius:5,
   },
   cardContainer2: {
     flexDirection: 'row',
@@ -126,19 +122,19 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginLeft:40,
     backgroundColor:'white',
-    borderRadius:5
+    borderRadius:5,
   },
   butsetting:{
     backgroundColor:"white",
-    // marginLeft:390,
-    // marginTop:-70,
+    marginLeft:40,
     height:50,
     width:420,
-    borderWidth:1
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
   },
-  text:{
-    borderWidth:1
-  }
+
   
 
 });
