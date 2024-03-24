@@ -5,14 +5,16 @@ import Setto from './frontend/setting.js';
 import Login from './frontend/Login.js';
 import Month from './frontend/Month.js';
 import Register from './frontend/register.js';
+import Mainmonth from './frontend/MainMonth.js';
 
 export default function App() {
   return (
     <View style={styles.container}>
     {/* <Login/> */}
     {/* <Setto/> */}
-    <Register/>
+    {/* <Register/> */}
     {/* <Month/> */}
+   <Mainmonth/>
     </View>
   );
 }
