@@ -17,6 +17,7 @@ export default function App() {
           setShow(!show)
         }}
       >
+      
         <View style={styles.test2}>
           <View style={styles.test3}>
             <Text>Modal Text</Text>
