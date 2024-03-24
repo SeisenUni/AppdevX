@@ -3,10 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import {oldd,newm,oldm} from './keytime.js';
+import {Bar} from './menubar.js'
 
 export default function App(props) {
     const data = [];
-    // const data2 = [];
+    // const data2 = [];vf
     // const day = [];
     // const getold = getloldday();
     for (let i = 1; i < 36; i++) {
@@ -65,9 +66,6 @@ export default function App(props) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Card style={styles.menubar}>
-                <Title style={{ textAlign: 'center' }}>This is menubar</Title>
-            </Card>
             <Card style={styles.month}>
                 <View style={styles.week}>
                     <Title style={styles.dayweek}>Sunday</Title>

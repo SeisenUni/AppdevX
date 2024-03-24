@@ -6,15 +6,17 @@ import Login from './frontend/Login.js';
 import Month from './frontend/Month.js';
 import Register from './frontend/register.js';
 import Mainmonth from './frontend/MainMonth.js';
-
+import Bar from './frontend/menubar.js';
 export default function App() {
   return (
     <View style={styles.container}>
+    <Bar/>
     {/* <Login/> */}
     {/* <Setto/> */}
     {/* <Register/> */}
     {/* <Month/> */}
    <Mainmonth/>
+   
     </View>
   );
 }
@@ -24,5 +26,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
   },
 });
