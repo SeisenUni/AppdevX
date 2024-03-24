@@ -2,21 +2,9 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
+import {oldd,newm,oldm} from './keytime.js';
 
-export default function App() {
-
-    const getloldday = (p) => {
-        const x = 2;
-        return x;
-    }
-    const newmonth = (p) =>{
-        const y = 31;
-        return y;
-    }
-    const oldmonth =(p) =>{
-        const z = 30;
-        return z;
-    }
+export default function App(props) {
     const data = [];
     // const data2 = [];
     // const day = [];
@@ -28,7 +16,7 @@ export default function App() {
     const createday = ({ item }) => {
         // var count = 0;
         // var getday = 5;
-        if (countday >= getloldday() && item.title <= newmonth()+2) {
+        if (countday >= oldd() && item.title <= newm()+2) {
             let newday = (item.title - countday);
             if (newday >= 1 && newday <= 10) {
                 return (
@@ -49,9 +37,9 @@ export default function App() {
         }
         else {
             countday++;
-            if(item.title < oldmonth())
+            if(item.title < oldm())
             {
-                let setto = oldmonth()-getloldday();
+                let setto = oldm()-oldd();
                 let newday2 = (setto + countday);
                 if (newday2 >= 0 && newday2 <= 1) {
                     return (
