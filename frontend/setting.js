@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Modal,Button } from 'react-native';
 import React,{useState} from 'react';
+import { Card, Title } from 'react-native-paper';
 export default function App() {
   const [show,setShow]=useState(false);
   
@@ -8,7 +9,7 @@ export default function App() {
     <View style={styles.test}>
       <Text>Open up App.js to start working on your app!</Text>
       {/* <View style={styles.left}> */}
-      <Button title='Button' style={styles.bu} onPress={()=> setShow(true)}/>
+      <Button title='Button'onPress={()=> setShow(true)}/>
       {/* </View> */}
       <Modal
         transparent={true}
@@ -17,11 +18,28 @@ export default function App() {
           setShow(!show)
         }}
       >
-      
+
         <View style={styles.test2}>
           <View style={styles.test3}>
-            <Text>Modal Text</Text>
-            <View style={styles.left}>
+          <Card style={styles.cardContainer}>
+            <Title style={styles.title}>{"\n"}Setting</Title>
+            <Card style={styles.cardContainerin1}>
+            <Card style={styles.cardContainer2}>
+            <View style={styles.butsetting}>
+              <Button title='Change Email'/>
+              <Button title='Reset Password'/>
+            </View>
+            <View style={styles.butsetting}>
+              <Button title='Reset Password'/>
+            </View>
+            <View style={styles.butsetting}>
+              <Button title='Theme'/>
+            </View>
+            </Card>
+
+            </Card>
+          </Card>
+            <View style={styles.butleft}>
 
             <Button title='exit' style={styles.exit} onPress={()=> setShow(!show)}/>
             </View>
@@ -60,12 +78,66 @@ const styles = StyleSheet.create({
   exit:{
     width:200
   },
-  left:{
-    backgroundColor:"blue",
+  butleft:{
+    backgroundColor:"white",
     marginLeft:390,
-    marginTop:-50,
+    marginTop:-70,
     height:40,
-    width:60
+    width:60,
+    borderRadius:5
+  },
+  setting:{
+    justifyContent:'center',
+    alignItems: 'center',
+    // marginTop:-20,
+    height:80,
+    width:700
+  },
+  title:{
+    fontSize:40,
+    // backgroundColor:'pink',
+    width:490,
+    height:60,
+    textAlign:'center',
+    color:"white",
+    // flexDirection:'row'
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    height:80,
+    width:500,
+    marginLeft:-40,
+    marginTop:-42,
+    backgroundColor:'gray',
+    borderRadius:5
+  },
+  cardContainerin1: {
+    flexDirection: 'row',
+    height:450,
+    width:500,
+    marginTop:10,
+    backgroundColor:'pink',
+    borderRadius:5
+  },
+  cardContainer2: {
+    flexDirection: 'row',
+    height:150,
+    width:420,
+    marginTop:20,
+    marginLeft:40,
+    backgroundColor:'white',
+    borderRadius:5
+  },
+  butsetting:{
+    backgroundColor:"white",
+    // marginLeft:390,
+    // marginTop:-70,
+    height:50,
+    width:420,
+    borderWidth:1
+  },
+  text:{
+    borderWidth:1
   }
   
 
