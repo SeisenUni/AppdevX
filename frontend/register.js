@@ -14,28 +14,28 @@ export default function App() {
     // height: 150,};
     const [email,setEmail]=useState('');
     const [username,setUsername]=useState('');
-    const [tel,setTel]=useState('');
+    const [phone_number,setPhoneNumber]=useState('');
     const [password,setPassword]=useState('');
     const [showPassword, setShowPassword] = useState(false); 
     // const [create, setcreate] = useState(false);
-    const myInputRef1= React.createRef();
-    const myInputRef2= React.createRef();
-    const myInputRef3= React.createRef();
-    const myInputRef4= React.createRef();
+    // const myInputRef1= React.createRef();
+    // const myInputRef2= React.createRef();
+    // const myInputRef3= React.createRef();
+    // const myInputRef4= React.createRef();
     const onClickcreat=()=>{
         const data={
-            email:myInputRef1.current.value,
-            username:myInputRef2.current.value,
-            tel:myInputRef3.current.value,
-            password:myInputRef4.current.value
+            email:email,
+            username:username,
+            phone_number:phone_number,
+            password:password
         }
         axios.post("http://10.64.43.110:5000/register",data)
         .then(response=>{
-          // console.log(response.data)
-          setPerson(response.data)
+          console.log(response.data)
+          setPerson(response.data.person)
           setEmail("")
           setUsername("")
-          setTel("")
+          setPhoneNumber("")
           setPassword("")
         })
         .catch(error=>{
@@ -67,21 +67,21 @@ export default function App() {
                           style={styles.input}
                           onChangeText={setEmail}
                           value={email}
-                          ref={myInputRef1}
+                          // ref={myInputRef1}
                           placeholder="Email"
                           />
                           <TextInput 
                           style={styles.input}
                           onChangeText={setUsername}
                           value={username}
-                          ref={myInputRef2}
+                          // ref={myInputRef2}
                           placeholder="Username"
                           />
                           <TextInput 
                           style={styles.input}
-                          onChangeText={setTel}
-                          value={tel}
-                          ref={myInputRef3}
+                          onChangeText={setPhoneNumber}
+                          value={phone_number}
+                          // ref={myInputRef3}
                           placeholder="Telephone Number"
                           />
                           <View style={styles.input}>
@@ -90,7 +90,7 @@ export default function App() {
                           // style={styles.input}
                           onChangeText={setPassword}
                           value={password}
-                            ref={myInputRef4}
+                            // ref={myInputRef4}
                           placeholder="Password"
                           secureTextEntry={!showPassword}
                           
