@@ -7,7 +7,7 @@ import {Bar} from './menubar.js'
 
 export default function App(props) {
     const data = [];
-    // const data2 = [];vf
+    // const data2 = [];
     // const day = [];
     // const getold = getloldday();
     for (let i = 1; i < 36; i++) {
