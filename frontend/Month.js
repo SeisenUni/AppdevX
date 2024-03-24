@@ -5,75 +5,73 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 
 export default function App() {
 
-    const getloldday =(item) =>
-    {
-        const x = 5;
-        return  x;
+    const getloldday = (p) => {
+        const x = 2;
+        return x;
+    }
+    const newmonth = (p) =>{
+        const y = 31;
+        return y;
+    }
+    const oldmonth =(p) =>{
+        const z = 30;
+        return z;
     }
     const data = [];
-    const day = [];
-    for (let i = getloldday(5); i < 31; i++) {
-        if (i == 31) 
-        {
-            switch (7 % (i + 1)) {
-                case 0:
-                    day.push({ key: i, name: `${7}` });
-                    break;
-                case 1:
-                    day.push({ key: i, name: `${1}` });
-                    break;
-                case 2:
-                    day.push({ key: i, name: `${2}` });
-                    break;
-                case 3:
-                    day.push({ key: i, name: `${3}` });
-                    break;
-                case 4:
-                    day.push({ key: i, name: `${4}` });
-                    break;
-                case 5:
-                    day.push({ key: i, name: `${5}` });
-                    break;
-                case 6:
-                    day.push({ key: i, name: `${6}` });
-                    break;
-            }
-        }
-
-        data.push({ key: i, title: `${i}` });
+    // const data2 = [];
+    // const day = [];
+    // const getold = getloldday();
+    for (let i = 1; i < 36; i++) {
+            data.push({ key: i, title: `${i}` });
     }
-
+    var countday = 0;
     const createday = ({ item }) => {
-        var count = 0;
-        var getday =5;
-        let setday = item.title;
-        
-            if (item.title >= 1 && item.title <= 10) {
-                count++;
-                if (count > 1) {
-                    return (
-                        <Card style={styles.selectday}>
-                            <Title style={styles.textst}>{item.title}</Title>
-                            <Paragraph>Abstract final</Paragraph>
-                        </Card>
-                    );
-                }
-                else {
-                    return (
-                        <Card style={styles.selectday}>
-                            <Title style={styles.textst}>{item.title}</Title>
-                            <Paragraph>Abstract final</Paragraph>
-                            <Paragraph>18:30 - 19:40</Paragraph>
-                        </Card>
-                    );
-                }
+        // var count = 0;
+        // var getday = 5;
+        if (countday >= getloldday() && item.title <= newmonth()+2) {
+            let newday = (item.title - countday);
+            if (newday >= 1 && newday <= 10) {
+                return (
+                    <Card style={styles.selectday}>
+                        <Title style={styles.textst}>{newday}</Title>
+                        <Paragraph>Algorithm</Paragraph>
+                        <Paragraph>18:30 - 19:40</Paragraph>
+                    </Card>
+                );
+
             } else {
                 return (
                     <Card style={styles.card}>
-                        <Title style={styles.textst}>{item.title}</Title>
+                        <Title style={styles.textst}>{newday}</Title>
                     </Card>
                 );
             }
+        }
+        else {
+            countday++;
+            if(item.title < oldmonth())
+            {
+                let setto = oldmonth()-getloldday();
+                let newday2 = (setto + countday);
+                if (newday2 >= 0 && newday2 <= 1) {
+                    return (
+                        <Card style={styles.selectday}>
+                            <Title style={styles.textst}>{newday2}</Title>
+                            <Paragraph>Abstract</Paragraph>
+                            <Paragraph>18:30 - 19:40</Paragraph>
+                        </Card>
+                    );
+    
+                } else {
+                    return (
+                        <Card style={styles.oldmonth}>
+                            <Title style={styles.textst}>{newday2}</Title>
+                        </Card>
+                    );
+                }
+            }    
+        }
+
     };
 
 
@@ -133,7 +131,7 @@ const styles = StyleSheet.create({
         marginRight: 4,
         marginBottom: 4,
         borderRadius: 3,
-        backgroundColor: 'gray',
+        backgroundColor: '#979A9A',
         width: 120,
         height: 120,
         justifyContent: 'top',
@@ -169,4 +167,17 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'center',
     },
+    oldmonth:{
+        marginTop: 4,
+        marginRight: 4,
+        marginBottom: 4,
+        borderRadius: 3,
+        backgroundColor: '#616A6B',
+        width: 120,
+        height: 120,
+        justifyContent: 'top',
+        alignItems: 'left',
+        borderWidth: 2, // กำหนดความหนาของเส้น
+        borderColor: 'black', // กำหนดสีของเส้น
+    }
 });
