@@ -1,7 +1,8 @@
 
-import { StyleSheet, Text, View,TextInput, Button,Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View,TextInput, Button,Image, SafeAreaView ,ScrollView} from 'react-native';
 import React,{useState,useEffect} from 'react';
-import { Card} from 'react-native-paper'
+import { Card} from 'react-native-paper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default function App() {
     // const [person,setPerson]=useState([]);
     // useEffect(()=>{
@@ -14,6 +15,7 @@ export default function App() {
     const [username,setUsername]=useState("");
     const [tel,setTel]=useState("");
     const [password,setPassword]=useState("");
+    const [showPassword, setShowPassword] = useState(false); 
     // const [create, setcreate] = useState(false);
     // const myInputRef1= React.createRef();
     // const myInputRef2= React.createRef();
@@ -40,8 +42,14 @@ export default function App() {
     //     })
     //   }
 
+    const toggleShowPassword = () => { 
+      setShowPassword(!showPassword); 
+    }; 
+
 
     return(
+      <ScrollView>
+
         <SafeAreaView style={styles.container}>
             {/* <Text>Teest login</Text> */}
 
@@ -54,7 +62,6 @@ export default function App() {
 
                       <Card style={styles.card}>
                         <Text style={styles.text}>Create Account</Text> 
-                          
                          <TextInput 
                           style={styles.input}
                           onChangeText={setEmail}
@@ -76,20 +83,34 @@ export default function App() {
                         //   ref={myInputRef3}
                           placeholder="Telephone Number"
                           />
+                          <View style={styles.input}>
+
                           <TextInput 
-                          style={styles.input}
+                          // style={styles.input}
                           onChangeText={setPassword}
                           value={password}
-                        //   ref={myInputRef4}
+                          //   ref={myInputRef4}
                           placeholder="Password"
+                          secureTextEntry={!showPassword}
+                          
                           />
+                          <MaterialCommunityIcons 
+                          name={showPassword ? 'eye-off' : 'eye'} 
+                          size={24} 
+                          color="#aaa"
+                          style={styles.icon} 
+                          onPress={toggleShowPassword} 
+                          /> 
+                          </View>
+
+
                          <View style={styles.center}>
                             <Button 
                             title="Create account"
-                            color="blue"
+                            color="green"
                             // onPress={onClickcreat}
                             />
-                            <Text style={styles.text}>Planner</Text>
+                            <Text style={styles.text}>{"\n"}Planner</Text>
                             </View>
                       </Card>
                     </View>
@@ -103,6 +124,7 @@ export default function App() {
               </View>
            
         </SafeAreaView>
+      </ScrollView>
     );
 
 
@@ -118,19 +140,12 @@ const styles = StyleSheet.create({
     cardContainer: {
       flexDirection: 'row',
     },
-    card: {
-      margin: 10,
-      width:300,
-      height:450,
-      padding: 10,
-      borderWidth: 5,
-      borderRadius: 10,
-    },
     input: {
         height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        borderRadius:5
     },
     card: {
       margin: 10,
@@ -139,14 +154,16 @@ const styles = StyleSheet.create({
       padding: 10,
       borderWidth: 5,
       borderRadius: 20,
+      backgroundColor:'white'
     },
     card1: {
       margin: 10,
-      width:900,
+      width:1000,
       height:600,
-      padding: 10,
+      padding: 30,
       borderWidth: 5,
       borderRadius: 10,
+      backgroundColor:'white'
     },
     cardContainer: {
       flexDirection: 'row',
@@ -162,6 +179,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     icon: { 
-      marginLeft: 10, 
-  }, 
+      marginLeft:200,
+      marginTop:-20
+    },
   });
