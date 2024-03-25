@@ -40,7 +40,7 @@ export default function App() {
 
                   <Card style={styles.card1}>
 
-            <ImageBackground source={bg}>
+            <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
                       <View style={styles.container2}>
 
@@ -147,11 +147,12 @@ const styles = StyleSheet.create({
     card1: {
       margin: 10,
       width:900,
-      height:600,
-      padding: 10,
-      borderWidth: 3,
+      height:544,
+      padding: 1,
+      borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white"
+      backgroundColor:"white",
+      borderColor:'#b0b0b0'
     },
     cardContainer: {
       flexDirection: 'row',
@@ -180,4 +181,7 @@ const styles = StyleSheet.create({
       margin:0,
       backgroundColor:'white',
     },
+    img:{
+      borderRadius:5
+    }
   });
