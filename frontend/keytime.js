@@ -1,12 +1,12 @@
 import {lock} from './contmonth';
-let month = lock(value);
+let month = '1';
 export const choose = (value) => {
     lock(value);
     month = value; 
 }
 export const locking =(value)=>
 {
-    locks= month;
+    let locks= month;
     return month;
 }
 export const oldd = () => {
