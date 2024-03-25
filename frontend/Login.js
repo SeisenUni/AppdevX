@@ -38,7 +38,7 @@ export default function App() {
 
               {/* <View style={styles.cardContainer}> */}
 
-                  <Card style={styles.card1}>
+          <Card style={styles.card1}>
 
             <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
@@ -92,7 +92,7 @@ export default function App() {
                       </View>
                     </View>
             </ImageBackground>
-                  </Card>
+          </Card>
 
               {/* </View> */}
            
