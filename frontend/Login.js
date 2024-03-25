@@ -4,6 +4,7 @@ import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
+import axios from 'axios';
 export default function App() {
 
     const [username,setUsername]=useState("");
@@ -13,6 +14,23 @@ export default function App() {
     const toggleShowPassword = () => { 
       setShowPassword(!showPassword); 
     };
+
+    const onClicklog=()=>{
+      console.log("login")
+      const data={
+          username:username,
+          password:password
+      }
+      axios.get("http://10.64.43.110:5000/register/",data)
+      .then(response=>{
+        console.log(response.data)
+        setUsername("")
+        setPassword("")
+      })
+      .catch(error=>{
+        console.log(error.response)
+      })
+    }
 
     return(
         <SafeAreaView style={styles.container}>
@@ -53,17 +71,20 @@ export default function App() {
                           </View>
                          
                         <View style={styles.center}>
-
+                          <Card style={styles.card2}>
                             <Button 
                             title="Login"
                             color="green"
-                            // onPress={}
+                            onPress={onClicklog}
                             />
+                          </Card>
+                          <Card style={styles.card3}>
                             <Button 
                             title="Create account"
                             color="green"
                             // onPress={}
                             />
+                          </Card>
                             <Text> </Text>
                             <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
@@ -92,7 +113,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'flex-end',
-      backgroundColor: 'pink',
+      backgroundColor: 'white',
       padding: 60,
       // borderWidth:1
     },
@@ -119,7 +140,6 @@ const styles = StyleSheet.create({
       width:300,
       height:400,
       padding: 10,
-      borderWidth: 5,
       borderRadius: 20,
       backgroundColor:"white"
     },
@@ -148,5 +168,15 @@ const styles = StyleSheet.create({
     icon: { 
       marginLeft: 200, 
       marginTop:-20
+    },
+    card2:{
+      margin:20,
+      backgroundColor:'white',
+      width:80,
+      height:40
+    },
+    card3:{
+      margin:0,
+      backgroundColor:'white',
     },
   });
