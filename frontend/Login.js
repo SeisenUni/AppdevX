@@ -21,7 +21,7 @@ export default function App() {
           username:username,
           password:password
       }
-      axios.get("http://10.64.43.110:5000/register/",data)
+      axios.get("http://10.64.43.110:5000/login",data)
       .then(response=>{
         console.log(response.data)
         setUsername("")
@@ -38,9 +38,9 @@ export default function App() {
 
               {/* <View style={styles.cardContainer}> */}
 
-                  {/* <Card style={styles.card1}> */}
+                  <Card style={styles.card1}>
 
-            <ImageBackground source={bg} style={styles.container1}>
+            <ImageBackground source={bg}>
                     <View style={styles.cardContainer}>
                       <View style={styles.container2}>
 
@@ -92,7 +92,7 @@ export default function App() {
                       </View>
                     </View>
             </ImageBackground>
-                  {/* </Card> */}
+                  </Card>
 
               {/* </View> */}
            
@@ -109,14 +109,15 @@ const styles = StyleSheet.create({
       padding: 60,
       // borderWidth:1
     },
-    container1: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'flex-end',
-      backgroundColor: 'white',
-      padding: 60,
-      // borderWidth:1
-    },
+    // container1: {
+    //   flex: 1,
+    //   justifyContent: 'center',
+    //   alignItems: 'flex-end',
+    //   backgroundColor: 'white',
+    //   padding: 60,
+    //   borderWidth:1,
+    //   height:570
+    // },
     container2: {
       flex: 1,
       justifyContent: 'center',
