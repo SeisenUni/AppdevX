@@ -49,12 +49,7 @@ def get_all_id_info():
 def register():
     data = request.get_json()
     
-    # Check if all required fields are present
-    # required_fields = ["username", "password", "email", "phone_number"]
-    # if not all(field in data for field in required_fields):
-    #     return jsonify({"error": "Missing required fields"}), 400
     
-    # Assuming 'info_id' is a list
     count = len(info_id)
     ttt = 0
     if count != 0:
@@ -77,6 +72,23 @@ def register():
         return jsonify({"error": str(e)}), 500  # Internal Server Error
     
     return jsonify(info_id), 200
+
+
+@app.route("/login", methods=["GET"])
+@cross_origin()
+def check_credentials():
+    
+    username = request.args.get("username")
+    password = request.args.get("password")
+    
+    # Check if username and password match
+    user = id_collection.find_one({"username": username, "password": password})
+    if user:
+        return jsonify({"message": "Credentials match"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
+
+
 
 
 
