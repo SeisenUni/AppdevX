@@ -4,6 +4,7 @@ import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
+import axios from 'axios';
 export default function App() {
 
     const [username,setUsername]=useState("");
@@ -14,15 +15,32 @@ export default function App() {
       setShowPassword(!showPassword); 
     };
 
+    const onClicklog=()=>{
+      console.log("login")
+      const data={
+          username:username,
+          password:password
+      }
+      axios.get("http://10.64.43.110:5000/login",data)
+      .then(response=>{
+        console.log(response.data)
+        setUsername("")
+        setPassword("")
+      })
+      .catch(error=>{
+        console.log(error.response)
+      })
+    }
+
     return(
         <SafeAreaView style={styles.container}>
             {/* <Text>Teest login</Text> */}
 
               {/* <View style={styles.cardContainer}> */}
 
-                  {/* <Card style={styles.card1}> */}
+          <Card style={styles.card1}>
 
-            <ImageBackground source={bg} style={styles.container1}>
+            <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
                       <View style={styles.container2}>
 
@@ -53,17 +71,20 @@ export default function App() {
                           </View>
                          
                         <View style={styles.center}>
-
+                          <Card style={styles.card2}>
                             <Button 
                             title="Login"
                             color="green"
-                            // onPress={}
+                            onPress={onClicklog}
                             />
+                          </Card>
+                          <Card style={styles.card3}>
                             <Button 
                             title="Create account"
                             color="green"
                             // onPress={}
                             />
+                          </Card>
                             <Text> </Text>
                             <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
@@ -71,7 +92,7 @@ export default function App() {
                       </View>
                     </View>
             </ImageBackground>
-                  {/* </Card> */}
+          </Card>
 
               {/* </View> */}
            
@@ -88,14 +109,15 @@ const styles = StyleSheet.create({
       padding: 60,
       // borderWidth:1
     },
-    container1: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'flex-end',
-      backgroundColor: 'pink',
-      padding: 60,
-      // borderWidth:1
-    },
+    // container1: {
+    //   flex: 1,
+    //   justifyContent: 'center',
+    //   alignItems: 'flex-end',
+    //   backgroundColor: 'white',
+    //   padding: 60,
+    //   borderWidth:1,
+    //   height:570
+    // },
     container2: {
       flex: 1,
       justifyContent: 'center',
@@ -119,18 +141,18 @@ const styles = StyleSheet.create({
       width:300,
       height:400,
       padding: 10,
-      borderWidth: 5,
       borderRadius: 20,
       backgroundColor:"white"
     },
     card1: {
       margin: 10,
       width:900,
-      height:600,
-      padding: 10,
-      borderWidth: 3,
+      height:544,
+      padding: 1,
+      borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white"
+      backgroundColor:"white",
+      borderColor:'#b0b0b0'
     },
     cardContainer: {
       flexDirection: 'row',
@@ -149,4 +171,17 @@ const styles = StyleSheet.create({
       marginLeft: 200, 
       marginTop:-20
     },
+    card2:{
+      margin:20,
+      backgroundColor:'white',
+      width:80,
+      height:40
+    },
+    card3:{
+      margin:0,
+      backgroundColor:'white',
+    },
+    img:{
+      borderRadius:5
+    }
   });
