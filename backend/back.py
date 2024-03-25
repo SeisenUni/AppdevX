@@ -75,7 +75,9 @@ def register():
 
 
 @app.route("/login", methods=["GET"])
+@cross_origin()
 def check_credentials():
+    
     username = request.args.get("username")
     password = request.args.get("password")
     
