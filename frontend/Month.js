@@ -2,22 +2,16 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import {oldd,newm,oldm} from './keytime.js';
-import {Bar} from './menubar.js'
+import { oldd, newm, oldm,choose} from './keytime.js';
 
-export default function App(props) {
+export default function App() {
     const data = [];
-    // const data2 = [];
-    // const day = [];
-    // const getold = getloldday();
     for (let i = 1; i < 36; i++) {
-            data.push({ key: i, title: `${i}` });
+         data.push({ key: i, title: `${i}` });
     }
     var countday = 0;
     const createday = ({ item }) => {
-        // var count = 0;
-        // var getday = 5;
-        if (countday >= oldd() && item.title <= newm()+2) {
+        if (countday >= oldd() && item.title <= newm() + 2) {
             let newday = (item.title - countday);
             if (newday >= 1 && newday <= 10) {
                 return (
@@ -38,9 +32,8 @@ export default function App(props) {
         }
         else {
             countday++;
-            if(item.title < oldm())
-            {
-                let setto = oldm()-oldd();
+            if (item.title < oldm()) {
+                let setto = oldm() - oldd();
                 let newday2 = (setto + countday);
                 if (newday2 >= 0 && newday2 <= 1) {
                     return (
@@ -50,7 +43,7 @@ export default function App(props) {
                             <Paragraph>18:30 - 19:40</Paragraph>
                         </Card>
                     );
-    
+
                 } else {
                     return (
                         <Card style={styles.oldmonth}>
@@ -58,32 +51,32 @@ export default function App(props) {
                         </Card>
                     );
                 }
-            }    
+            }
         }
 
     };
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Card style={styles.month}>
-                <View style={styles.week}>
-                    <Title style={styles.dayweek}>Sunday</Title>
-                    <Title style={styles.dayweek}>Monday</Title>
-                    <Title style={styles.dayweek}>Tuesday</Title>
-                    <Title style={styles.dayweek}>Wednesday</Title>
-                    <Title style={styles.dayweek}>Thursday</Title>
-                    <Title style={styles.dayweek}>Friday</Title>
-                    <Title style={styles.dayweek}>Saturday</Title>
-                </View>
-                <FlatList
-                    data={data}
-                    renderItem={createday}
-                    numColumns={7}
-                    contentContainerStyle={styles.flatListContent}
-                /></Card>
-            <StatusBar style="auto" />
-        </SafeAreaView>
+            <SafeAreaView style={styles.container}>
+                <Card style={styles.month}>
+                    <View style={styles.week}>
+                        <Title style={styles.dayweek}>Sunday</Title>
+                        <Title style={styles.dayweek}>Monday</Title>
+                        <Title style={styles.dayweek}>Tuesday</Title>
+                        <Title style={styles.dayweek}>Wednesday</Title>
+                        <Title style={styles.dayweek}>Thursday</Title>
+                        <Title style={styles.dayweek}>Friday</Title>
+                        <Title style={styles.dayweek}>Saturday</Title>
+                    </View>
+                    <FlatList
+                        data={data}
+                        renderItem={(item) => createday(item)}
+                        numColumns={7}
+                        contentContainerStyle={styles.flatListContent}
+                    /></Card>
+                <StatusBar style="auto" />
+            </SafeAreaView>
     );
 }
 
@@ -95,6 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         margin: 0,
         padding: 1,
+        zIndex: 2,
     },
     flatListContent: {
         alignItems: 'left',
@@ -153,7 +147,7 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'center',
     },
-    oldmonth:{
+    oldmonth: {
         marginTop: 4,
         marginRight: 4,
         marginBottom: 4,
