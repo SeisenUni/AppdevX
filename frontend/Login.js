@@ -24,7 +24,7 @@ export default function App() {
 
             <ImageBackground source={bg} style={styles.container1}>
                     <View style={styles.cardContainer}>
-                      <View style={styles.container}>
+                      <View style={styles.container2}>
 
                       <Card style={styles.card}>
                         <Text style={styles.text}>Login</Text> 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'flex-end',
+      alignItems: 'center',
       backgroundColor: 'no',
       padding: 60,
       // borderWidth:1
@@ -93,6 +93,14 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'flex-end',
       backgroundColor: 'pink',
+      padding: 60,
+      // borderWidth:1
+    },
+    container2: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+      backgroundColor: 'no',
       padding: 60,
       // borderWidth:1
     },
