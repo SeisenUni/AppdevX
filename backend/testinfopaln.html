@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+</head>
+<body>
+    <h1>Add Task</h1>
+    <form id="addTaskForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+        
+        <label for="priority">Priority:</label>
+        <input type="number" id="priority" name="priority" required><br><br>
+        
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required><br><br>
+        
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required><br><br>
+        
+        <button type="submit">Add Task</button>
+    </form>
+
+    <script>
+        document.getElementById('addTaskForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                title: document.getElementById('title').value,
+                priority: parseInt(document.getElementById('priority').value),
+                content: document.getElementById('content').value,
+                date_start: document.getElementById('startDate').value,
+                date_end: document.getElementById('endDate').value
+            };
+
+            fetch('http://127.0.0.1:5000/add_task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add task');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Task added successfully:', data);
+                alert('Task added successfully');
+                document.getElementById('addTaskForm').reset();
+            })
+            .catch(error => {
+                console.error('Error adding task:', error);
+                alert('Failed to add task. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

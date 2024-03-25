@@ -89,6 +89,39 @@ def check_credentials():
         return jsonify({"error": "Invalid credentials"}), 401
 
 
+@app.route("/add_task", methods=["POST"])  #infoplan
+@cross_origin()
+def add_task():
+    data = request.get_json()
+    count = len(info_plan)
+    ttt = 0
+    if count != 0:
+        ttt = info_plan[-1]["_id"] + 1
+
+    new_task = {
+        
+        "_id": ttt,
+        "title": data["title"],
+        "priority": data["priority"],
+        "content": data["content"],
+        "finish": False,
+        
+        "date_start": data["date_start"],
+        "date_end": data["date_end"]
+    }
+
+    try:
+       
+        collection.insert_one(new_task)
+    except pymongo.errors.PyMongoError as e:
+        return jsonify({"error": str(e)}), 500  
+
+    return jsonify({"message": "Task added successfully"}), 200
+
+
+
+
+
 
 
 
