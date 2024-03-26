@@ -1,16 +1,18 @@
-import {lock} from './contmonth';
-let month = '1';
-export const choose = (value) => {
-    lock(value);
-    month = value; 
-}
-export const locking =(value)=>
+
+export const choose = (value) => 
 {
-    let locks= month;
-    return month;
+    month = value; 
+    memo(value);
 }
+
+export const memo=(value)=>
+{
+    console.log(value);
+    return value;
+}
+let month = memo();
 export const oldd = () => {
-    switch(month ) {
+    switch(month) {
         case '1': return 1;
         case '2': return 4;
         case '3': return 5;
@@ -43,12 +45,10 @@ export const newm = () => {
         case '12': return 29;
         default: return 30;
     }
-    const y = 31; // จำนวนวันในเดือนใหม่
-    return y;
 }
 
 export const oldm = () => {
-    switch(month ) {
+    switch(month) {
         case '1': return 31;
         case '2': return 31;
         case '3': return 29;
@@ -63,8 +63,7 @@ export const oldm = () => {
         case '12': return 30;
         default: return 31;
     }
-    const z = 31; // จำนวนวัน
-    return z;
+
 }
 export const renderMonth = () => {
     switch(month ) {

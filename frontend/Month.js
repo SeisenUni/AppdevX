@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { oldd, newm, oldm,choose} from './keytime.js';
+import { oldd, newm, oldm,memo} from './keytime.js';
 
 export default function App() {
     const data = [];
