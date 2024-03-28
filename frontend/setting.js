@@ -19,31 +19,33 @@ export default function App() {
         }}
       >
 
-        <View style={styles.test2}>
-          <View style={styles.test3}>
-          <Card style={styles.cardContainer}>
-            <Title style={styles.title}>{"\n"}Setting</Title>
-            <Card style={styles.cardContainerin1}>
-            {/* <Card style={styles.cardContainer2}> */}
-            <View style={styles.butsetting}>
-              <Button title='Change Email'/>
-            </View>
-            <View style={styles.butsetting}>
-              <Button title='Reset Password'/>
-            </View>
-            <View style={styles.butsetting}>
-              <Button title='Theme'/>
-            </View>
-            </Card>
+          <View style={styles.test2}>
+              <View style={styles.test3}>
+                <Card style={styles.cardContainer}>
+                    <Title style={styles.title}>{"\n"}Setting</Title>
+                    <Card style={styles.cardContainerin1}>
+                      {/* <Card style={styles.cardContainer2}> */}
+                      <View style={styles.butsetting}>
+                        <Button title='Change Email'/>
+                      </View>
 
-            </Card>
-          {/* </Card> */}
-            <View style={styles.butleft}>
+                      <View style={styles.butsetting}>
+                        <Button title='Reset Password'/>
+                      </View>
 
-            <Button title='exit' onPress={()=> setShow(!show)}/>
-            </View>
+                      <View style={styles.butsetting}>
+                        <Button title='Theme'/>
+                      </View>
+
+                    </Card>
+
+                  </Card>
+                {/* </Card> */}
+                  <View style={styles.butleft}>
+                    <Button title='exit' onPress={()=> setShow(!show)}/>
+                  </View>
+              </View>
           </View>
-        </View>
       </Modal>
     </View>
   );

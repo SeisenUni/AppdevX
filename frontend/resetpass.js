@@ -17,61 +17,53 @@ export default function App() {
 
     return(
         <SafeAreaView style={styles.container}>
-            {/* <Text>Teest login</Text> */}
-
-              {/* <View style={styles.cardContainer}> */}
-
-                  <Card style={styles.card1}>
-
-            <ImageBackground source={bg} style={styles.img}>
-                    <View style={styles.cardContainer}>
-                      <View style={styles.container2}>
-
+            <Card style={styles.card1}>
+              <ImageBackground source={bg} style={styles.img}>
+                  <View style={styles.cardContainer}>
+                    <View style={styles.container2}>
                       <Card style={styles.card}>
-                        <Text style={styles.text}>Reset Password</Text> 
-                          <TextInput 
-                          style={styles.input}
-                          onChangeText={setNewpassword}
-                          value={newpassword}
-                          placeholder="New Password"
-                          />
-                          <View style={styles.input}>
-
-                          <TextInput 
-                          // style={styles.input}
-                          onChangeText={setConpassword}
-                          value={conpassword}
-                          placeholder="Confirm Password"
-                          secureTextEntry={!showPassword}
-                          />
-                          <MaterialCommunityIcons 
-                          name={showPassword ? 'eye-off' : 'eye'} 
-                          size={24} 
-                          color="#aaa"
-                          style={styles.icon} 
-                          onPress={toggleShowPassword} 
-                          /> 
-                          </View>
-                         
-                        <View style={styles.center}>
-                            <Card style={styles.card2}>
-                                <Button 
-                                title="Reset Password"
-                                color="green"
-                                // onPress={}
+                            <Text style={styles.text}>Reset Password</Text> 
+                                <TextInput 
+                                style={styles.input}
+                                onChangeText={setNewpassword}
+                                value={newpassword}
+                                placeholder="New Password"
                                 />
-                            </Card>
-                            <Text> </Text>
-                            <Text style={styles.text}> {"\n"}Planner</Text>
-                            </View>
-                      </Card>
-                      </View>
-                    </View>
-            </ImageBackground>
-                  </Card>
+                              <View style={styles.input}>
 
-              {/* </View> */}
-           
+                                <TextInput 
+                                // style={styles.input}
+                                onChangeText={setConpassword}
+                                value={conpassword}
+                                placeholder="Confirm Password"
+                                secureTextEntry={!showPassword}
+                                />
+                                <MaterialCommunityIcons 
+                                name={showPassword ? 'eye-off' : 'eye'} 
+                                size={24} 
+                                color="#aaa"
+                                style={styles.icon} 
+                                onPress={toggleShowPassword} 
+                                /> 
+                              </View>
+                            
+                              <View style={styles.center}>
+                                <Card style={styles.card2}>
+                                    <Button 
+                                    title="Reset Password"
+                                    color="green"
+                                    // onPress={}
+                                    />
+                                </Card>
+                                <Text> </Text>
+                                <Text style={styles.text}> {"\n"}Planner</Text>
+                              </View>
+                        </Card>
+                    </View>
+                  </View>
+              </ImageBackground>
+            </Card>
+
         </SafeAreaView>
     );
 
@@ -124,9 +116,10 @@ const styles = StyleSheet.create({
       width:900,
       height:544,
       padding: 1,
-      borderWidth: 3,
+      borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white"
+      backgroundColor:"white",
+      borderColor:'#b0b0b0'
     },
     cardContainer: {
       flexDirection: 'row',
