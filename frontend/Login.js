@@ -109,15 +109,6 @@ const styles = StyleSheet.create({
       padding: 60,
       // borderWidth:1
     },
-    // container1: {
-    //   flex: 1,
-    //   justifyContent: 'center',
-    //   alignItems: 'flex-end',
-    //   backgroundColor: 'white',
-    //   padding: 60,
-    //   borderWidth:1,
-    //   height:570
-    // },
     container2: {
       flex: 1,
       justifyContent: 'center',
