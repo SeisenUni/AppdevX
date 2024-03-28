@@ -7,12 +7,14 @@ import Month from './frontend/Month.js';
 import Register from './frontend/register.js';
 import Mainmonth from './frontend/MainMonth.js';
 import Bar from './frontend/menubar.js';
-import Reset from './frontend/resetpass.js'
-import Remail from './frontend/resetmail.js'
+import Reset from './frontend/resetpass.js';
+import Remail from './frontend/resetmail.js';
+import Yearbar from './frontend/yearbar.js';
 export default function App() {
   return (
     <View style={styles.container}>
-    <Bar/>
+    {/* <Bar/> */}
+    <Yearbar/>
     {/* <Login/> */}
     {/* <Setto/> */}
     {/* <Register/> */}
