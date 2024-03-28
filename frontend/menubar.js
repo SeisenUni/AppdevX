@@ -82,7 +82,7 @@ export default function App() {
           placeholder='Week'
           placeholderStyle={styles.yearst}
           dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={(item) => choose(item.value)} 
+          onSelectItem={handleIconPress} 
           textStyle={styles.yearst}
         />
       </Card>
@@ -103,7 +103,7 @@ export default function App() {
           placeholder='Week'
           placeholderStyle={styles.yearst}
           dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={(item) => choose(item.value)}
+          onSelectItem={handleIconPress}
           textStyle={styles.yearst}
         />
       </Card>
@@ -137,7 +137,7 @@ export default function App() {
         />
       </Card>
     </View>
-    <MonthComponent />
+    <MonthComponent/>
     </View>
 
   
