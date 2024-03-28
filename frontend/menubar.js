@@ -5,12 +5,11 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Iconbar from 'react-native-vector-icons/Feather';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { renderMonth, choose,renderweek,memo} from './keytime';
+import { renderMonth, choose,renderweek} from './keytime';
+import MonthComponent from './Month.js'; // Import month.js component
 
 
 export default function App() {
-
-  
 
   const [open1, setOpen1] = useState(false);
   const [value1, setValue1] = useState(null);
@@ -66,11 +65,6 @@ export default function App() {
     );
 
   };
-  const monthchange = (item) => {
-    choose(item.value); 
-    memo(item.value);
-    
-  };
   const getweek =()=>
   {
     if(renderweek(value) ==='0')
@@ -117,11 +111,10 @@ export default function App() {
     }
   };
   return (
-    
-<View style={styles.menubar}>
+    <View style = {{    flexDirection: 'column',}}>
+      <View style={styles.menubar}>
       <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
       <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-
       <View style={styles.Monthbar}>
         <Text style={styles.monthfont}>{renderMonth()}</Text>
         <Text style={styles.yearfont}>2024</Text>
@@ -139,12 +132,14 @@ export default function App() {
           placeholder='January'
           placeholderStyle={styles.yearst}
           dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={(item) => monthchange(item.value)}
+          onSelectItem={(item) => choose(item.value)}
           textStyle={styles.yearst}
         />
       </Card>
-     
     </View>
+    <MonthComponent />
+    </View>
+
   
     
 

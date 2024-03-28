@@ -11,13 +11,13 @@ import Reset from './frontend/resetpass.js'
 export default function App() {
   return (
     <View style={styles.container}>
-    {/* <Bar/> */}
+    <Bar/>
     {/* <Login/> */}
     {/* <Setto/> */}
     {/* <Register/> */}
     {/* <Month/> */}
    {/* <Mainmonth/> */}
-   <Reset/>
+   {/* <Reset/> */}
    
     </View>
   );

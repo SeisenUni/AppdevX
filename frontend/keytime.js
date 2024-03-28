@@ -1,16 +1,8 @@
-
+let month = '1';
 export const choose = (value) => 
 {
     month = value; 
-    memo(value);
 }
-
-export const memo=(value)=>
-{
-    console.log(value);
-    return value;
-}
-let month = memo();
 export const oldd = () => {
     switch(month) {
         case '1': return 1;

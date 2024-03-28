@@ -2,9 +2,10 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { oldd, newm, oldm,memo} from './keytime.js';
+import { oldd, newm, oldm} from './keytime.js';
 
 export default function App() {
+   
     const data = [];
     for (let i = 1; i < 36; i++) {
          data.push({ key: i, title: `${i}` });
@@ -76,6 +77,7 @@ export default function App() {
                         contentContainerStyle={styles.flatListContent}
                     /></Card>
                 <StatusBar style="auto" />
+                
             </SafeAreaView>
     );
 }
