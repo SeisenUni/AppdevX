@@ -53,71 +53,71 @@ export default function App() {
 
         <SafeAreaView style={styles.container}>
             {/* <Text>Teest login</Text> */}
-
               <View style={styles.cardContainer}>
-
                   <Card style={styles.card1}>
-
                     <View style={styles.cardContainer}>
-                    <View style={styles.container}>
+                      <View style={styles.container}>
 
-                      <Card style={styles.card}>
-                        <Text style={styles.text}>Create Account</Text> 
-                         <TextInput 
-                          style={styles.input}
-                          onChangeText={setEmail}
-                          value={email}
-                          // ref={myInputRef1}
-                          placeholder="Email"
-                          />
+                        <Card style={styles.card}>
+                          <Text style={styles.text}>Create Account</Text> 
                           <TextInput 
-                          style={styles.input}
-                          onChangeText={setUsername}
-                          value={username}
-                          // ref={myInputRef2}
-                          placeholder="Username"
-                          />
-                          <TextInput 
-                          style={styles.input}
-                          onChangeText={setPhoneNumber}
-                          value={phone_number}
-                          // ref={myInputRef3}
-                          placeholder="Telephone Number"
-                          />
-                          <View style={styles.input}>
-
-                          <TextInput 
-                          // style={styles.input}
-                          onChangeText={setPassword}
-                          value={password}
-                            // ref={myInputRef4}
-                          placeholder="Password"
-                          secureTextEntry={!showPassword}
-                          
-                          />
-                          <MaterialCommunityIcons 
-                          name={showPassword ? 'eye-off' : 'eye'} 
-                          size={24} 
-                          color="#aaa"
-                          style={styles.icon} 
-                          onPress={toggleShowPassword} 
-                          /> 
-                          </View>
-
-
-                         <View style={styles.center}>
-                            <Button 
-                            title="Create account"
-                            color="green"
-                            onPress={onClickcreat}
+                            style={styles.input}
+                            onChangeText={setEmail}
+                            value={email}
+                            // ref={myInputRef1}
+                            placeholder="Email"
                             />
-                            <Text style={styles.text}>{"\n"}Planner</Text>
-                            </View>
-                      </Card>
-                    </View>
-                    </View>
-                    <View style={styles.center}>
 
+                            <TextInput 
+                            style={styles.input}
+                            onChangeText={setUsername}
+                            value={username}
+                            // ref={myInputRef2}
+                            placeholder="Username"
+                            />
+                            
+                            <TextInput 
+                            style={styles.input}
+                            onChangeText={setPhoneNumber}
+                            value={phone_number}
+                            // ref={myInputRef3}
+                            placeholder="Telephone Number"
+                            />
+
+                            <View style={styles.input}>
+
+                              <TextInput 
+                              // style={styles.input}
+                              onChangeText={setPassword}
+                              value={password}
+                                // ref={myInputRef4}
+                              placeholder="Password"
+                              secureTextEntry={!showPassword}
+                              
+                              />
+                              <MaterialCommunityIcons 
+                              name={showPassword ? 'eye-off' : 'eye'} 
+                              size={24} 
+                              color="#aaa"
+                              style={styles.icon} 
+                              onPress={toggleShowPassword} 
+                              /> 
+                            </View>
+
+
+                            <View style={styles.center}>
+                                <Button 
+                                title="Create account"
+                                color="green"
+                                onPress={onClickcreat}
+                                />
+                                <Text style={styles.text}>{"\n"}Planner</Text>
+                            </View>
+                        </Card>
+                      </View>
+                    </View>
+
+                    <View style={styles.center}>
                     <Text style={styles.text}>Create Account</Text>
                     </View>
                   </Card>
