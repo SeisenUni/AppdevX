@@ -50,7 +50,7 @@ export default function App() {
                           style={styles.input}
                           onChangeText={setUsername}
                           value={username}
-                          placeholder="Username or Email"
+                          placeholder="Username"
                           />
                           <View style={styles.input}>
 
