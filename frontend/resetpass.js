@@ -21,9 +21,9 @@ export default function App() {
 
               {/* <View style={styles.cardContainer}> */}
 
-                  {/* <Card style={styles.card1}> */}
+                  <Card style={styles.card1}>
 
-            <ImageBackground source={bg} style={styles.container1}>
+            <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
                       <View style={styles.container2}>
 
@@ -68,7 +68,7 @@ export default function App() {
                       </View>
                     </View>
             </ImageBackground>
-                  {/* </Card> */}
+                  </Card>
 
               {/* </View> */}
            
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     card1: {
       margin: 10,
       width:900,
-      height:600,
-      padding: 10,
+      height:544,
+      padding: 1,
       borderWidth: 3,
       borderRadius: 5,
       backgroundColor:"white"
@@ -149,6 +149,9 @@ const styles = StyleSheet.create({
         margin:20,
         backgroundColor:'white'
     },
+    img:{
+      borderRadius:5
+    }
   });
 
 
