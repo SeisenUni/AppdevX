@@ -51,7 +51,6 @@ export default function App() {
   };
   const getnum =(value)=>
   {
-    console.log(value);
     return value;
   }
  const data =[];

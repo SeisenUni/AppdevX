@@ -13,8 +13,8 @@ import Yearbar from './frontend/yearbar.js';
 export default function App() {
   return (
     <View style={styles.container}>
-    {/* <Bar/> */}
-    <Yearbar/>
+    <Bar/>
+    {/* <Yearbar/> */}
     {/* <Login/> */}
     {/* <Setto/> */}
     {/* <Register/> */}

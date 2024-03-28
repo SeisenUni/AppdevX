@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     justifyContent: 'right',
     flexDirection: 'row',
     backgroundColor: 'transparent',
-    zIndex: 20000,
+    zIndex: 200000,
     // transparent
 
   },

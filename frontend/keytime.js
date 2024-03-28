@@ -1,7 +1,12 @@
 let month = '1';
+let lock ='1';
 export const choose = (value) => 
 {
     month = value; 
+}
+export const target =(value) =>
+{
+    lock = value;
 }
 export const oldd = () => {
     switch(month) {
@@ -24,7 +29,7 @@ export const oldd = () => {
 export const newm = () => {
     switch(month ) {
         case '1': return 30;
-        case '2': return 30;
+        case '2': return 31;
         case '3': return 33;
         case '4': return 29;
         case '5': return 31;
