@@ -34,61 +34,52 @@ export default function App() {
 
     return(
         <SafeAreaView style={styles.container}>
-            {/* <Text>Teest login</Text> */}
-
-              {/* <View style={styles.cardContainer}> */}
-
-          <Card style={styles.card1}>
-
-            <ImageBackground source={bg} style={styles.img}>
+            <Card style={styles.card1}>
+                <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
-                      <View style={styles.container2}>
+                        <View style={styles.container2}>
+                            <Card style={styles.card}>
+                                <Text style={styles.text}>Change Email</Text> 
+                                <TextInput 
+                                style={styles.input}
+                                onChangeText={setEmail}
+                                value={email}
+                                placeholder="New Email"
+                                />
+                                <View style={styles.input}>
 
-                      <Card style={styles.card}>
-                        <Text style={styles.text}>Change Email</Text> 
-                          <TextInput 
-                          style={styles.input}
-                          onChangeText={setEmail}
-                          value={email}
-                          placeholder="New Email"
-                          />
-                          <View style={styles.input}>
-
-                          <TextInput 
-                          // style={styles.input}
-                          onChangeText={setNewemail}
-                          value={newemail}
-                          placeholder="Confirm Email"
-                        //   secureTextEntry={!showPassword}
-                          />
-                          {/* <MaterialCommunityIcons 
-                          name={showPassword ? 'eye-off' : 'eye'} 
-                          size={24} 
-                          color="#aaa"
-                          style={styles.icon} 
-                          onPress={toggleShowPassword} 
-                          />  */}
-                          </View>
-                         
-                        <View style={styles.center}>
-                          <Card style={styles.card2}>
-                            <Button 
-                            title="Change Email"
-                            color="green"
-                            onPress={onClicklog}
-                            />
-                          </Card>
-                            <Text> </Text>
-                            <Text style={styles.text}> {"\n"}Planner</Text>
-                            </View>
-                      </Card>
-                      </View>
+                                    <TextInput 
+                                    // style={styles.input}
+                                    onChangeText={setNewemail}
+                                    value={newemail}
+                                    placeholder="Confirm Email"
+                                    //   secureTextEntry={!showPassword}
+                                    />
+                                    {/* <MaterialCommunityIcons 
+                                    name={showPassword ? 'eye-off' : 'eye'} 
+                                    size={24} 
+                                    color="#aaa"
+                                    style={styles.icon} 
+                                    onPress={toggleShowPassword} 
+                                    />  */}
+                                </View>
+                                    
+                                <View style={styles.center}>
+                                    <Card style={styles.card2}>
+                                        <Button 
+                                        title="Change Email"
+                                        color="green"
+                                        onPress={onClicklog}
+                                        />
+                                    </Card>
+                                    <Text> </Text>
+                                    <Text style={styles.text}> {"\n"}Planner</Text>
+                                </View>
+                            </Card>
+                        </View>
                     </View>
-            </ImageBackground>
-          </Card>
-
-              {/* </View> */}
-           
+                </ImageBackground>
+            </Card>
         </SafeAreaView>
     );
 
