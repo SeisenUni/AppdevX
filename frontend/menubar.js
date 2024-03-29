@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, SafeAreaView, Text, TouchableOpacity, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Iconbar from 'react-native-vector-icons/Feather';
+import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { renderMonth, choose, renderweek } from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
@@ -19,6 +19,14 @@ export default function App() {
   const gotoweek =()=>
   {
     navigation.navigate("Week");
+  }
+  const setting =()=>
+  {
+    navigation.navigate("Setto");
+  }
+  const adding =()=>
+  {
+    navigation.navigate("Adding");
   }
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -52,15 +60,12 @@ export default function App() {
       { cancelable: false }
     );
   };
-  const weekpage=()=>
-  {
-
-  }
+  
   return (
     <View style={{ flexDirection: 'column', backgroundColor:'white',flex:1}}>
       <View style={styles.menubar}>
         <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={back}></Icon.Button>
-        <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
+        <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={adding}></Icon.Button>
         <View style={styles.Monthbar}>
           <Text style={styles.monthfont}>{renderMonth()}</Text>
           <Text style={styles.yearfont}>2024</Text>
@@ -86,6 +91,8 @@ export default function App() {
             textStyle={styles.yearst}
           />
         </Card>
+        <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={setting}></Icons.Button>
+
       </View>
       <MonthComponent />
     </View>
@@ -147,7 +154,6 @@ const styles = StyleSheet.create({
   },
   boxdrop: { // Use containerStyle instead of style
     height: 50,
-    marginRight:10,
     width: 150,
     borderColor: 'gray',
     borderWidth: 0.5,

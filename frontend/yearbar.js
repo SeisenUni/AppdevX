@@ -10,7 +10,20 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
   const navigation =useNavigation();
+  const setting =()=>
+  {
+    navigation.navigate("Setto");
+  }
+  const adding =()=>
+  {
+    navigation.navigate("Adding");
+  }
+  const getaccess =(value)=>
+  {
+    target(value);
+    navigation.navigate("Bar")
 
+  }
     const findfile =(item)=>
     {
       switch(item)
@@ -54,12 +67,7 @@ export default function App() {
       { cancelable: false }
     );
   };
-  const getaccess =(value)=>
-  {
-    target(value);
-    navigation.navigate("Bar")
-
-  }
+ 
  const data =[];
  for (let i = 1; i <= 12; i++) {
     data.push({ key: i, month: `${i}` });
@@ -82,7 +90,7 @@ const printmonth = ({ item }) => {
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
       <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
+      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={adding}></Icon.Button>
       <View style={styles.yearbar}>
         <Text style={styles.Calendar}>Yearly Calendar</Text>
         <Text style={styles.yearfont}>2024</Text>
@@ -104,7 +112,7 @@ const printmonth = ({ item }) => {
         />
         
       </Card>
-      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icons.Button>
+      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={setting}></Icons.Button>
 
          </View>
          <View style={{backgroundColor:'white' ,alignItems: 'center',justifyContent: 'center',}}>
@@ -126,7 +134,6 @@ const styles = StyleSheet.create({
 
     marginTop: 10,
     borderRadius: 0,
-  
     alignItems: 'center',
     justifyContent: 'right',
     flexDirection: 'row',
