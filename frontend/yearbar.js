@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground  } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -11,22 +11,24 @@ import { useNavigation } from '@react-navigation/native';
 export default function App() {
   const navigation =useNavigation();
 
-     const renderMonth = (item) => {
-        switch(item) {
-            case '1': return 'January';
-            case '2': return 'February';
-            case '3': return 'March';
-            case '4': return 'April';
-            case '5': return 'May';
-            case '6': return 'June';
-            case '7': return 'July';
-            case '8': return 'August';
-            case '9': return 'September';
-            case '10': return 'October';
-            case '11': return 'November';
-            case '12': return 'December';
-            default: return 'January';
-        }
+    const findfile =(item)=>
+    {
+      switch(item)
+      {
+        case '1': return require('../month/1/jan.png');
+            case '2': return require('../month/1/feb.png');
+            case '3': return require('../month/1/mar.png');
+            case '4': return require('../month/1/apr.png');
+            case '5': return require('../month/1/jun.png');
+            case '6': return require('../month/1/jul.png');
+            case '7': return require('../month/1/may.png');
+            case '8': return require('../month/1/may.png');
+            case '9': return require('../month/1/may.png');
+            case '10': return require('../month/1/may.png');
+            case '11': return require('../month/1/may.png');
+            case '12': return require('../month/1/may.png');
+            default: return require('../month/1/may.png');
+      }
     }
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -66,7 +68,11 @@ const printmonth = ({ item }) => {
     return (
         <TouchableOpacity onPress={() =>getaccess(item.month)}>
             <Card style={styles.Toch}>
-                <Title>{renderMonth(item.month)}</Title>
+              <ImageBackground
+              source={findfile(item.value)}
+              style={styles.png}
+              ></ImageBackground>
+                {/* <Title>{renderMonth(item.month)}</Title> */}
             </Card>
         </TouchableOpacity>
     );
@@ -193,6 +199,18 @@ const styles = StyleSheet.create({
     height:220,
     zIndex :1,
    margin:10,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius:10,
+    borderWidth:1,
+    borderColor:'black',
+  },
+  png:{
+    width:250,
+    height:220,
+    zIndex :1,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
