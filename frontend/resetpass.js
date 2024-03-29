@@ -4,16 +4,33 @@ import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
+import axios from 'axios';
 export default function App() {
 
     // const [username,setUsername]=useState("");
     const [newpassword,setNewpassword]=useState("");
     const [conpassword,setConpassword]=useState("");
-    const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => { 
       setShowPassword(!showPassword); 
     };
+
+    const onClickpass=()=>{
+      console.log("reset password !!")
+      const data={
+          newpassword:newpassword,
+          conpassword:conpassword
+      }
+      axios.post("http://10.64.43.110:5000/reset_pass",data)
+      .then(response=>{
+        console.log(response.data)
+        setNewpassword("")
+        setConpassword("")
+      })
+      .catch(error=>{
+        console.log(error.response)
+      })
+    }
 
     return(
         <SafeAreaView style={styles.container}>
@@ -52,7 +69,7 @@ export default function App() {
                                     <Button 
                                     title="Reset Password"
                                     color="green"
-                                    // onPress={}
+                                    onPress={onClickpass}
                                     />
                                 </Card>
                                 <Text> </Text>
