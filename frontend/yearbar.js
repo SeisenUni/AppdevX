@@ -69,7 +69,7 @@ const printmonth = ({ item }) => {
 };
  
   return (
-    <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white'}}>
+    <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
       <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
       <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
@@ -95,7 +95,7 @@ const printmonth = ({ item }) => {
       </Card>
       
          </View>
-         <View style={{backgroundColor:'white'}}>
+         <View style={{backgroundColor:'white' ,alignItems: 'center',justifyContent: 'center',}}>
          <FlatList
             data={data}
             renderItem={(item) => printmonth(item)}
@@ -111,6 +111,7 @@ const printmonth = ({ item }) => {
 
 const styles = StyleSheet.create({
   bar: {
+
     marginTop: 10,
     borderRadius: 0,
     width: 1050,
