@@ -14,29 +14,12 @@ export default function App() {
 
   const back=()=>
   {
-    navigation.navigate("Year")
+    navigation.navigate("Year");
   }
-  const [open1, setOpen1] = useState(false);
-  const [value1, setValue1] = useState(null);
-  const [items1, setItems1] = useState([
-    { value: '1', label: 'Week1' },
-    { value: '2', label: 'Week2' },
-    { value: '3', label: 'Week3' },
-    { value: '4', label: 'Week4' },
-    { value: '5', label: 'Week5' },
-  ]);
-
-  const [open2, setOpen2] = useState(false);
-  const [value2, setValue2] = useState(null);
-  const [items2, setItems2] = useState([
-    { value: '1', label: 'Week1' },
-    { value: '2', label: 'Week2' },
-    { value: '3', label: 'Week3' },
-    { value: '4', label: 'Week4' },
-    { value: '5', label: 'Week5' },
-    { value: '6', label: 'Week6' },
-  ]);
-
+  const gotoweek =()=>
+  {
+    navigation.navigate("Week");
+  }
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -68,50 +51,11 @@ export default function App() {
       ],
       { cancelable: false }
     );
+  };
+  const weekpage=()=>
+  {
 
-  };
-  const getweek = () => {
-    if (renderweek(value) === '0') {
-      return (
-        <Card style={styles.iconstyle}>
-          <DropDownPicker
-            open={open1}
-            value={value1}
-            items={items1}
-            setOpen={setOpen1}
-            setValue={setValue1}
-            setItems={setItems1}
-            style={styles.boxdrop}
-            placeholder='Week'
-            placeholderStyle={styles.yearst}
-            dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-            onSelectItem={handleIconPress}
-            textStyle={styles.yearst}
-          />
-        </Card>
-      );
-    }
-    else if (renderweek(value) === '99') {
-      return (
-        <Card style={styles.iconstyle}>
-          <DropDownPicker
-            open={open2}
-            value={value2}
-            items={items2}
-            setOpen={setOpen2}
-            setValue={setValue2}
-            setItems={setItems2}
-            style={styles.boxdrop}
-            placeholder='Week'
-            placeholderStyle={styles.yearst}
-            dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-            onSelectItem={handleIconPress}
-            textStyle={styles.yearst}
-          />
-        </Card>
-      );
-    }
-  };
+  }
   return (
     <View style={{ flexDirection: 'column', backgroundColor:'white',flex:1}}>
       <View style={styles.menubar}>
@@ -121,7 +65,11 @@ export default function App() {
           <Text style={styles.monthfont}>{renderMonth()}</Text>
           <Text style={styles.yearfont}>2024</Text>
         </View>
-        {getweek()}
+        <TouchableOpacity onPress={gotoweek}>
+          <Card style={styles.boxdrop}>
+            <Title style={styles.yearst}>Week</Title>
+          </Card>
+        </TouchableOpacity>
         <Card style={styles.iconstyle}>
           <DropDownPicker
             open={open}
@@ -205,6 +153,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   yearst: {
     fontSize: 20.5,

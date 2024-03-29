@@ -10,6 +10,7 @@ import Bar from './frontend/menubar.js';
 import Reset from './frontend/resetpass.js';
 import Remail from './frontend/resetmail.js';
 import Yearbar from './frontend/yearbar.js';
+import Week from './frontend/week.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Regis" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Year"  component={Yearbar} options={{ headerShown: false }}/>
         <Stack.Screen name="Bar"  component={Bar} options={{ headerShown: false }}/>
+        <Stack.Screen name="Week"  component={Week} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
