@@ -14,6 +14,9 @@ export default function App() {
     const [password,setPassword]=useState("");
     const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    const myInputRef1= React.createRef();
+
     const toggleShowPassword = () => { 
       setShowPassword(!showPassword); 
     };
@@ -24,7 +27,7 @@ export default function App() {
           username:username,
           password:password
       }
-      axios.get("http://10.64.43.110:5000/login",data)
+      axios.post("http://10.64.43.110:5000/login",data)
       .then(response=>{
         console.log(response.data)
         setUsername("")
