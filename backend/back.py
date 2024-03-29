@@ -10,6 +10,7 @@ client = MongoClient(uri)
 db = client["planlendar"]
 collection = db["planlendar_info"]
 info_in_plan = collection.find()
+use = ""
 
 id_db =client["ID"]
 id_collection =id_db["ID_info"]
@@ -77,16 +78,45 @@ def register():
 @app.route("/login", methods=["GET"])
 @cross_origin()
 def check_credentials():
-    
-    username = request.args.get("username")
-    password = request.args.get("password")
+    global use
+    data = request.json 
+    username = data["username"]
+    password = data["password"]
     
     # Check if username and password match
     user = id_collection.find_one({"username": username, "password": password})
     if user:
+        
+        use=username
         return jsonify({"message": "Credentials match"}), 200
     else:
         return jsonify({"error": "Invalid credentials"}), 401
+
+
+
+
+@app.route("/update_password", methods=["POST"])
+def update_password():
+    data = request.json
+    global use
+    
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
+   
+    new_password = data.get("new_password")
+    confirm_password = data.get("confirm_password")
+    
+    # Check if username and old password match
+    user = id_collection.find_one({"username": use})
+    if not user:
+        return jsonify({"error": "Invalid username or password"}), 401
+     
+     # Update password
+    if user and new_password ==confirm_password :
+        id_collection.update_one({"username": use}, {"$set": {"password": new_password}})
+    
+        return jsonify({"message": "Password updated successfully"}), 200
 
 
 @app.route("/add_task", methods=["POST"])  #infoplan
@@ -99,31 +129,24 @@ def add_task():
         ttt = info_plan[-1]["_id"] + 1
 
     new_task = {
-        
+
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
         "content": data["content"],
         "finish": False,
-        
+
         "date_start": data["date_start"],
         "date_end": data["date_end"]
     }
 
     try:
-       
+
         collection.insert_one(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
 
     return jsonify({"message": "Task added successfully"}), 200
-
-
-
-
-
-
-
 
 
 
