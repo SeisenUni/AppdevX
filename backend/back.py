@@ -95,17 +95,20 @@ def check_credentials():
 
 
 
-@app.route("/update_password", methods=["POST"])
+@app.route("/reset_pass", methods=["POST"])
 def update_password():
-    data = request.json
+    data = request.get_json() 
     global use
     
     if not data:
         return jsonify({"error": "No data provided"}), 400
     
    
-    new_password = data.get("new_password")
-    confirm_password = data.get("confirm_password")
+    global use
+   
+    newpassword= data["newpassword"]
+    conpassword = data["conpassword"]
+    
     
     # Check if username and old password match
     user = id_collection.find_one({"username": use})
@@ -113,8 +116,8 @@ def update_password():
         return jsonify({"error": "Invalid username or password"}), 401
      
      # Update password
-    if user and new_password ==confirm_password :
-        id_collection.update_one({"username": use}, {"$set": {"password": new_password}})
+    if user and newpassword ==conpassword :
+        id_collection.update_one({"username": use}, {"$set": {"password": newpassword}})
     
         return jsonify({"message": "Password updated successfully"}), 200
 
