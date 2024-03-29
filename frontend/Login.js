@@ -188,5 +188,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontFamily: 'Cochin',
       color:'red',
+      paddingLeft:12
     }
   });
