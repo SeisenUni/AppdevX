@@ -6,6 +6,7 @@ export const choose = (value) =>
 }
 export const target =(value) =>
 {
+    console.log(value);
     lock = value;
 }
 export const getoldd =()=>

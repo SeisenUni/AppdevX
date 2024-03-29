@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import {StackNavigator} from 'react-navigation-stack';
 import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card, Paragraph, Title } from 'react-native-paper';
-;
+import { target } from './keytime';
 
 export default function App() {
 
@@ -49,9 +50,10 @@ export default function App() {
       { cancelable: false }
     );
   };
-  const getnum =(value)=>
+  const getaccess =(value)=>
   {
-    return value;
+
+    target(value);
   }
  const data =[];
  for (let i = 1; i <= 12; i++) {
@@ -59,7 +61,7 @@ export default function App() {
 }
 const printmonth = ({ item }) => {
     return (
-        <TouchableOpacity onPress={() =>getnum(item.month)}>
+        <TouchableOpacity onPress={() =>getaccess(item.month)}>
             <Card style={styles.Toch}>
                 <Title>{renderMonth(item.month)}</Title>
             </Card>
