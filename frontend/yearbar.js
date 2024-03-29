@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { target } from './keytime';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function App() {
+  const navigation =useNavigation();
 
      const renderMonth = (item) => {
         switch(item) {
@@ -27,8 +31,7 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    { value: '1', label: '2024' },
-    { value: '2', label: '2025' },
+    { value: '1', label: '2025' },
    
   ]);
 
@@ -51,8 +54,9 @@ export default function App() {
   };
   const getaccess =(value)=>
   {
-
     target(value);
+    navigation.navigate("Bar")
+
   }
  const data =[];
  for (let i = 1; i <= 12; i++) {
@@ -92,8 +96,10 @@ const printmonth = ({ item }) => {
           onSelectItem={handleIconPress}
           textStyle={styles.yearst}
         />
+        
       </Card>
-      
+      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icons.Button>
+
          </View>
          <View style={{backgroundColor:'white' ,alignItems: 'center',justifyContent: 'center',}}>
          <FlatList
@@ -114,8 +120,7 @@ const styles = StyleSheet.create({
 
     marginTop: 10,
     borderRadius: 0,
-    width: 1050,
-    height: 75,
+  
     alignItems: 'center',
     justifyContent: 'right',
     flexDirection: 'row',
@@ -161,6 +166,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   boxdrop: { // Use containerStyle instead of style
+    marginRight:10,
     height: 50,
     width: 150,
     borderColor: 'gray',
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   dropdownchoose:{
-    height: 75,
+    height: 40,
     width: 150,
     borderColor: 'gray',
     color:'red',

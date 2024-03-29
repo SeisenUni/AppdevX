@@ -5,12 +5,17 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Iconbar from 'react-native-vector-icons/Feather';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { renderMonth, choose,renderweek} from './keytime';
+import { renderMonth, choose, renderweek } from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
-
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
+  const navigation =useNavigation();
 
+  const back=()=>
+  {
+    navigation.navigate("Year")
+  }
   const [open1, setOpen1] = useState(false);
   const [value1, setValue1] = useState(null);
   const [items1, setItems1] = useState([
@@ -65,83 +70,80 @@ export default function App() {
     );
 
   };
-  const getweek =()=>
-  {
-    if(renderweek(value) ==='0')
-    {
+  const getweek = () => {
+    if (renderweek(value) === '0') {
       return (
-      <Card style={styles.iconstyle}>
-      <DropDownPicker
-          open={open1}
-          value={value1}
-          items={items1}
-          setOpen={setOpen1}
-          setValue={setValue1}
-          setItems={setItems1}
-          style={styles.boxdrop}
-          placeholder='Week'
-          placeholderStyle={styles.yearst}
-          dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={handleIconPress} 
-          textStyle={styles.yearst}
-        />
-      </Card>
+        <Card style={styles.iconstyle}>
+          <DropDownPicker
+            open={open1}
+            value={value1}
+            items={items1}
+            setOpen={setOpen1}
+            setValue={setValue1}
+            setItems={setItems1}
+            style={styles.boxdrop}
+            placeholder='Week'
+            placeholderStyle={styles.yearst}
+            dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
+            onSelectItem={handleIconPress}
+            textStyle={styles.yearst}
+          />
+        </Card>
       );
     }
-    else if(renderweek(value) ==='99')
-    {
-      return(
+    else if (renderweek(value) === '99') {
+      return (
         <Card style={styles.iconstyle}>
-      <DropDownPicker
-          open={open2}
-          value={value2}
-          items={items2}
-          setOpen={setOpen2}
-          setValue={setValue2}
-          setItems={setItems2}
-          style={styles.boxdrop}
-          placeholder='Week'
-          placeholderStyle={styles.yearst}
-          dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={handleIconPress}
-          textStyle={styles.yearst}
-        />
-      </Card>
+          <DropDownPicker
+            open={open2}
+            value={value2}
+            items={items2}
+            setOpen={setOpen2}
+            setValue={setValue2}
+            setItems={setItems2}
+            style={styles.boxdrop}
+            placeholder='Week'
+            placeholderStyle={styles.yearst}
+            dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
+            onSelectItem={handleIconPress}
+            textStyle={styles.yearst}
+          />
+        </Card>
       );
     }
   };
   return (
-    <View style = {{    flexDirection: 'column',}}>
+    <View style={{ flexDirection: 'column', backgroundColor:'white',flex:1}}>
       <View style={styles.menubar}>
-      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-      <View style={styles.Monthbar}>
-        <Text style={styles.monthfont}>{renderMonth()}</Text>
-        <Text style={styles.yearfont}>2024</Text>
+        <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={back}></Icon.Button>
+        <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
+        <View style={styles.Monthbar}>
+          <Text style={styles.monthfont}>{renderMonth()}</Text>
+          <Text style={styles.yearfont}>2024</Text>
+        </View>
+        {getweek()}
+        <Card style={styles.iconstyle}>
+          <DropDownPicker
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            style={styles.boxdrop}
+            placeholder='Month'
+            placeholderStyle={styles.yearst}
+            dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
+            onSelectItem={(item) => choose(item.value)}
+            textStyle={styles.yearst}
+          />
+        </Card>
       </View>
-      {getweek()}
-      <Card style={styles.iconstyle}>
-        <DropDownPicker
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          style={styles.boxdrop}
-          placeholder='January'
-          placeholderStyle={styles.yearst}
-          dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-          onSelectItem={(item) => choose(item.value)}
-          textStyle={styles.yearst}
-        />
-      </Card>
-    </View>
-    <MonthComponent />
+      <MonthComponent />
     </View>
 
-  
-    
+
+
 
   );
 
@@ -151,12 +153,10 @@ const styles = StyleSheet.create({
   menubar: {
     marginTop: 10,
     borderRadius: 0,
-    width: 1050,
-    height: 75,
     alignItems: 'center',
     justifyContent: 'right',
     flexDirection: 'row',
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     zIndex: 200000,
     // transparent
 
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
   },
   boxdrop: { // Use containerStyle instead of style
     height: 50,
+    marginRight:10,
     width: 150,
     borderColor: 'gray',
     borderWidth: 0.5,
@@ -209,11 +210,12 @@ const styles = StyleSheet.create({
     fontSize: 20.5,
     textAlign: 'center',
   },
-  dropdownchoose:{
+  dropdownchoose: {
+    marginRight:10,
     height: 300,
     width: 150,
     borderColor: 'gray',
-    color:'red',
+    color: 'red',
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
