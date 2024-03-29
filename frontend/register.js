@@ -4,7 +4,10 @@ import React,{useState,useEffect} from 'react';
 import { Card} from 'react-native-paper';
 import axios from "axios";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 export default function App() {
+    const navigation =useNavigation();
     const [person,setPerson]=useState([]);
     // useEffect(()=>{
     //   onClick();
@@ -23,6 +26,7 @@ export default function App() {
     // const myInputRef3= React.createRef();
     // const myInputRef4= React.createRef();
     const onClickcreat=()=>{
+        navigation.navigate("Login")
         const data={
             email:email,
             username:username,
@@ -104,15 +108,17 @@ export default function App() {
                               /> 
                             </View>
 
-
-                            <View style={styles.center}>
-                                <Button 
-                                title="Create account"
-                                color="green"
-                                onPress={onClickcreat}
-                                />
-                                <Text style={styles.text}>{"\n"}Planner</Text>
-                            </View>
+                              <View style={styles.center}>
+                            <Card style={styles.card2}>
+                                  <Button 
+                                  title="Create account"
+                                  color="green"
+                                  onPress={onClickcreat}
+                                  // onPress={() =>navigation.navigate("Login")}
+                                  />
+                            </Card>
+                                  <Text style={styles.text}>{"\n"}Planner</Text>
+                              </View>
                         </Card>
                       </View>
                     </View>
@@ -182,5 +188,9 @@ const styles = StyleSheet.create({
     icon: { 
       marginLeft:200,
       marginTop:-20
+    },
+    card2:{
+      margin:0,
+      backgroundColor:'white',
     },
   });

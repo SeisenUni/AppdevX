@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     card2:{
       margin:20,
       backgroundColor:'white',
-      width:80,
+      width:150,
       height:40
     },
     card3:{

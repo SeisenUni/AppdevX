@@ -10,21 +10,32 @@ import Bar from './frontend/menubar.js';
 import Reset from './frontend/resetpass.js';
 import Remail from './frontend/resetmail.js';
 import Yearbar from './frontend/yearbar.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+  const Stack =createNativeStackNavigator();
+
 export default function App() {
   return (
-    <View style={styles.container}>
-    {/* <Bar/> */}
-    <Yearbar/>
-    {/* <Login/> */}
-    {/* <Setto/> */}
-    {/* <Register/> */}
-    {/* <Month/> */}
-   {/* <Mainmonth/> */}
-   {/* <Reset/> */}
-    {/* <Mainmonth/> */}
-    {/* <Reset/> */}
-    {/* <Remail/> */}
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: null }}/>
+        <Stack.Screen name="Regis" component={Register} options={{ headerShown: null }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  //   <View style={styles.container}>
+  //   {/* <Bar/> */}
+  //   <Yearbar/>
+  //   {/* <Login/> */}
+  //   {/* <Setto/> */}
+  //   {/* <Register/> */}
+  //   {/* <Month/> */}
+  //  {/* <Mainmonth/> */}
+  //  {/* <Reset/> */}
+  //   {/* <Mainmonth/> */}
+  //   {/* <Reset/> */}
+  //   {/* <Remail/> */}
+  //   </View>
   );
 }
 const styles = StyleSheet.create({

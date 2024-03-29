@@ -5,12 +5,16 @@ import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 export default function App() {
+
+    const navigation =useNavigation();
 
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
     const toggleShowPassword = () => { 
       setShowPassword(!showPassword); 
     };
@@ -21,14 +25,16 @@ export default function App() {
           username:username,
           password:password
       }
-      axios.get("http://10.64.43.110:5000/login",data)
+      axios.post("http://10.64.43.110:5000/login",data)
       .then(response=>{
         console.log(response.data)
         setUsername("")
         setPassword("")
+        setLogin("")
       })
       .catch(error=>{
         console.log(error.response)
+        setLogin("Something wrong!!!")
       })
     }
 
@@ -43,7 +49,7 @@ export default function App() {
             <ImageBackground source={bg} style={styles.img}>
                     <View style={styles.cardContainer}>
                       <View style={styles.container2}>
-
+              
                       <Card style={styles.card}>
                         <Text style={styles.text}>Login</Text> 
                           <TextInput 
@@ -69,6 +75,7 @@ export default function App() {
                           onPress={toggleShowPassword} 
                           /> 
                           </View>
+                          <Text style={styles.wrong}>{login}</Text>
                          
                         <View style={styles.center}>
                           <Card style={styles.card2}>
@@ -82,6 +89,7 @@ export default function App() {
                             <Button 
                             title="Create account"
                             color="green"
+                            onPress={() =>navigation.navigate("Regis")}
                             // onPress={}
                             />
                           </Card>
@@ -174,5 +182,12 @@ const styles = StyleSheet.create({
     },
     img:{
       borderRadius:5
+    },
+    wrong:{
+      fontSize: 15,
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      color:'red',
+      paddingLeft:12
     }
   });
