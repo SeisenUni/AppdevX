@@ -5,7 +5,10 @@ import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 export default function App() {
+
+    const navigation =useNavigation();
 
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
@@ -82,6 +85,7 @@ export default function App() {
                             <Button 
                             title="Create account"
                             color="green"
+                            onPress={() =>navigation.navigate("Regis")}
                             // onPress={}
                             />
                           </Card>
