@@ -104,7 +104,7 @@ def update_password():
         return jsonify({"error": "No data provided"}), 400
     
    
-    global use
+    
    
     newpassword= data["newpassword"]
     conpassword = data["conpassword"]
