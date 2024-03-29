@@ -21,6 +21,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Regis" component={Register} options={{ headerShown: false }}/>
+        <Stack.Screen name="Year"  component={Yearbar} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   //   <View style={styles.container}>
