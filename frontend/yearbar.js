@@ -69,7 +69,7 @@ const printmonth = ({ item }) => {
 };
  
   return (
-    <View style = {{ flexDirection: 'column',zIndex:30000}}>
+    <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white'}}>
       <View style={styles.bar}>
       <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
       <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
@@ -93,13 +93,17 @@ const printmonth = ({ item }) => {
           textStyle={styles.yearst}
         />
       </Card>
+      
          </View>
+         <View style={{backgroundColor:'white'}}>
          <FlatList
             data={data}
             renderItem={(item) => printmonth(item)}
             numColumns={4}
             contentContainerStyle={styles.flatListContent}
          />
+         </View>
+
     </View>
   );
 
@@ -114,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'right',
     flexDirection: 'row',
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     zIndex: 20000,
     // transparent
 
