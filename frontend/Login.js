@@ -21,6 +21,7 @@ export default function App() {
 
     const onClicklog=()=>{
       console.log("login")
+      navigation.navigate("Year")
       const data={
           username:username,
           password:password
