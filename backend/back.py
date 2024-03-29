@@ -153,5 +153,24 @@ def add_task():
 
 
 
+
+@app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete info plan
+@cross_origin()
+def delete_task(task_id):
+    try:
+        
+        result = collection.delete_one({"_id": int(task_id)})
+        if result.deleted_count == 1:
+            return jsonify({"message": "Task deleted successfully"}), 200
+        else:
+            return jsonify({"error": "Task not found"}), 404
+    except pymongo.errors.PyMongoError as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=5000,debug=True)
