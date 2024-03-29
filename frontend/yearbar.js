@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {StackNavigator} from 'react-navigation-stack';
 import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
