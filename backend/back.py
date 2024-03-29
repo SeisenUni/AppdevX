@@ -75,11 +75,11 @@ def register():
     return jsonify(info_id), 200
 
 
-@app.route("/login", methods=["GET"])
+@app.route("/login", methods=["POST"])
 @cross_origin()
 def check_credentials():
     global use
-    data = request.json 
+    data = request.get_json() 
     username = data["username"]
     password = data["password"]
     
