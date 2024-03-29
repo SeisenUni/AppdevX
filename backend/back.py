@@ -79,8 +79,9 @@ def register():
 @cross_origin()
 def check_credentials():
     global use
-    username = request.args.get("username")
-    password = request.args.get("password")
+    data = request.json 
+    username = data["username"]
+    password = data["password"]
     
     # Check if username and password match
     user = id_collection.find_one({"username": username, "password": password})
