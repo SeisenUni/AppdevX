@@ -7,7 +7,7 @@ import bg from './login-piccard.png'
 import axios from 'axios';
 export default function App() {
 
-    // const [username,setUsername]=useState("");
+    const [worng,setWrong]=useState("");
     const [newpassword,setNewpassword]=useState("");
     const [conpassword,setConpassword]=useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -26,9 +26,11 @@ export default function App() {
         console.log(response.data)
         setNewpassword("")
         setConpassword("")
+        setWrong("")
       })
       .catch(error=>{
         console.log(error.response)
+        setWrong("Wrong")
       })
     }
 
@@ -63,7 +65,7 @@ export default function App() {
                                 onPress={toggleShowPassword} 
                                 /> 
                               </View>
-                            
+                              <Text style={styles.wrong}>{worng}</Text>
                               <View style={styles.center}>
                                 <Card style={styles.card2}>
                                     <Button 
@@ -161,6 +163,13 @@ const styles = StyleSheet.create({
     },
     img:{
       borderRadius:5
+    },
+    wrong:{
+      fontSize: 15,
+      fontWeight: 'bold',
+      fontFamily: 'Cochin',
+      color:'red',
+      paddingLeft:12
     }
   });
 
