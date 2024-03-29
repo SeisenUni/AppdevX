@@ -85,6 +85,7 @@ def check_credentials():
     # Check if username and password match
     user = id_collection.find_one({"username": username, "password": password})
     if user:
+        
         use=username
         return jsonify({"message": "Credentials match"}), 200
     else:
@@ -96,22 +97,23 @@ def check_credentials():
 @app.route("/update_password", methods=["POST"])
 def update_password():
     data = request.json
+    global use
     
     if not data:
         return jsonify({"error": "No data provided"}), 400
     
-    username = data.get("username")
+   
     new_password = data.get("new_password")
     confirm_password = data.get("confirm_password")
     
     # Check if username and old password match
-    user = id_collection.find_one({"username": username})
+    user = id_collection.find_one({"username": use})
     if not user:
         return jsonify({"error": "Invalid username or password"}), 401
      
      # Update password
     if user and new_password ==confirm_password :
-        id_collection.update_one({"username": username}, {"$set": {"password": new_password}})
+        id_collection.update_one({"username": use}, {"$set": {"password": new_password}})
     
         return jsonify({"message": "Password updated successfully"}), 200
 
