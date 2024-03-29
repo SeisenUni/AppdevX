@@ -18,25 +18,26 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Year">
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Regis" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Year"  component={Yearbar} options={{ headerShown: false }}/>
+        <Stack.Screen name="Bar"  component={Bar} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
-  //   <View style={styles.container}>
-  //   {/* <Bar/> */}
-  //   <Yearbar/>
-  //   {/* <Login/> */}
-  //   {/* <Setto/> */}
-  //   {/* <Register/> */}
-  //   {/* <Month/> */}
+    // <View style={styles.container}>
+    //{/* <Bar/> */}
+   // {/* <Yearbar/> */}
+   //{/* <Login/> */}
+    //{/* <Setto/> */}
+//{/* <Register/> */}
+    //{/* <Month/> */}
+   //{/* <Mainmonth/> */}
+  // {/* <Reset/> */}
   //  {/* <Mainmonth/> */}
   //  {/* <Reset/> */}
-  //   {/* <Mainmonth/> */}
-  //   {/* <Reset/> */}
-  //   {/* <Remail/> */}
-  //   </View>
+  //  {/* <Remail/> */}
+    // </View>
   );
 }
 const styles = StyleSheet.create({
