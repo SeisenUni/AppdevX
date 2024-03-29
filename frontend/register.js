@@ -26,16 +26,16 @@ export default function App() {
     // const myInputRef3= React.createRef();
     // const myInputRef4= React.createRef();
     const onClickcreat=()=>{
-        navigation.navigate("Login")
-        const data={
-            email:email,
-            username:username,
-            phone_number:phone_number,
-            password:password
-        }
-        axios.post("http://10.64.43.110:5000/register",data)
-        .then(response=>{
+      const data={
+        email:email,
+        username:username,
+        phone_number:phone_number,
+        password:password
+      }
+      axios.post("http://10.64.43.110:5000/register",data)
+      .then(response=>{
           console.log(response.data)
+          navigation.navigate("Login")
           setPerson(response.data.person)
           setEmail("")
           setUsername("")
