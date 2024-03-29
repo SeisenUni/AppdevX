@@ -16,18 +16,18 @@ export default function App() {
       switch(item)
       {
         case '1': return require('../month/1/jan.png');
-            case '2': return require('../month/1/feb.png');
-            case '3': return require('../month/1/mar.png');
-            case '4': return require('../month/1/apr.png');
-            case '5': return require('../month/1/jun.png');
-            case '6': return require('../month/1/jul.png');
-            case '7': return require('../month/1/may.png');
-            case '8': return require('../month/1/may.png');
-            case '9': return require('../month/1/may.png');
-            case '10': return require('../month/1/may.png');
-            case '11': return require('../month/1/may.png');
-            case '12': return require('../month/1/may.png');
-            default: return require('../month/1/may.png');
+            case '2': return require('../month/2/feb.png');
+            case '3': return require('../month/3/mar.png');
+            case '4': return require('../month/4/apr.png');
+            case '5': return require('../month/5/may.png');
+            case '6': return require('../month/6/jun.png');
+            case '7': return require('../month/7/jul.png');
+            case '8': return require('../month/8/aug.png');
+            case '9': return require('../month/9/sep.png');
+            case '10': return require('../month/10/oct.png');
+            case '11': return require('../month/11/nov.png');
+            case '12': return require('../month/12/dec.png');
+            default: return require('../month/1/jan.png');
       }
     }
   const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ const printmonth = ({ item }) => {
         <TouchableOpacity onPress={() =>getaccess(item.month)}>
             <Card style={styles.Toch}>
               <ImageBackground
-              source={findfile(item.value)}
+              source={findfile(item.month)}
               style={styles.png}
               ></ImageBackground>
                 {/* <Title>{renderMonth(item.month)}</Title> */}
@@ -214,6 +214,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 235, 
+    height: 200, 
   },
 
 });
