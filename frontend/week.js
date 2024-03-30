@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import { Card } from 'react-native-paper';
-import Icons from 'react-native-vector-icons/Entypo';
+import Icons from 'react-native-vector-icons/AntDesign';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { renderweek, week, getmonth } from './keytime';
+import { renderweek, week, getmonth, getweek } from './keytime';
 import { useNavigation } from '@react-navigation/native';
 import { target } from './keytime';
 
 export default function App() {
+    //console.log(getweek())
     const navigation = useNavigation();
     const adding = () => {
         navigation.navigate("Adding");
@@ -98,66 +99,58 @@ export default function App() {
         data.push({ key: i, title: `${i}` });
     }
     const createday = ({ item }) => {
-        if(item.title <= 7)
-        {
+        if (item.title <= 7) {
             return (
                 <Card style={styles.createday}>
                     <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{item.title}</Text>
                 </Card>
             );
         }
+
     }
-    let forturn =0;
+
     const genday = (item) => 
     {
-        forturn =item;
-        gotomonth(forturn);
+        console.log("this is for =");
+        console.log(item);
     }
-   const gotomonth =(value)=>
-   {
-       navigation.navigate("Bar");
-     
-   }
-    return ( 
+    const gotoyear = () => {
+        navigation.navigate("Year");
+    }
+    
+    const setting = () => {
+        navigation.navigate("Setto");
+    }
+    return (
         <SafeAreaView style={styles.container}>
             <Card style={styles.monthandbutton}>
+
                 <Text style={styles.monthtext}>
                     {getmonth()}</Text>
                 <Text style={styles.yeartext}>
                     2024</Text>
                 <Card style={styles.forbuttombox}>
                     <TouchableOpacity style={styles.butoom} onPress={adding}>
-                        <Icons name="plus" size={40} color="black" />
+                        <Icons name="setting" color="black" backgroundColor="transparent" size={40} onPress={setting} />
                     </TouchableOpacity>
                 </Card>
-                <Card style={styles.forbuttombox}>
-                    <DropDownPicker
-                        open={open}
-                        value={value}
-                        items={items}
-                        setOpen={setOpen}
-                        setValue={setValue}
-                        setItems={setItems}
-                        style={styles.boxdrop}
-                        placeholder='Month'
-                        placeholderStyle={styles.yearst}
-                        dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-                        onSelectItem={(item) => week(item.value)}
-                        textStyle={styles.yearst}
-                    />
+                <Card style={styles.forbuttombox2}>
+                    <TouchableOpacity style={styles.butoom} onPress={adding}>
+                        <Icons name="plus" size={40} color="black" />
+                    </TouchableOpacity>
                     {renderw(value)}
                 </Card>
-                <TouchableOpacity onPress={(item) => genday(forturn)} style={{top:100}}>
-                <Card style={styles.Toch}>
-                    <ImageBackground
-                        source={require('../month/1/jan.png')}
-                        style={styles.png}
-                    ></ImageBackground>
-                </Card>
-            </TouchableOpacity>  
-                  
-              
-              
+                <TouchableOpacity onPress={gotoyear} style={{ top: 170 }}>
+                    <Card style={styles.Toch}>
+                        <ImageBackground
+                            source={require('../month/1/jan.png')}
+                            style={styles.png}
+                        ></ImageBackground>
+                    </Card>
+                </TouchableOpacity>
+
+
+
             </Card>
 
             <View style={styles.dayconpo}>
@@ -167,6 +160,7 @@ export default function App() {
                     numColumns={4}
                     contentContainerStyle={styles.flatListContent}
                 />
+
             </View>
 
         </SafeAreaView>
@@ -189,7 +183,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0,
         shadowRadius: 0,
         elevation: 0,
-        width: 290,
+        width: 270,
         justifyContent: 'center',
         margin: 10,
         backgroundColor: 'transparent',
@@ -212,6 +206,7 @@ const styles = StyleSheet.create({
         shadowRadius: 0,
         elevation: 0,
         margin: 20,
+        // marginTop:-10,
         fontSize: 40,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -229,14 +224,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0,
         shadowRadius: 0,
         elevation: 0,
-        marginTop: 20,
+        marginBottom: 10,
         height: 50,
         width: 150,
         borderColor: 'gray',
         borderWidth: 0.5,
         borderRadius: 8,
         paddingHorizontal: 8,
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -244,9 +239,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column-reverse',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 10,
+        marginTop:10,
         backgroundColor: 'transparent',
-        zIndex: 1,
+    },
+    forbuttombox2: {
+        flexDirection: 'column-reverse',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
     },
     dropdownunder: {
         shadowOpacity: 0,
@@ -299,11 +299,11 @@ const styles = StyleSheet.create({
     },
     createday: {
         width: 170,
-        height: 325,
+        height: 360,
         margin: 5,
         marginLeft: 10,
-        borderColor:'black',
-        borderWidth:2,
+        borderColor: 'black',
+        borderWidth: 2,
         backgroundColor: 'white',
     },
     Toch: {
@@ -317,16 +317,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'black', 
+        borderColor: 'black',
     },
-    png:{
-        width:250,
-        height:220,
-        zIndex :1,
+    png: {
+        width: 250,
+        height: 220,
+        zIndex: 1,
         textAlign: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 235, 
-        height: 200, 
+        width: 235,
+        height: 200,
     },
 });
