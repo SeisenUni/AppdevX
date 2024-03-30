@@ -2,51 +2,81 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Modal,Button } from 'react-native';
 import React,{useState} from 'react';
 import { Card, Title } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Icons from 'react-native-vector-icons/AntDesign';
 export default function App() {
   const [show,setShow]=useState(false);
   
   return (
-    <View style={styles.test}>
-      <Text>Open up App.js to start working on your app!</Text>
-      {/* <View style={styles.left}> */}
-      <Button title='Button'onPress={()=> setShow(true)}/>
-      {/* </View> */}
-      <Modal
-        transparent={true}
-        visible={show}
-        onRequestClose={()=>{
-          setShow(!show)
-        }}
-      >
+    <View>
 
-          <View style={styles.test2}>
-              <View style={styles.test3}>
-                <Card style={styles.cardContainer}>
-                    <Title style={styles.title}>{"\n"}Setting</Title>
-                    <Card style={styles.cardContainerin1}>
-                      {/* <Card style={styles.cardContainer2}> */}
-                      <View style={styles.butsetting}>
-                        <Button title='Change Email'/>
-                      </View>
+    <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}> </Icons.Button>
+            <Modal
+              transparent={true}
+              visible={show}
+              onRequestClose={()=>{
+                setShow(!show)
+              }}
+            >
+                <View style={styles.test2}>
+                    <View style={styles.test3}>
 
-                      <View style={styles.butsetting}>
-                        <Button title='Reset Password'/>
-                      </View>
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Setting</Title>
+                          <Card style={styles.cardContainerin1}>
 
-                      <View style={styles.butsetting}>
-                        <Button title='Theme'/>
-                      </View>
+                            <Card style={styles.butsetting}>
+                              <Button title='Change Email' onPress={changemail}/>
+                            </Card>
 
-                    </Card>
+                            <Card style={styles.butsetting}>
+                              <Button title='Reset Password' onPress={reset_pass}/>
+                            </Card>
 
-                  </Card>
-                {/* </Card> */}
-                  <View style={styles.butleft}>
-                    <Button title='exit' onPress={()=> setShow(!show)}/>
-                  </View>
-              </View>
-          </View>
-      </Modal>
+                            <Card style={styles.butsetting}>
+                              <Button title='Theme' onPress={()=> setShow1(true)}/>
+                              <Modal
+                                transparent={true}
+                                visible={show1}
+                                onRequestClose={()=>{
+                                  setShow1(!show1)
+                                }}>
+
+                                <View style={styles.test3}>
+                                  <Card style={styles.cardContainer}>
+                                  <Title style={styles.title}>{"\n"}Theme</Title>
+                                      <Card style={styles.cardContainerin1}>
+
+                                        <Card style={styles.butsetting}>
+                                          <Button title='Light'/>
+                                        </Card>
+
+                                        <Card style={styles.butsetting}>
+                                          <Button title='Dark'/>
+                                        </Card>
+
+                                      </Card>
+                                  </Card>
+                                  <Card style={styles.butleft}>
+                                    <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                </Card>
+                              </View>
+                            
+                            </Modal>
+                            </Card>
+
+                          </Card>
+
+                        </Card>
+
+                        <Card style={styles.butleft}>
+                          <Button title='exit' onPress={()=> setShow(!show)}/>
+                        </Card>
+                        
+                    </View>
+                </View>
+            </Modal>
     </View>
   );
 }
