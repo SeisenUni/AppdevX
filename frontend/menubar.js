@@ -5,7 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { renderMonth, choose, renderweek } from './keytime';
+import { renderMonth, choose, renderweek,week } from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,10 +15,6 @@ export default function App() {
   const back=()=>
   {
     navigation.navigate("Year");
-  }
-  const gotoweek =()=>
-  {
-    navigation.navigate("Week");
   }
   const setting =()=>
   {
@@ -45,6 +41,11 @@ export default function App() {
     { value: '12', label: 'December' },
   ]);
 
+  const gotoweek =()=>
+  {
+   // week(setValue);
+    navigation.navigate("Week");
+  }
   const handleIconPress = () => {
     Alert.alert(
       "Title",

@@ -98,22 +98,27 @@ export default function App() {
         data.push({ key: i, title: `${i}` });
     }
     const createday = ({ item }) => {
-        return (
-            <Card style={styles.createday}>
-                <Text style={{ color: 'white', margin: 10, fontSize: 20 }}>{item.title}</Text>
-            </Card>
-        );
+        if(item.title <= 7)
+        {
+            return (
+                <Card style={styles.createday}>
+                    <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{item.title}</Text>
+                </Card>
+            );
+        }
     }
-    const genday = (item) => {
-
-        console.log(value);
-        console.log(item);
+    let forturn =0;
+    const genday = (item) => 
+    {
+        forturn =item;
+        gotomonth(forturn);
     }
    const gotomonth =(value)=>
    {
-    target(value)
+       navigation.navigate("Bar");
+     
    }
-    return (
+    return ( 
         <SafeAreaView style={styles.container}>
             <Card style={styles.monthandbutton}>
                 <Text style={styles.monthtext}>
@@ -142,16 +147,17 @@ export default function App() {
                     />
                     {renderw(value)}
                 </Card>
-                <Card style={{backgroundColor: 'transparent'}}>
-                    <TouchableOpacity onPress={(item) => gotomonth(item.value)}>
-                        <Card style={styles.Toch}>
-                            <ImageBackground
-                                source={require('../month/1/jan.png')}
-                                style={styles.png}
-                            ></ImageBackground>
-                        </Card>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={(item) => genday(forturn)} style={{top:100}}>
+                <Card style={styles.Toch}>
+                    <ImageBackground
+                        source={require('../month/1/jan.png')}
+                        style={styles.png}
+                    ></ImageBackground>
                 </Card>
+            </TouchableOpacity>  
+                  
+              
+              
             </Card>
 
             <View style={styles.dayconpo}>
@@ -235,13 +241,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     forbuttombox: {
-        shadowOpacity: 0,
-        shadowRadius: 0,
-        elevation: 0,
-        backgroundColor: 'transparent',
-        marginBottom: 10,
+        flexDirection: 'column-reverse',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: 10,
+        backgroundColor: 'transparent',
         zIndex: 1,
     },
     dropdownunder: {
@@ -252,8 +256,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'transparent',
-
-        zIndex: 100,
+        zIndex: 1,
     },
     boxdrop: { // Use containerStyle instead of style
         shadowOpacity: 0,
@@ -274,7 +277,7 @@ const styles = StyleSheet.create({
     },
     dropdownchoose: {
         marginRight: 10,
-        height: 300,
+        height: 120,
         width: 150,
         borderColor: 'gray',
         color: 'red',
@@ -299,9 +302,9 @@ const styles = StyleSheet.create({
         height: 325,
         margin: 5,
         marginLeft: 10,
-
-        backgroundColor: 'black',
-
+        borderColor:'black',
+        borderWidth:2,
+        backgroundColor: 'white',
     },
     Toch: {
         width: 250,
@@ -314,8 +317,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'black',
-        
+        borderColor: 'black', 
     },
     png:{
         width:250,
@@ -326,5 +328,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 235, 
         height: 200, 
-      },
+    },
 });
