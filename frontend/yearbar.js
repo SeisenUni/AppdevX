@@ -114,6 +114,8 @@ const printmonth = ({ item }) => {
               }}
             >
                 <View style={styles.test2}>
+                <View style={styles.center}>
+
                     <View style={styles.test4}>
 
                       <Card style={styles.cardContainer}>
@@ -164,6 +166,7 @@ const printmonth = ({ item }) => {
                           <Button title='exit' onPress={()=> setPlus(!plus)}/>
                         </Card>
                     </View>
+                </View>
                 </View>
             </Modal>
 
@@ -269,6 +272,10 @@ const printmonth = ({ item }) => {
 }
 
 const styles = StyleSheet.create({
+  center:{
+    justifyContent:'center',
+    alignItems:'center'
+  },
   bar: {
 
     marginTop: 10,
