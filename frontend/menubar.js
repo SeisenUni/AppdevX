@@ -44,7 +44,6 @@ export default function App() {
   const touring =(value)=>
   {
     choose(value);
-    week(value);
   }
   const gotoweek =()=>
   {

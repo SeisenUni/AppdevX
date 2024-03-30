@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button  } from 'react-native';
+import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button,TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -12,6 +12,12 @@ export default function App() {
   const navigation =useNavigation();
   const [show,setShow]=useState(false);
   const [show1,setShow1]=useState(false);
+  const [plus,setPlus]=useState(false);
+  const [title,setTiltle]=useState("");
+  const [start,setStart]=useState("");
+  const [end,setEnd]=useState("");
+  const [startT,setStartT]=useState("");
+  const [endT,setEndT]=useState("");
 
   const changemail =()=>
   {
@@ -29,10 +35,8 @@ export default function App() {
   }
   const getaccess =(value)=>
   {
-    week(value);
     target(value);
     navigation.navigate("Bar")
-
   }
     const findfile =(item)=>
     {
@@ -101,7 +105,68 @@ const printmonth = ({ item }) => {
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
       <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={adding}></Icon.Button>
+      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icon.Button>
+          <Modal
+              transparent={true}
+              visible={plus}
+              onRequestClose={()=>{
+                setPlus(!plus)
+              }}
+            >
+                <View style={styles.test2}>
+                    <View style={styles.test4}>
+
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Create Your Planner</Title>
+                          <Card style={styles.cardContainerin1}>
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input}
+                                onChangeText={setTiltle}
+                                value={title}
+                                placeholder="Title: "
+                                placeholderTextColor={'black'}/>
+                            </Card>
+
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStart}
+                                  value={start}
+                                  placeholder="Start:  dd/mm/yyyy"
+                                  placeholderTextColor={'black'}/>
+                              <TextInput style={styles.input2}
+                              onChangeText={setEnd}
+                              value={end}
+                              placeholder="End:  dd/mm/yyyy"
+                              placeholderTextColor={'black'}/>
+                              
+                            </Card>
+
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStartT}
+                                  value={startT}
+                                  placeholder="Start:  hh:mm"
+                                  placeholderTextColor={'black'}/>
+                              <TextInput style={styles.input2}
+                              onChangeText={setEndT}
+                              value={endT}
+                              placeholder="End:  hh:mm"
+                              placeholderTextColor={'black'}/>
+                              
+                            </Card>
+
+                          </Card>
+                        </Card>
+                        <Card style={styles.butright}>
+                          <Button title='Save' />
+                        </Card>
+                        <Card style={styles.butleft}>
+                          <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                        </Card>
+                    </View>
+                </View>
+            </Modal>
+
       <View style={styles.yearbar}>
         <Text style={styles.Calendar}>Yearly Calendar</Text>
         <Text style={styles.yearfont}>2024</Text>
@@ -170,7 +235,7 @@ const printmonth = ({ item }) => {
 
                                       </Card>
                                   </Card>
-                                  <Card style={styles.butleft}>
+                                  <Card style={styles.butright}>
                                     <Button title='exit' onPress={()=> setShow1(!show1)}/>
                                 </Card>
                               </View>
@@ -182,7 +247,7 @@ const printmonth = ({ item }) => {
 
                         </Card>
 
-                        <Card style={styles.butleft}>
+                        <Card style={styles.butright}>
                           <Button title='exit' onPress={()=> setShow(!show)}/>
                         </Card>
                     </View>
@@ -312,14 +377,32 @@ const styles = StyleSheet.create({
     height:500,
     width:500,
   },
-  butleft:{
+  test4:{
+    backgroundColor:"white",
+    margin:350,
+    marginTop:100,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
+  },
+  butright:{
     backgroundColor:"white",
     marginLeft:390,
     marginTop:-70,
     height:40,
     width:60,
     borderRadius:5
-  },title:{
+  },
+  butleft:{
+    backgroundColor:"white",
+    marginLeft:-30,
+    marginTop:-40,
+    height:40,
+    width:60,
+    borderRadius:5
+  },
+  title:{
     fontSize:40,
     // backgroundColor:'pink',
     width:490,
@@ -354,6 +437,35 @@ const styles = StyleSheet.create({
     borderRadius:5,
     alignItems:'center',
     marginTop:10
+  },
+  input: {
+    height: 50,
+    // marginLeft: 70,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:420,
+    borderColor:'gray'
+  },
+  input1: {
+    height: 50,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:210,
+    marginEnd:210,
+    borderColor:'gray'
+  },
+  input2: {
+    height: 50,
+    marginLeft: 70,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:210,
+    marginStart:210,
+    marginTop:-50,
+    borderColor:'gray'
   },
 
 });

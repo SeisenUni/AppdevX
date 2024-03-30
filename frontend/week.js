@@ -3,12 +3,13 @@ import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity, Text, Image
 import { Card } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { renderweek, week, getmonth, getweek } from './keytime';
+import { renderweek, week, getmonth, getweek,gotmonth,renderMonth,limitold,stoldd,maxmonth, choose} from './keytime';
 import { useNavigation } from '@react-navigation/native';
 import { target } from './keytime';
 
 export default function App() {
     //console.log(getweek())
+    console.log(gotmonth());
     const navigation = useNavigation();
     const adding = () => {
         navigation.navigate("Adding");
@@ -29,8 +30,22 @@ export default function App() {
         { value: '11', label: 'November' },
         { value: '12', label: 'December' },
     ]);
-
-    const renderw = (value) => {
+    const genday = (item) => 
+    {
+        //choose(item);
+        //console.log("this is for =");
+        //console.log(item);
+        week(item);
+       // target(item);
+    }
+    const gotoyear = () => {
+        navigation.navigate("Year");
+    }
+    
+    const setting = () => {
+        navigation.navigate("Setto");
+    }
+    const renderw = () => {
         const [open1, setOpen1] = useState(false);
         const [value1, setValue1] = useState(null);
         const [items1, setItems1] = useState([
@@ -52,44 +67,44 @@ export default function App() {
             { value: '6', label: 'Week6' },
         ]);
 
-        if (renderweek(value) === '0') {
+        if (gotmonth() == 6 || gotmonth() == 3) {
             return (
                 <Card style={styles.dropdownunder}>
-                    <DropDownPicker
-                        open={open1}
-                        value={value1}
-                        items={items1}
-                        setOpen={setOpen1}
-                        setValue={setValue1}
-                        setItems={setItems1}
-                        style={styles.boxdrop}
-                        placeholder='Week'
-                        placeholderStyle={styles.yearst}
-                        dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-                        onSelectItem={(item) => genday(item.value)}
-                        textStyle={styles.yearst}
-                    />
-                </Card>
+                <DropDownPicker
+                    open={open2}
+                    value={value2}
+                    items={items2}
+                    setOpen={setOpen2}
+                    setValue={setValue2}
+                    setItems={setItems2}
+                    style={styles.boxdrop}
+                    placeholder='Week'
+                    placeholderStyle={styles.yearst}
+                    dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
+                    onSelectItem={(item) => genday(item.value)}
+                    textStyle={styles.yearst}
+                />
+            </Card>
             );
         }
         else {
             return (
                 <Card style={styles.dropdownunder}>
-                    <DropDownPicker
-                        open={open2}
-                        value={value2}
-                        items={items2}
-                        setOpen={setOpen2}
-                        setValue={setValue2}
-                        setItems={setItems2}
-                        style={styles.boxdrop}
-                        placeholder='Week'
-                        placeholderStyle={styles.yearst}
-                        dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-                        onSelectItem={(item) => genday(item.value)}
-                        textStyle={styles.yearst}
-                    />
-                </Card>
+                <DropDownPicker
+                    open={open1}
+                    value={value1}
+                    items={items1}
+                    setOpen={setOpen1}
+                    setValue={setValue1}
+                    setItems={setItems1}
+                    style={styles.boxdrop}
+                    placeholder='Week'
+                    placeholderStyle={styles.yearst}
+                    dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
+                    onSelectItem={(item) => genday(item.value)}
+                    textStyle={styles.yearst}
+                />
+            </Card>
             );
         }
     }
@@ -98,35 +113,150 @@ export default function App() {
     for (let i = 1; i <= 7; i++) {
         data.push({ key: i, title: `${i}` });
     }
+    let count=0;
     const createday = ({ item }) => {
-        if (item.title <= 7) {
-            return (
-                <Card style={styles.createday}>
-                    <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{item.title}</Text>
-                </Card>
-            );
+        if (getweek() == 1) {
+            if(limitold() >= item.title)
+            {
+                let newnum = Number(stoldd())+count;
+                count++;
+                return (
+                    <Card style={styles.selected}>
+                        <Text style={{ color: 'white', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                    </Card>
+                );
+            }
+            else
+            {
+                return (
+                    <Card style={styles.createday}>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{item.title-count}</Text>
+                    </Card>
+                );
+            }
+        }
+        else if (getweek() == 2) {
+            let newnum = Number(stoldd()) + item.key - count;
+             return (
+                    <Card style={styles.createday}>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                    </Card>
+                );
+
+        }
+        else if (getweek() == 3) {
+            let newnum = Number(stoldd()) + item.key - count;
+             return (
+                    <Card style={styles.createday}>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                    </Card>
+                );
+
+        }
+        else if (getweek() == 4) 
+        {
+            let newnum = Number(stoldd()) + item.key - count;
+             return (
+                    <Card style={styles.createday}>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                    </Card>
+                );
+
+        }
+        else if (getweek() == 5) 
+        {
+                let newnum = Number(stoldd()) + item.key;
+                if(newnum <= 31 && maxmonth() == 1)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+                else  if(newnum <= 30 && maxmonth() == 0)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+                else if(newnum <= 29 && maxmonth() == 2)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+        }
+        else if (getweek() == 6) 
+        {
+                let newnum = Number(stoldd()) + item.key;
+                if(newnum <= 31 && maxmonth() == 1)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+                else  if(newnum <= 30 && maxmonth() == 0)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+                else if(newnum <= 29 && maxmonth() == 2)
+                {
+                    return (
+                        <Card style={styles.createday}>
+                            <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        </Card>
+                    );
+    
+                }
+        }
+        else
+        {
+             if(limitold() >= item.title)
+            {
+                let newnum = stoldd();
+                count++;
+                return (
+                    <Card style={styles.selected}>
+                        <Text style={{ color: 'white', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                    </Card>
+                );
+            }
+            else
+            {
+                return (
+                    <Card style={styles.createday}>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{item.title-count}</Text>
+                    </Card>
+                );
+            }
         }
 
+
+
     }
 
-    const genday = (item) => 
-    {
-        console.log("this is for =");
-        console.log(item);
-    }
-    const gotoyear = () => {
-        navigation.navigate("Year");
-    }
-    
-    const setting = () => {
-        navigation.navigate("Setto");
-    }
     return (
         <SafeAreaView style={styles.container}>
             <Card style={styles.monthandbutton}>
 
                 <Text style={styles.monthtext}>
-                    {getmonth()}</Text>
+                    {renderMonth()}</Text>
                 <Text style={styles.yeartext}>
                     2024</Text>
                 <Card style={styles.forbuttombox}>
@@ -305,6 +435,15 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 2,
         backgroundColor: 'white',
+    },
+    selected: {
+        width: 170,
+        height: 360,
+        margin: 5,
+        marginLeft: 10,
+        borderColor: 'black',
+        borderWidth: 2,
+        backgroundColor: 'grey',
     },
     Toch: {
         width: 250,
