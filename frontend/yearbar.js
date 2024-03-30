@@ -22,10 +22,6 @@ export default function App() {
     navigation.navigate("ResetPass");
     setShow(false);
   }
-  const setting =()=>
-  {
-    navigation.navigate("Setto");
-  }
   const adding =()=>
   {
     navigation.navigate("Adding");
@@ -63,21 +59,22 @@ export default function App() {
   ]);
 
   const handleIconPress = () => {
-    Alert.alert(
-      "Not available now",
-      "This function is coming soon",
-      [
-        { text: "Cancel", 
-          onPress: () => setValue(null) 
-        },
-        {
-          text: "OK",
-          onPress: () => setValue(null),
-          style: "cancel"
-        }
-      ],
-      { cancelable: false }
-    );
+    // Alert.alert(
+    //   "Not available now",
+    //   "This function is coming soon",
+    //   [
+    //     { text: "Cancel", 
+    //       onPress: () => setValue(null) 
+    //     },
+    //     {
+    //       text: "OK",
+    //       onPress: () => setValue(null),
+    //       style: "cancel"
+    //     }
+    //   ],
+    //   { cancelable: false }
+    // );
+    navigation.navigate("Login")
   };
  
  const data =[];
