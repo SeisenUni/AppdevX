@@ -148,7 +148,25 @@ def update_email():
         return jsonify({"message": "Password updated successfully"}), 200
 
 
-
+@app.route("/forget",methods=["GET"])
+@cross_origin()
+def forget():
+    data=request.get_json()
+    check=data["check"]
+    phone_number=data["phone_number"]
+    
+    check_id=id_collection.find_one({"username":check})
+    check_email=id_collection.find_one({"email":check})
+    check_number=id_collection.find_one({"phone_number":phone_number})
+    if check_id or check_email :
+        if check_number :
+            return jsonify({"message": "Can reset password"}), 200
+            
+    return jsonify({"message": "invalid"}),401    
+    
+    
+    
+    
 
 
 
