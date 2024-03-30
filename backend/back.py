@@ -1,5 +1,6 @@
 from flask import request,Flask,jsonify
 from flask_cors import CORS,cross_origin
+from datetime import datetime
 from pymongo.mongo_client import MongoClient
 import pymongo
 
@@ -148,6 +149,25 @@ def update_email():
         return jsonify({"message": "Password updated successfully"}), 200
 
 
+@app.route("/forget",methods=["GET"])
+@cross_origin()
+def forget():
+    data=request.get_json()
+    check=data["check"]
+    phone_number=data["phone_number"]
+    
+    check_id=id_collection.find_one({"username":check})
+    check_email=id_collection.find_one({"email":check})
+    check_number=id_collection.find_one({"phone_number":phone_number})
+    if check_id or check_email :
+        if check_number :
+            return jsonify({"message": "Can reset password"}), 200
+            
+    return jsonify({"message": "invalid"}),401    
+    
+    
+    
+    
 
 
 
@@ -156,8 +176,7 @@ def update_email():
 
 
 
-
-@app.route("/add_task", methods=["POST"])  #infoplan
+@app.route("/add_task", methods=["POST"]) #infoplan
 @cross_origin()
 def add_task():
     data = request.get_json()
@@ -166,20 +185,21 @@ def add_task():
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
 
-    new_task = {
 
+    date_start = datetime.strptime(data["date_start"], '%Y-%m-%d')
+    date_end = datetime.strptime(data["date_end"], '%Y-%m-%d')
+
+    new_task = {
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
         "content": data["content"],
         "finish": False,
-
-        "date_start": data["date_start"],
-        "date_end": data["date_end"]
+        "date_start": date_start,
+        "date_end": date_end
     }
 
     try:
-
         collection.insert_one(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
