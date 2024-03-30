@@ -12,6 +12,16 @@ export default function App() {
   const navigation =useNavigation();
   const [show,setShow]=useState(false);
 
+  const changemail =()=>
+  {
+    navigation.navigate("Changemail");
+    setShow(false);
+  }
+  const reset_pass =()=>
+  {
+    navigation.navigate("ResetPass");
+    setShow(false);
+  }
   const setting =()=>
   {
     navigation.navigate("Setto");
@@ -129,11 +139,11 @@ const printmonth = ({ item }) => {
                           <Card style={styles.cardContainerin1}>
                             {/* <Card style={styles.cardContainer2}> */}
                             <View style={styles.butsetting}>
-                              <Button title='Change Email'/>
+                              <Button title='Change Email' onPress={changemail}/>
                             </View>
 
                             <View style={styles.butsetting}>
-                              <Button title='Reset Password'/>
+                              <Button title='Reset Password' onPress={reset_pass}/>
                             </View>
 
                             <View style={styles.butsetting}>
