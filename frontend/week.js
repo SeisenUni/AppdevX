@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity, Text, ImageBackground } from 'react-native';
-import { Card } from 'react-native-paper';
+import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity, Text, ImageBackground,Modal,Button,TextInput } from 'react-native';
+import { Card,Title } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { renderweek, week, getmonth, getweek,gotmonth,renderMonth,limitold,stoldd,maxmonth, choose} from './keytime';
@@ -11,9 +11,26 @@ export default function App() {
     //console.log(getweek())
     console.log(gotmonth());
     const navigation = useNavigation();
-    const adding = () => {
-        navigation.navigate("Adding");
+    const [show,setShow]=useState(false);
+    const [show1,setShow1]=useState(false);
+    const [plus,setPlus]=useState(false);
+    const [title,setTiltle]=useState("");
+    const [start,setStart]=useState("");
+    const [end,setEnd]=useState("");
+    const [startT,setStartT]=useState("");
+    const [endT,setEndT]=useState("");
+
+    const changemail =()=>
+    {
+      navigation.navigate("Changemail");
+      setShow(false);
     }
+    const reset_pass =()=>
+    {
+      navigation.navigate("ResetPass");
+      setShow(false);
+    }
+
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
@@ -260,13 +277,137 @@ export default function App() {
                 <Text style={styles.yeartext}>
                     2024</Text>
                 <Card style={styles.forbuttombox}>
-                    <TouchableOpacity style={styles.butoom} onPress={adding}>
-                        <Icons name="setting" color="black" backgroundColor="transparent" size={40} onPress={setting} />
+                    <TouchableOpacity style={styles.butoom} onPress={()=> setShow(true)}>
+                        <Icons name="setting" color="black" backgroundColor="transparent" size={40} />
+                            <Modal
+                                transparent={true}
+                                visible={show}
+                                onRequestClose={()=>{
+                                setShow(!show)
+                                }}
+                                >
+                                    <View style={styles.test2}>
+                                        <View style={styles.test3}>
+
+                                            <Card style={styles.cardContainer}>
+                                                <Title style={styles.title}>{"\n"}Setting</Title>
+                                                <Card style={styles.cardContainerin1}>
+
+                                                <Card style={styles.butsetting}>
+                                                    <Button title='Change Email' onPress={changemail}/>
+                                                </Card>
+
+                                                <Card style={styles.butsetting}>
+                                                    <Button title='Reset Password' onPress={reset_pass}/>
+                                                </Card>
+
+                                                <Card style={styles.butsetting}>
+                                                    <Button title='Theme' onPress={()=> setShow1(true)}/>
+                                                    <Modal
+                                                    transparent={true}
+                                                    visible={show1}
+                                                    onRequestClose={()=>{
+                                                        setShow1(!show1)
+                                                    }}>
+
+                                                    <View style={styles.test3}>
+                                                        <Card style={styles.cardContainer}>
+                                                        <Title style={styles.title}>{"\n"}Theme</Title>
+                                                            <Card style={styles.cardContainerin1}>
+
+                                                            <Card style={styles.butsetting}>
+                                                                <Button title='Light'/>
+                                                            </Card>
+
+                                                            <Card style={styles.butsetting}>
+                                                                <Button title='Dark'/>
+                                                            </Card>
+
+                                                            </Card>
+                                                        </Card>
+                                                        <Card style={styles.butright}>
+                                                        <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                                    </Card>
+                                                    </View>
+                                                
+                                                </Modal>
+                                                </Card>
+
+                                                </Card>
+
+                                            </Card>
+
+                                            <Card style={styles.butright}>
+                                                <Button title='exit' onPress={()=> setShow(!show)}/>
+                                            </Card>
+                                        </View>
+                                    </View>
+                                </Modal>
                     </TouchableOpacity>
                 </Card>
                 <Card style={styles.forbuttombox2}>
-                    <TouchableOpacity style={styles.butoom} onPress={adding}>
+                    <TouchableOpacity style={styles.butoom} onPress={()=>setPlus(true)}>
                         <Icons name="plus" size={40} color="black" />
+                        <Modal
+                            transparent={true}
+                            visible={plus}
+                            onRequestClose={()=>{
+                                setPlus(!plus)
+                            }}
+                            >
+                            <View style={styles.test2}>
+                                <View style={styles.test4}>
+
+                                <Card style={styles.cardContainer}>
+                                    <Title style={styles.title}>{"\n"}Create Your Planner</Title>
+                                    <Card style={styles.cardContainerin1}>
+                                        <Card style={styles.butsetting}>
+                                        <TextInput style={styles.input}
+                                            onChangeText={setTiltle}
+                                            value={title}
+                                            placeholder="Title: "
+                                            placeholderTextColor={'black'}/>
+                                        </Card>
+
+                                        <Card style={styles.butsetting}>
+                                        <TextInput style={styles.input1}
+                                            onChangeText={setStart}
+                                            value={start}
+                                            placeholder="Start:  dd/mm/yyyy"
+                                            placeholderTextColor={'black'}/>
+                                        <TextInput style={styles.input2}
+                                        onChangeText={setEnd}
+                                        value={end}
+                                        placeholder="End:  dd/mm/yyyy"
+                                        placeholderTextColor={'black'}/>
+                                        
+                                        </Card>
+
+                                        <Card style={styles.butsetting}>
+                                        <TextInput style={styles.input1}
+                                            onChangeText={setStartT}
+                                            value={startT}
+                                            placeholder="Start:  hh:mm"
+                                            placeholderTextColor={'black'}/>
+                                        <TextInput style={styles.input2}
+                                        onChangeText={setEndT}
+                                        value={endT}
+                                        placeholder="End:  hh:mm"
+                                        placeholderTextColor={'black'}/>
+                                        
+                                        </Card>
+
+                                    </Card>
+                                    </Card>
+                                    <Card style={styles.butright}>
+                                    <Button title='Save' />
+                                    </Card>
+                                    <Card style={styles.butleft}>
+                                    <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                                    </Card>
+                                </View>
+                            </View>
+                        </Modal>
                     </TouchableOpacity>
                     {renderw(value)}
                 </Card>
@@ -468,4 +609,107 @@ const styles = StyleSheet.create({
         width: 235,
         height: 200,
     },
+    test2:{
+        backgroundColor:"#000000aa",
+        flex:1,
+      },
+      test3:{
+        backgroundColor:"white",
+        margin:350,
+        marginTop:200,
+        padding:40,
+        borderRadius:10,
+        height:500,
+        width:500,
+      },
+      butright:{
+        backgroundColor:"white",
+        marginLeft:390,
+        marginTop:-70,
+        height:40,
+        width:60,
+        borderRadius:5
+      },
+      title:{
+        fontSize:40,
+        // backgroundColor:'pink',
+        width:490,
+        height:60,
+        textAlign:'center',
+        color:"white",
+        // flexDirection:'row'
+      },
+      cardContainer: {
+        flexDirection: 'row',
+        height:80,
+        width:500,
+        marginLeft:-40,
+        marginTop:-42,
+        backgroundColor:'gray',
+        borderRadius:5
+      },
+      cardContainerin1: {
+        flexDirection: 'row',
+        height:450,
+        width:500,
+        marginTop:10,
+        backgroundColor:'pink',
+        borderRadius:5,
+      },
+      butsetting:{
+        backgroundColor:"white",
+        marginLeft:40,
+        height:50,
+        width:420,
+        borderWidth:1,
+        borderRadius:5,
+        alignItems:'center',
+        marginTop:10
+      },
+      test4:{
+        backgroundColor:"white",
+        margin:350,
+        marginTop:100,
+        padding:40,
+        borderRadius:10,
+        height:500,
+        width:500,
+      },
+      butleft:{
+        backgroundColor:"white",
+        marginLeft:-30,
+        marginTop:-40,
+        height:40,
+        width:60,
+        borderRadius:5
+      },
+      input: {
+        height: 50,
+        // marginLeft: 70,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius:5,
+        width:420,
+        borderColor:'gray'
+      },
+      input1: {
+        height: 50,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius:5,
+        width:210,
+        marginEnd:210,
+        borderColor:'gray'
+      },
+      input2: {
+        height: 50,
+        marginLeft: 70,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius:5,
+        width:210,
+        marginStart:210,
+        marginTop:-50,
+        borderColor:'gray'
+      },
 });
