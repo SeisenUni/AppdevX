@@ -16,6 +16,10 @@ export const week =(value)=>
     weeks = value;
     console.log(weeks)
 }
+export const getweek =()=>
+{
+    return weeks;
+}
 export const oldd = () => {
     switch(month) {
         case '1': return 1;
@@ -122,4 +126,20 @@ export const renderweek =()=>
         case '12': return '0';
         default: return '0';
     }
+}
+
+//////Function of gen week zone//////////
+
+export const stoldd=()=>
+{
+
+}
+
+export const limitold =()=>
+{
+
+}
+export const startnew =()=>
+{
+
 }
