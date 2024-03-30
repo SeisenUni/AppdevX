@@ -40,27 +40,32 @@ export default function App() {
     { value: '11', label: 'November' },
     { value: '12', label: 'December' },
   ]);
-
+ 
+  const touring =(value)=>
+  {
+    choose(value);
+    week(value);
+  }
   const gotoweek =()=>
   {
-   // week(setValue);
-    navigation.navigate("Week");
+     navigation.navigate("Week");
   }
-  const handleIconPress = () => {
-    Alert.alert(
-      "Title",
-      "This is the message",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ],
-      { cancelable: false }
-    );
-  };
+  
+  // const handleIconPress = () => {
+  //   Alert.alert(
+  //     "Title",
+  //     "This is the message",
+  //     [
+  //       {
+  //         text: "Cancel",
+  //         onPress: () => console.log("Cancel Pressed"),
+  //         style: "cancel"
+  //       },
+  //       { text: "OK", onPress: () => console.log("OK Pressed") }
+  //     ],
+  //     { cancelable: false }
+  //   );
+  // };
   
   return (
     <View style={{ flexDirection: 'column', backgroundColor:'white',flex:1}}>
@@ -88,7 +93,7 @@ export default function App() {
             placeholder='Month'
             placeholderStyle={styles.yearst}
             dropDownContainerStyle={[styles.dropdownchoose, open && { color: 'red' }]}
-            onSelectItem={(item) => choose(item.value)}
+            onSelectItem={(item) => touring(item.value)}
             textStyle={styles.yearst}
           />
         </Card>
