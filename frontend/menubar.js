@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, SafeAreaView, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Text, TouchableOpacity, Alert,Modal,Button } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -11,18 +11,26 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
   const navigation =useNavigation();
-
+  const [show,setShow]=useState(false);
+  const [show1,setShow1]=useState(false);
   const back=()=>
   {
     navigation.navigate("Year");
   }
-  const setting =()=>
-  {
-    navigation.navigate("Setto");
-  }
+  
   const adding =()=>
   {
     navigation.navigate("Adding");
+  }
+  const changemail =()=>
+  {
+    navigation.navigate("Changemail");
+    setShow(false);
+  }
+  const reset_pass =()=>
+  {
+    navigation.navigate("ResetPass");
+    setShow(false);
   }
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -96,7 +104,71 @@ export default function App() {
             textStyle={styles.yearst}
           />
         </Card>
-        <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={setting}></Icons.Button>
+        <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}></Icons.Button>
+          <Modal
+                transparent={true}
+                visible={show}
+                onRequestClose={()=>{
+                  setShow(!show)
+                }}
+              >
+                  <View style={styles.test2}>
+                      <View style={styles.test3}>
+
+                        <Card style={styles.cardContainer}>
+                            <Title style={styles.title}>{"\n"}Setting</Title>
+                            <Card style={styles.cardContainerin1}>
+
+                              <Card style={styles.butsetting}>
+                                <Button title='Change Email' onPress={changemail}/>
+                              </Card>
+
+                              <Card style={styles.butsetting}>
+                                <Button title='Reset Password' onPress={reset_pass}/>
+                              </Card>
+
+                              <Card style={styles.butsetting}>
+                                <Button title='Theme' onPress={()=> setShow1(true)}/>
+                                <Modal
+                                  transparent={true}
+                                  visible={show1}
+                                  onRequestClose={()=>{
+                                    setShow1(!show1)
+                                  }}>
+
+                                  <View style={styles.test3}>
+                                    <Card style={styles.cardContainer}>
+                                    <Title style={styles.title}>{"\n"}Theme</Title>
+                                        <Card style={styles.cardContainerin1}>
+
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Light'/>
+                                          </Card>
+
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Dark'/>
+                                          </Card>
+
+                                        </Card>
+                                    </Card>
+                                    <Card style={styles.butright}>
+                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                  </Card>
+                                </View>
+                              
+                              </Modal>
+                              </Card>
+
+                            </Card>
+
+                          </Card>
+
+                          <Card style={styles.butright}>
+                            <Button title='exit' onPress={()=> setShow(!show)}/>
+                          </Card>
+                      </View>
+                  </View>
+              </Modal>
 
       </View>
       <MonthComponent />
@@ -181,5 +253,62 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
-  }
+  },
+  test2:{
+    backgroundColor:"#000000aa",
+    flex:1,
+  },
+  test3:{
+    backgroundColor:"white",
+    margin:350,
+    marginTop:200,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
+  },
+  butright:{
+    backgroundColor:"white",
+    marginLeft:390,
+    marginTop:-70,
+    height:40,
+    width:60,
+    borderRadius:5
+  },
+  title:{
+    fontSize:40,
+    // backgroundColor:'pink',
+    width:490,
+    height:60,
+    textAlign:'center',
+    color:"white",
+    // flexDirection:'row'
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    height:80,
+    width:500,
+    marginLeft:-40,
+    marginTop:-42,
+    backgroundColor:'gray',
+    borderRadius:5
+  },
+  cardContainerin1: {
+    flexDirection: 'row',
+    height:450,
+    width:500,
+    marginTop:10,
+    backgroundColor:'pink',
+    borderRadius:5,
+  },
+  butsetting:{
+    backgroundColor:"white",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
+  },
 });
