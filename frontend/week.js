@@ -287,6 +287,8 @@ export default function App() {
                             >
                             <View style={styles.test2}>
                                 <View style={styles.center}>
+                                    <View style={styles.test3}>
+
                                         <Card style={styles.cardContainer}>
                                             <Title style={styles.title}>{"\n"}Setting</Title>
                                             <Card style={styles.cardContainerin1}>
@@ -338,6 +340,7 @@ export default function App() {
                                         <Card style={styles.butright}>
                                             <Button title='exit' onPress={()=> setShow(!show)}/>
                                         </Card>
+                                    </View>
                                 </View>
                             </View>
                         </Modal>
