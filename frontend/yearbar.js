@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground  } from 'react-native';
+import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button  } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -10,6 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
   const navigation =useNavigation();
+  const [show,setShow]=useState(false);
+
   const setting =()=>
   {
     navigation.navigate("Setto");
@@ -112,8 +114,42 @@ const printmonth = ({ item }) => {
         />
         
       </Card>
-      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={setting}></Icons.Button>
+      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}> </Icons.Button>
+            <Modal
+              transparent={true}
+              visible={show}
+              onRequestClose={()=>{
+                setShow(!show)
+              }}
+            >
+                <View style={styles.test2}>
+                    <View style={styles.test3}>
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Setting</Title>
+                          <Card style={styles.cardContainerin1}>
+                            {/* <Card style={styles.cardContainer2}> */}
+                            <View style={styles.butsetting}>
+                              <Button title='Change Email'/>
+                            </View>
 
+                            <View style={styles.butsetting}>
+                              <Button title='Reset Password'/>
+                            </View>
+
+                            <View style={styles.butsetting}>
+                              <Button title='Theme'/>
+                            </View>
+
+                          </Card>
+
+                        </Card>
+                      {/* </Card> */}
+                        <View style={styles.butleft}>
+                          <Button title='exit' onPress={()=> setShow(!show)}/>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
          </View>
          <View style={{backgroundColor:'white' ,alignItems: 'center',justifyContent: 'center',}}>
          <FlatList
@@ -223,6 +259,63 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 235, 
     height: 200, 
+  },
+
+  test2:{
+    backgroundColor:"#000000aa",
+    flex:1,
+  },
+  test3:{
+    backgroundColor:"white",
+    margin:350,
+    marginTop:200,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
+  },
+  butleft:{
+    backgroundColor:"white",
+    marginLeft:390,
+    marginTop:-70,
+    height:40,
+    width:60,
+    borderRadius:5
+  },title:{
+    fontSize:40,
+    // backgroundColor:'pink',
+    width:490,
+    height:60,
+    textAlign:'center',
+    color:"white",
+    // flexDirection:'row'
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    height:80,
+    width:500,
+    marginLeft:-40,
+    marginTop:-42,
+    backgroundColor:'gray',
+    borderRadius:5
+  },
+  cardContainerin1: {
+    flexDirection: 'row',
+    height:450,
+    width:500,
+    marginTop:10,
+    backgroundColor:'pink',
+    borderRadius:5,
+  },
+  butsetting:{
+    backgroundColor:"white",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
   },
 
 });
