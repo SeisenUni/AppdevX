@@ -279,70 +279,72 @@ export default function App() {
                 <Card style={styles.forbuttombox}>
                     <TouchableOpacity style={styles.butoom} onPress={()=> setShow(true)}>
                         <Icons name="setting" color="black" backgroundColor="transparent" size={40} />
-                            <Modal
-                                transparent={true}
-                                visible={show}
-                                onRequestClose={()=>{
-                                setShow(!show)
-                                }}
-                                >
-                                    <View style={styles.test2}>
-                                        <View style={styles.test3}>
+                        <Modal
+                            transparent={true}
+                            visible={show}
+                            onRequestClose={()=>{
+                            setShow(!show)
+                            }}
+                            >
+                            <View style={styles.test2}>
+                                <View style={styles.center}>
+                                    <View style={styles.test3}>
 
-                                            <Card style={styles.cardContainer}>
-                                                <Title style={styles.title}>{"\n"}Setting</Title>
-                                                <Card style={styles.cardContainerin1}>
+                                        <Card style={styles.cardContainer}>
+                                            <Title style={styles.title}>{"\n"}Setting</Title>
+                                            <Card style={styles.cardContainerin1}>
 
-                                                <Card style={styles.butsetting}>
-                                                    <Button title='Change Email' onPress={changemail}/>
-                                                </Card>
+                                            <Card style={styles.butsetting}>
+                                                <Button title='Change Email' onPress={changemail}/>
+                                            </Card>
 
-                                                <Card style={styles.butsetting}>
-                                                    <Button title='Reset Password' onPress={reset_pass}/>
-                                                </Card>
+                                            <Card style={styles.butsetting}>
+                                                <Button title='Reset Password' onPress={reset_pass}/>
+                                            </Card>
 
-                                                <Card style={styles.butsetting}>
-                                                    <Button title='Theme' onPress={()=> setShow1(true)}/>
-                                                    <Modal
-                                                    transparent={true}
-                                                    visible={show1}
-                                                    onRequestClose={()=>{
-                                                        setShow1(!show1)
-                                                    }}>
+                                            <Card style={styles.butsetting}>
+                                                <Button title='Theme' onPress={()=> setShow1(true)}/>
+                                                <Modal
+                                                transparent={true}
+                                                visible={show1}
+                                                onRequestClose={()=>{
+                                                    setShow1(!show1)
+                                                }}>
 
-                                                    <View style={styles.test3}>
-                                                        <Card style={styles.cardContainer}>
-                                                        <Title style={styles.title}>{"\n"}Theme</Title>
-                                                            <Card style={styles.cardContainerin1}>
+                                                <View style={styles.test3}>
+                                                    <Card style={styles.cardContainer}>
+                                                    <Title style={styles.title}>{"\n"}Theme</Title>
+                                                        <Card style={styles.cardContainerin1}>
 
-                                                            <Card style={styles.butsetting}>
-                                                                <Button title='Light'/>
-                                                            </Card>
-
-                                                            <Card style={styles.butsetting}>
-                                                                <Button title='Dark'/>
-                                                            </Card>
-
-                                                            </Card>
+                                                        <Card style={styles.butsetting}>
+                                                            <Button title='Light'/>
                                                         </Card>
-                                                        <Card style={styles.butright}>
-                                                        <Button title='exit' onPress={()=> setShow1(!show1)}/>
+
+                                                        <Card style={styles.butsetting}>
+                                                            <Button title='Dark'/>
+                                                        </Card>
+
+                                                        </Card>
                                                     </Card>
-                                                    </View>
-                                                
-                                                </Modal>
+                                                    <Card style={styles.butright}>
+                                                    <Button title='exit' onPress={()=> setShow1(!show1)}/>
                                                 </Card>
-
-                                                </Card>
+                                                </View>
+                                            
+                                            </Modal>
+                                            </Card>
 
                                             </Card>
 
-                                            <Card style={styles.butright}>
-                                                <Button title='exit' onPress={()=> setShow(!show)}/>
-                                            </Card>
-                                        </View>
+                                        </Card>
+
+                                        <Card style={styles.butright}>
+                                            <Button title='exit' onPress={()=> setShow(!show)}/>
+                                        </Card>
                                     </View>
-                                </Modal>
+                                </View>
+                            </View>
+                        </Modal>
                     </TouchableOpacity>
                 </Card>
                 <Card style={styles.forbuttombox2}>
@@ -711,5 +713,9 @@ const styles = StyleSheet.create({
         marginStart:210,
         marginTop:-50,
         borderColor:'gray'
+      },
+      center:{
+        justifyContent:'center',
+        alignItems:'center'
       },
 });
