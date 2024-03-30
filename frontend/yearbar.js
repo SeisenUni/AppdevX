@@ -28,10 +28,8 @@ export default function App() {
   }
   const getaccess =(value)=>
   {
-    week(value);
     target(value);
     navigation.navigate("Bar")
-
   }
     const findfile =(item)=>
     {
