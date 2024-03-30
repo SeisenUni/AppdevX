@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function App() {
   const navigation =useNavigation();
   const [show,setShow]=useState(false);
+  const [show1,setShow1]=useState(false);
 
   const changemail =()=>
   {
@@ -131,29 +132,58 @@ const printmonth = ({ item }) => {
             >
                 <View style={styles.test2}>
                     <View style={styles.test3}>
+
                       <Card style={styles.cardContainer}>
                           <Title style={styles.title}>{"\n"}Setting</Title>
                           <Card style={styles.cardContainerin1}>
-                            {/* <Card style={styles.cardContainer2}> */}
-                            <View style={styles.butsetting}>
+
+                            <Card style={styles.butsetting}>
                               <Button title='Change Email' onPress={changemail}/>
-                            </View>
+                            </Card>
 
-                            <View style={styles.butsetting}>
+                            <Card style={styles.butsetting}>
                               <Button title='Reset Password' onPress={reset_pass}/>
-                            </View>
+                            </Card>
 
-                            <View style={styles.butsetting}>
-                              <Button title='Theme'/>
-                            </View>
+                            <Card style={styles.butsetting}>
+                              <Button title='Theme' onPress={()=> setShow1(true)}/>
+                              <Modal
+                                transparent={true}
+                                visible={show1}
+                                onRequestClose={()=>{
+                                  setShow1(!show1)
+                                }}>
+
+                                <View style={styles.test3}>
+                                  <Card style={styles.cardContainer}>
+                                  <Title style={styles.title}>{"\n"}Theme</Title>
+                                      <Card style={styles.cardContainerin1}>
+
+                                        <Card style={styles.butsetting}>
+                                          <Button title='Light'/>
+                                        </Card>
+
+                                        <Card style={styles.butsetting}>
+                                          <Button title='Dark'/>
+                                        </Card>
+
+                                      </Card>
+                                  </Card>
+                                  <Card style={styles.butleft}>
+                                    <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                </Card>
+                              </View>
+                            
+                            </Modal>
+                            </Card>
 
                           </Card>
 
                         </Card>
-                      {/* </Card> */}
-                        <View style={styles.butleft}>
+
+                        <Card style={styles.butleft}>
                           <Button title='exit' onPress={()=> setShow(!show)}/>
-                        </View>
+                        </Card>
                     </View>
                 </View>
             </Modal>
