@@ -224,25 +224,26 @@ const printmonth = ({ item }) => {
                                 onRequestClose={()=>{
                                   setShow1(!show1)
                                 }}>
+                                <View style={styles.center}>
+                                  <View style={styles.test3}>
+                                    <Card style={styles.cardContainer}>
+                                    <Title style={styles.title}>{"\n"}Theme</Title>
+                                        <Card style={styles.cardContainerin1}>
 
-                                <View style={styles.test3}>
-                                  <Card style={styles.cardContainer}>
-                                  <Title style={styles.title}>{"\n"}Theme</Title>
-                                      <Card style={styles.cardContainerin1}>
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Light'/>
+                                          </Card>
 
-                                        <Card style={styles.butsetting}>
-                                          <Button title='Light'/>
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Dark'/>
+                                          </Card>
+
                                         </Card>
-
-                                        <Card style={styles.butsetting}>
-                                          <Button title='Dark'/>
-                                        </Card>
-
-                                      </Card>
+                                    </Card>
+                                    <Card style={styles.butright}>
+                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
                                   </Card>
-                                  <Card style={styles.butright}>
-                                    <Button title='exit' onPress={()=> setShow1(!show1)}/>
-                                </Card>
+                                </View>
                               </View>
                             
                             </Modal>

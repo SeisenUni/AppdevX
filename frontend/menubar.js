@@ -202,6 +202,7 @@ export default function App() {
                                   onRequestClose={()=>{
                                     setShow1(!show1)
                                   }}>
+                                <View style={styles.center}>
 
                                   <View style={styles.test3}>
                                     <Card style={styles.cardContainer}>
@@ -221,6 +222,7 @@ export default function App() {
                                     <Card style={styles.butright}>
                                       <Button title='exit' onPress={()=> setShow1(!show1)}/>
                                   </Card>
+                                </View>
                                 </View>
                               
                               </Modal>
