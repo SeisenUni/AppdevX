@@ -237,7 +237,7 @@ const printmonth = ({ item }) => {
 
                                       </Card>
                                   </Card>
-                                  <Card style={styles.butleft}>
+                                  <Card style={styles.butright}>
                                     <Button title='exit' onPress={()=> setShow1(!show1)}/>
                                 </Card>
                               </View>
