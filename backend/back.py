@@ -1,5 +1,6 @@
 from flask import request,Flask,jsonify
 from flask_cors import CORS,cross_origin
+from datetime import datetime
 from pymongo.mongo_client import MongoClient
 import pymongo
 
@@ -175,7 +176,7 @@ def forget():
 
 
 
-@app.route("/add_task", methods=["POST"])  #infoplan
+@app.route("/add_task", methods=["POST"]) #infoplan
 @cross_origin()
 def add_task():
     data = request.get_json()
@@ -184,20 +185,21 @@ def add_task():
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
 
-    new_task = {
 
+    date_start = datetime.strptime(data["date_start"], '%Y-%m-%d')
+    date_end = datetime.strptime(data["date_end"], '%Y-%m-%d')
+
+    new_task = {
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
         "content": data["content"],
         "finish": False,
-
-        "date_start": data["date_start"],
-        "date_end": data["date_end"]
+        "date_start": date_start,
+        "date_end": date_end
     }
 
     try:
-
         collection.insert_one(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
