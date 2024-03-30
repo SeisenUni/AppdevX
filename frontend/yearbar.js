@@ -4,7 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { target } from './keytime';
+import { target,week} from './keytime';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -32,6 +32,7 @@ export default function App() {
   }
   const getaccess =(value)=>
   {
+    week(value);
     target(value);
     navigation.navigate("Bar")
 
