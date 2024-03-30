@@ -121,6 +121,41 @@ def update_password():
     
         return jsonify({"message": "Password updated successfully"}), 200
 
+@app.route("/reset_email", methods=["POST"])     #changeemail
+def update_email():
+    data = request.get_json() 
+    global use
+    
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
+   
+    
+   
+    email= data["email"]
+    newemail= data["newemail"]
+    
+    
+    # Check  have user?
+    user = id_collection.find_one({"username": use})
+    if not user:
+        return jsonify({"error": "Invalid username or password"}), 401
+     
+     # Update password
+    if user and email == newemail :
+        id_collection.update_one({"username": use}, {"$set": {"email": email}})
+    
+        return jsonify({"message": "Password updated successfully"}), 200
+
+
+
+
+
+
+
+
+
+
 
 @app.route("/add_task", methods=["POST"])  #infoplan
 @cross_origin()
