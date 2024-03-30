@@ -20,7 +20,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Year">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Regis" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Year"  component={Yearbar} options={{ headerShown: false }}/>
@@ -28,6 +28,8 @@ export default function App() {
         <Stack.Screen name="Week"  component={Week} options={{ headerShown: true }}/>
         <Stack.Screen name="Setto"  component={Setto} /*options={{ headerShown: false }}*//>
         <Stack.Screen name="Adding"  component={Adding} /*options={{ headerShown: false }}*//>
+        <Stack.Screen name="ResetPass" component={Reset} options={{ headerShown: true }}/>
+        <Stack.Screen name="Changemail" component={Remail} options={{ headerShown: true }}/>
 
       </Stack.Navigator>
     </NavigationContainer>
