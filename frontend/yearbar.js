@@ -200,6 +200,8 @@ const printmonth = ({ item }) => {
               }}
             >
                 <View style={styles.test2}>
+                <View style={styles.center}>
+
                     <View style={styles.test3}>
 
                       <Card style={styles.cardContainer}>
@@ -254,6 +256,7 @@ const printmonth = ({ item }) => {
                           <Button title='exit' onPress={()=> setShow(!show)}/>
                         </Card>
                     </View>
+                </View>
                 </View>
             </Modal>
          </View>
