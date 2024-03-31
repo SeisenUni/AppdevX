@@ -5,11 +5,12 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { renderMonth, choose, renderweek,week } from './keytime';
+import { renderMonth, choose, renderweek,week,gotmonth } from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
 import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
+console.log(gotmonth());
   const navigation =useNavigation();
   const [show,setShow]=useState(false);
   const [show1,setShow1]=useState(false);
@@ -23,7 +24,6 @@ export default function App() {
   {
     navigation.navigate("Year");
   }
-  
   const changemail =()=>
   {
     navigation.navigate("Changemail");
