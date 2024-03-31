@@ -1,6 +1,5 @@
 from flask import request,Flask,jsonify
 from flask_cors import CORS,cross_origin
-from datetime import datetime
 from pymongo.mongo_client import MongoClient
 import pymongo
 
@@ -11,7 +10,7 @@ client = MongoClient(uri)
 db = client["planlendar"]
 collection = db["planlendar_info"]
 info_in_plan = collection.find()
-use = ""
+use = "iamdb"
 
 id_db =client["ID"]
 id_collection =id_db["ID_info"]
@@ -184,19 +183,19 @@ def add_task():
     ttt = 0
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
-
-
-    date_start = datetime.strptime(data["date_start"], '%Y-%m-%d')
-    date_end = datetime.strptime(data["date_end"], '%Y-%m-%d')
+    
+    timestart = data["timestart"]
+    timeend = data["timeend"]
+    time = timestart +"-"+ timeend
 
     new_task = {
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
-        "content": data["content"],
         "finish": False,
-        "date_start": date_start,
-        "date_end": date_end
+        "date_start": data["date_start"],
+        "date_end": data["date_end"],
+        "time" : time
     }
 
     try:
@@ -223,8 +222,18 @@ def delete_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/get_by_user", methods=["GET"])
+def get_user():
+    global use
+   
+    filter = {"username": use}
 
-
+    users = list(collection.find(filter))
+    
+    if users:
+        return jsonify(users), 200
+    else:
+        return jsonify({"error": "No users found"}), 404
 
 
 if __name__ == "__main__":
