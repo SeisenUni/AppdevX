@@ -6,6 +6,7 @@ import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { target,week} from './keytime';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 
 export default function App() {
@@ -13,11 +14,11 @@ export default function App() {
   const [show,setShow]=useState(false);
   const [show1,setShow1]=useState(false);
   const [plus,setPlus]=useState(false);
-  const [title,setTiltle]=useState("");
-  const [start,setStart]=useState("");
-  const [end,setEnd]=useState("");
-  const [startT,setStartT]=useState("");
-  const [endT,setEndT]=useState("");
+  const [title,setTiltle]=useState('');
+  const [start,setStart]=useState('');
+  const [end,setEnd]=useState('');
+  const [startT,setStartT]=useState('');
+  const [endT,setEndT]=useState('');
 
   const changemail =()=>
   {
@@ -83,33 +84,34 @@ export default function App() {
       //navigation.navigate("Login")
     };
 
-    const getdropdown = () =>{
-      const [valuep, setValuep] = useState(null);
+    // const getdropdown = () =>{
+      const [priority, setPriority] = useState(null);
       const [openpiority, setOpenpiority] = useState(false);
-      const [piority, setPiority] = useState([
+      const [piority1, setPiority1] = useState([
         { value: '1', label: 'Do' ,},
         { value: '2', label: 'Decide' ,},
         { value: '3', label: 'Delegate' ,},
         { value: '4', label: 'Dump' ,},
       ]);
-      return (
-        <DropDownPicker
-            open={openpiority}
-            value={valuep}
-            items={piority}
-            setOpen={setOpenpiority}
-            setValue={setValuep}
-            setItems={setPiority}
-            style={styles.boxdroppiority}
-            placeholder='Piority'
-            placeholderStyle={styles.yearst}
-            dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
-            // onSelectItem={handleIconPiority}
-            textStyle={styles.yearst}
-          />
-      );
-    }
+      // return (
+    //     <DropDownPicker
+    //         open={openpiority}
+    //         value={value}
+    //         items={piority1}
+    //         setOpen={setOpenpiority}
+    //         setValue={setValuep}
+    //         setItems={setPiority1}
+    //         style={styles.boxdroppiority}
+    //         placeholder='Piority'
+    //         placeholderStyle={styles.yearst}
+    //         dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+    //         // onSelectItem={onClicksave}
+    //         textStyle={styles.yearst}
+    //       />
+    //   );
+    // }
 
+   
     // const handleIconPiority = () => 
     // {
     //    setValue(null) 
@@ -138,6 +140,36 @@ const printmonth = ({ item }) => {
     );
 };
  
+const onClicksave=()=>{
+  console.log("Save !!")
+  console.log(priority)
+  const data={
+      title:title,
+      priority:priority,
+      start:start,
+      end:end,
+      startT:startT,
+      endT:endT
+  }
+  axios.post("http://10.64.43.110:5000/add_task",data)
+  .then(response=>{
+    console.log(response.data)
+    // navigation.navigate("Year")
+    setPlus(!plus)
+    setTiltle("")
+    setStart("")
+    setEnd("")
+    setStartT("")
+    setEndT("") 
+    setPriority(null)
+  })
+  .catch(error=>{
+    console.log(error.response)
+   
+  })
+}
+
+
   return (
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
@@ -167,7 +199,20 @@ const printmonth = ({ item }) => {
                             </Card>
                             <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
                               <Card style={styles.iconstyle}>
-                                {getdropdown()}
+                              <DropDownPicker
+                                open={openpiority}
+                                value={priority}
+                                items={piority1}
+                                setOpen={setOpenpiority}
+                                setValue={setPriority}
+                                setItems={setPiority1}
+                                style={styles.boxdroppiority}
+                                placeholder='Piority'
+                                placeholderStyle={styles.yearst}
+                                dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+                                // onSelectItem={onClicksave}
+                                textStyle={styles.yearst}
+                              />
                                 
                               </Card>
                             </View>
@@ -203,7 +248,7 @@ const printmonth = ({ item }) => {
                           </Card>
                         </Card>
                         <Card style={styles.butright}>
-                          <Button title='Save' />
+                          <Button title='Save' onPress={onClicksave}/>
                         </Card>
                         <Card style={styles.butleft}>
                           <Button title='exit' onPress={()=> setPlus(!plus)}/>
