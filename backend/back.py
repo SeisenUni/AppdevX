@@ -192,8 +192,8 @@ def add_task():
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
     
-    timestart = data["timestart"]
-    timeend = data["timeend"]
+    timestart = data["startT"]
+    timeend = data["endT"]
     time = timestart +"-"+ timeend
 
     new_task = {
@@ -202,8 +202,8 @@ def add_task():
         "priority": data["priority"],
         "finish": False,
         "username":use,
-        "date_start": data["date_start"],
-        "date_end": data["date_end"],
+        "date_start": data["start"],
+        "date_end": data["end"],
         "time" : time
     }
 
