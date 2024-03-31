@@ -196,8 +196,16 @@ def add_task():
     timeend = data["endT"]
     time = timestart +"-"+ timeend
     str1=data["start"]
-    str2 =str1[0:1]
+    str2 =str1[0:2]
     int(str2)
+    str3 =str1[3:2]
+    int(str3)
+    
+    str6=data["end"]
+    str4 =str6[0:2]
+    int(str4)
+    str5 =str6[3:2]
+    int(str5)
 
     new_task = {
         "_id": ttt,
@@ -208,7 +216,10 @@ def add_task():
         "date_start": data["start"],
         "date_end": data["end"],
         "time" : time ,
-        "day_start": str2
+        "day_start": str2,
+        "month_start":str3,
+         "day_end": str4,
+        "month_end":str5,
     }
     info_plan.append(new_task)
     try:
