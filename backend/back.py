@@ -260,6 +260,9 @@ def date_check():
     global info_in_plan
     day = "01"
     month= "02"
+    str= "2024"+month+day
+    arr=[]
+    # for i in info_in_plan
     
     
     
@@ -272,26 +275,6 @@ def date_check():
 
 
 
-@app.route('/get_data_in_range', methods=['GET'])
-@cross_origin()
-def get_data_in_range():
-    # Define the start and end dates of the range
-    start_date = datetime(2024, 2, 3)
-    end_date = datetime(2024, 3, 4)
-
-    # Define the query filter to compare dates within the range
-    filter = {
-        "date_field": {"$gte": start_date, "$lte": end_date}
-    }
-
-    # Perform the query to select data from the database
-    cursor = collection.find(filter)
-
-    # Convert cursor to a list of dictionaries
-    selected_data = list(cursor)
-
-    # Return the selected data as JSON
-    return jsonify(selected_data), 200
 
 
 
@@ -320,9 +303,10 @@ def test():
    
     tt = data["value"]
     
-    try:
-        return jsonify(tt), 200
-    except:
+   
+    if tt==2 :
+            return jsonify(tt), 200
+    else:
          return jsonify({"error": "No users found"}), 404
    
    
