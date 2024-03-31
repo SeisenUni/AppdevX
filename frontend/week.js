@@ -476,7 +476,7 @@ export default function App() {
                 <TouchableOpacity onPress={gotoyear} style={{ top: 170 }}>
                     <Card style={styles.Toch}>
                         <ImageBackground
-                            source={require('../month/1/jan.png')}
+                            source={require('../month/year.png')}
                             style={styles.png}
                         ></ImageBackground>
                     </Card>
