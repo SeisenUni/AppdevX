@@ -319,7 +319,11 @@ def test():
     data=request.get_json()
    
     tt = data["value"]
-    return jsonify(tt), 200
+    
+    try:
+        return jsonify(tt), 200
+    except:
+         return jsonify({"error": "No users found"}), 404
    
    
     
