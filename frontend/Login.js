@@ -21,7 +21,6 @@ export default function App() {
 
     const onClicklog=()=>{
       console.log("login")
-      navigation.navigate("Year")
 
       const data={
         username:username,
@@ -30,7 +29,7 @@ export default function App() {
       axios.post("http://10.64.43.110:5000/login",data)
       .then(response=>{
         console.log(response.data)
-        // navigation.navigate("Yearbar")
+        navigation.navigate("Year")
         setUsername("")
         setPassword("")
         setLogin("")
@@ -96,7 +95,14 @@ export default function App() {
                             // onPress={}
                             />
                           </Card>
-                            <Text> </Text>
+                          <Card style={styles.card4}>
+                            <Button 
+                            title="Forget Password"
+                            color="green"
+                            onPress={() =>navigation.navigate("Forget")}
+                            // onPress={}
+                            />
+                          </Card>
                             <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
                       </Card>
@@ -164,6 +170,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontFamily: 'Cochin',
       color:'blue',
+      marginTop:-10
     },
     center: {
       justifyContent: 'center',
@@ -174,13 +181,17 @@ const styles = StyleSheet.create({
       marginTop:-20
     },
     card2:{
-      margin:20,
+      margin:10,
       backgroundColor:'white',
       width:80,
       height:40
     },
     card3:{
       margin:0,
+      backgroundColor:'white',
+    },
+    card4:{
+      margin:10,
       backgroundColor:'white',
     },
     img:{
