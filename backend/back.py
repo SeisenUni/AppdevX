@@ -196,19 +196,19 @@ def add_task():
     timestart = data["startT"]
     timeend = data["endT"]
     time = timestart +"-"+ timeend
-    str1=data["start"]
-    str2 =str1[0:2]
-    int(str2)
+    # str1=data["start"]
+    # str2 =str1[0:2]
+    # int(str2)
     
-    str4 =str1[3:5]
-    int(str4)
+    # str4 =str1[3:5]
+    # int(str4)
     
-    str3=data["end"]
-    str5 =str3[0:2]
-    int(str5)
+    # str3=data["end"]
+    # str5 =str3[0:2]
+    # int(str5)
     
-    str6 =str3[3:5]
-    int(str6)
+    # str6 =str3[3:5]
+    # int(str6)
 
     date_object = datetime.strptime(data["start"], "%Y-%m-%d")
     date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")
@@ -220,11 +220,11 @@ def add_task():
         "username":use,
         "date_start": date_object,
         "date_end": date_object2,
-        "time" : time ,
-        "day_start": int(str2),
-        "month_start": int(str4),
-        "day_end": int(str5),
-        "month_end":int(str6)
+        "time" : time 
+        # "day_start": int(str2),
+        # "month_start": int(str4),
+        # "day_end": int(str5),
+        # "month_end":int(str6)
     }
     info_plan.append(new_task)
     try:
