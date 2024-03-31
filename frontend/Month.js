@@ -26,7 +26,7 @@ const [key, setKey] = useState(999); // เก็บค่า key และก�
 useEffect(() => {
     axios.get('http://192.168.227.165:5000/get_by_user')
         .then(response => {
-            if()
+          
             console.log("success i sad");
             setKey(1); 
         })
