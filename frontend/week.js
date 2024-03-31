@@ -376,12 +376,12 @@ export default function App() {
                                         <TextInput style={styles.input1}
                                             onChangeText={setStart}
                                             value={start}
-                                            placeholder="Start:  dd/mm/yyyy"
+                                            placeholder="Start:  dd-mm-yyyy"
                                             placeholderTextColor={'black'}/>
                                         <TextInput style={styles.input2}
                                         onChangeText={setEnd}
                                         value={end}
-                                        placeholder="End:  dd/mm/yyyy"
+                                        placeholder="End:  dd-mm-yyyy"
                                         placeholderTextColor={'black'}/>
                                         
                                         </Card>
