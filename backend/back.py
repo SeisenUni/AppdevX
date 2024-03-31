@@ -185,14 +185,15 @@ def forget():
 @app.route("/add_task", methods=["POST"]) #infoplan
 @cross_origin()
 def add_task():
+    global use
     data = request.get_json()
     count = len(info_plan)
     ttt = 0
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
     
-    timestart = data["timestart"]
-    timeend = data["timeend"]
+    timestart = data["startT"]
+    timeend = data["endT"]
     time = timestart +"-"+ timeend
 
     new_task = {
@@ -200,8 +201,9 @@ def add_task():
         "title": data["title"],
         "priority": data["priority"],
         "finish": False,
-        "date_start": data["date_start"],
-        "date_end": data["date_end"],
+        "username":use,
+        "date_start": data["start"],
+        "date_end": data["end"],
         "time" : time
     }
 
