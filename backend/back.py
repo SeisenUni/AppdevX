@@ -206,9 +206,9 @@ def add_task():
         "date_end": data["end"],
         "time" : time
     }
-
+    info_plan.append(new_task)
     try:
-        collection.insert(new_task)
+        collection.insert_one(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
 
