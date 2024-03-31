@@ -330,7 +330,7 @@ const onClicksave=()=>{
                                         </Card>
                                     </Card>
                                     <Card style={styles.butright}>
-                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                    <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow1(!show1)}/>
                                   </Card>
                                 </View>
                               </View>
@@ -343,7 +343,7 @@ const onClicksave=()=>{
                         </Card>
 
                         <Card style={styles.butright}>
-                          <Button title='exit' onPress={()=> setShow(!show)}/>
+                        <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow(!show)}/>
                         </Card>
                     </View>
                 </View>

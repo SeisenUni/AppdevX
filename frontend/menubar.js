@@ -8,6 +8,8 @@ import { Card, Paragraph, Title } from 'react-native-paper';
 import { renderMonth, choose, renderweek,week,gotmonth } from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
 import { useNavigation } from '@react-navigation/native';
+import Iconss from 'react-native-vector-icons/Entypo';
+import axios from 'axios';
 
 export default function App() {
 console.log(gotmonth());
@@ -59,22 +61,44 @@ console.log(gotmonth());
   {
      navigation.navigate("Week");
   }
+
+  const [priority, setPriority] = useState(null);
+  const [openpiority, setOpenpiority] = useState(false);
+  const [piority1, setPiority1] = useState([
+    { value: '1', label: 'Do' ,},
+    { value: '2', label: 'Decide' ,},
+    { value: '3', label: 'Delegate' ,},
+    { value: '4', label: 'Dump' ,},
+  ]);
   
-  // const handleIconPress = () => {
-  //   Alert.alert(
-  //     "Title",
-  //     "This is the message",
-  //     [
-  //       {
-  //         text: "Cancel",
-  //         onPress: () => console.log("Cancel Pressed"),
-  //         style: "cancel"
-  //       },
-  //       { text: "OK", onPress: () => console.log("OK Pressed") }
-  //     ],
-  //     { cancelable: false }
-  //   );
-  // };
+  const onClicksave=()=>{
+    console.log("Save !!")
+    console.log(priority)
+    const data={
+        title:title,
+        priority:priority,
+        start:start,
+        end:end,
+        startT:startT,
+        endT:endT
+    }
+    axios.post("http://10.64.43.110:5000/add_task",data)
+    .then(response=>{
+      console.log(response.data)
+      // navigation.navigate("Year")
+      setPlus(!plus)
+      setTiltle("")
+      setStart("")
+      setEnd("")
+      setStartT("")
+      setEndT("") 
+      setPriority(null)
+    })
+    .catch(error=>{
+      console.log(error.response)
+     
+    })
+  }
   
   return (
     <View style={{ flexDirection: 'column', backgroundColor:'white',flex:1}}>
@@ -103,6 +127,26 @@ console.log(gotmonth());
                                 placeholder="Title: "
                                 placeholderTextColor={'black'}/>
                             </Card>
+
+                            <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
+                              <Card style={styles.iconstyle}>
+                              <DropDownPicker
+                                open={openpiority}
+                                value={priority}
+                                items={piority1}
+                                setOpen={setOpenpiority}
+                                setValue={setPriority}
+                                setItems={setPiority1}
+                                style={styles.boxdroppiority}
+                                placeholder='Piority'
+                                placeholderStyle={styles.yearst}
+                                dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+                                // onSelectItem={onClicksave}
+                                textStyle={styles.yearst}
+                              />
+                                
+                              </Card>
+                            </View>
 
                             <Card style={styles.butsetting}>
                               <TextInput style={styles.input1}
@@ -135,10 +179,10 @@ console.log(gotmonth());
                           </Card>
                         </Card>
                         <Card style={styles.butright}>
-                          <Button title='Save' />
+                        <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave}/>
                         </Card>
                         <Card style={styles.butleft}>
-                          <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                        <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)}/>
                         </Card>
                     </View>
                 </View>
@@ -220,7 +264,7 @@ console.log(gotmonth());
                                         </Card>
                                     </Card>
                                     <Card style={styles.butright}>
-                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                    <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow1(!show1)}/>
                                   </Card>
                                 </View>
                                 </View>
@@ -233,7 +277,7 @@ console.log(gotmonth());
                           </Card>
 
                           <Card style={styles.butright}>
-                            <Button title='exit' onPress={()=> setShow(!show)}/>
+                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow(!show)}/>
                           </Card>
                       </View>
                     </View>
@@ -347,18 +391,18 @@ const styles = StyleSheet.create({
     width:500,
   },
   butright:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:390,
     marginTop:-70,
-    height:40,
+    height:60,
     width:60,
     borderRadius:5
   },
   butleft:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:-30,
-    marginTop:-40,
-    height:40,
+    marginTop:-60,
+    height:50,
     width:60,
     borderRadius:5
   },
@@ -430,5 +474,26 @@ const styles = StyleSheet.create({
   center:{
     justifyContent:'center',
     alignItems:'center'
+  },
+  dropdownchoosepiority:{
+    marginLeft:28,
+    height: 200,
+    width: 420,
+    borderColor: 'gray',
+    color:'red',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  boxdroppiority: { 
+    marginLeft:28,
+    height: 50,
+    width: 420,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    alignItems:'center',
+    justifyContent:'center',
   },
 });
