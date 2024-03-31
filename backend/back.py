@@ -195,6 +195,19 @@ def add_task():
     timestart = data["startT"]
     timeend = data["endT"]
     time = timestart +"-"+ timeend
+    str1=data["start"]
+    str2 =str1[0:2]
+    int(str2)
+    
+    str4 =str1[3:5]
+    int(str4)
+    
+    str3=data["end"]
+    str5 =str3[0:2]
+    int(str5)
+    
+    str6 =str3[3:5]
+    int(str6)
 
     new_task = {
         "_id": ttt,
@@ -204,7 +217,11 @@ def add_task():
         "username":use,
         "date_start": data["start"],
         "date_end": data["end"],
-        "time" : time
+        "time" : time ,
+        "day_start": int(str2),
+        "month_start": int(str4),
+        "day_end": int(str5),
+        "month_end":int(str6)
     }
     info_plan.append(new_task)
     try:
@@ -229,6 +246,38 @@ def delete_task(task_id):
             return jsonify({"error": "Task not found"}), 404
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/date_check", methods=["GET"])
+def date_check():
+    global use
+    global info_in_plan
+    day = 1
+    month= 2
+    date_start="date_start"
+    date_end="05-04-2024"
+    
+    
+    
+    # arr=[]
+    #     for i in info_in_plan:
+    #         if             
+            
+  
+    users = list(collection.find(date_end))
+    
+    if users:
+        return jsonify(users), 200
+    else:
+        return jsonify({"error": "No users found"}), 404
+
+
+
+
+
+
+
+
 
 
 @app.route("/get_by_user", methods=["GET"])
