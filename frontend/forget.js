@@ -12,12 +12,8 @@ export default function App() {
 
     const [check,setCheck]=useState("");
     const [phone_number,setPhoneNumber]=useState('');
-    const [forget, setForget] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [forget, setForget] = useState('');
 
-    const toggleShowPassword = () => { 
-      setShowPassword(!showPassword); 
-    };
 
     const onClicklog=()=>{
       console.log("forget")
@@ -26,13 +22,13 @@ export default function App() {
           check:check,
           phone_number:phone_number
         }
-        axios.post("http://10.64.43.110:5000/login",data)
+        axios.post("http://10.64.43.110:5000/forget",data)
         .then(response=>{
             console.log(response.data)
             navigation.navigate("ResetPass")
-        setUsername("")
-        setPassword("")
-        setLogin("")
+            setCheck("")
+            setPhoneNumber("")
+            setForget("")
       })
       .catch(error=>{
         console.log(error.response)
