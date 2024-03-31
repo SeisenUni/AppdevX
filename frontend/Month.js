@@ -19,23 +19,27 @@ export default function App() {
 //             .catch(error => {
 //                 console.error('Error fetching info:', error);
 //             });
+//     }, []); 
+
+const [key, setKey] = useState(999);
+// for(let i = 1;i<40;i++)
+// {
+//     useEffect(() => {
+//         axios.post('http://192.168.227.165:5000/test',{value : i})
+//             .then(response => {
+              
+//                 console.log("success i sad");
+//                 setKey(1); 
+//             })
+//             .catch(error => {
+//                 console.log("nokub i sad");
+    
+//                 //setKey(0); 
+//             });
 //     }, []);
-const [key, setKey] = useState(999); // เก็บค่า key และกำหนดค่าเริ่มต้นเป็น 999
+// }
 
 
-useEffect(() => {
-    axios.post('http://192.168.227.165:5000/test',{value : 2})
-        .then(response => {
-          
-            console.log("success i sad");
-            setKey(1); 
-        })
-        .catch(error => {
-            console.log("nokub i sad");
-
-            setKey(0); 
-        });
-}, []);
 
 
 
@@ -133,7 +137,28 @@ useEffect(() => {
     
     
         if (countday >= oldd() && item.title <= newm() + 2) {
-            if (key === 1) {
+            console.log(newday);
+        axios.post("http://192.168.227.165:5000/test",{value : newday+3})
+        .then(response => {
+                  
+            console.log("success i sad");
+           // createonselect(newday);
+             setKey(1);
+             return; 
+             //return;
+            // return;
+            // setKey(9999);
+        })
+        .catch(error => {
+           // console.log("nokub i sad");
+        //    createnormal(newday)
+        //time++;
+            //setKey(0); 
+        });
+            if (key == 1) 
+            {
+                //setKey(9999999); 
+                //console.log(key);
                 return (
                     <Card style={styles.selectday}>
                         <Title style={styles.textst}>{newday}</Title>
@@ -141,7 +166,7 @@ useEffect(() => {
                         <Paragraph>19:40-13:00</Paragraph>
                     </Card>
                 );
-            } else{
+            } else if (key ==999){
                 return (
                     <Card style={styles.card} key={item.key}>
                         <Title style={styles.textst}>{newday}</Title>
