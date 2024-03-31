@@ -4,22 +4,25 @@ import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'reac
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { oldd, newm, oldm,gotmonth} from './keytime.js';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 export default function App() {
-    // const [allData, setAllData] = useState([]);
-    // useEffect(() => {
-    //     axios.get('http://your-api-url/info')
-    //       .then(response => {
-    //         const info = response.data;
-    //         console.log(info.name); // "John"
-    //         console.log(info.age);  // 30
-    //         console.log(info.gender); // "male"
-    //       })
-    //       .catch(error => {
-    //         console.error('Error fetching info:', error);
-    //       });
-    //   }, []);
+    const [allData, setAllData] = useState([]);
+    useEffect(() => {
+        axios.get('http://192.168.227.165:5000/info')
+          .then(response => {
+            const infoArray = response.data;
+            infoArray.forEach(info => {
+              //console.log(info._id);
+              //console.log(info.content);
+              console.log(info.date_start);
+              console.log(info.date_end);
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching info:', error);
+          });
+      }, []);
 
     const data = [];
     for (let i = 1; i < 40; i++) {
