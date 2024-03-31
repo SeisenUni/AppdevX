@@ -1,6 +1,5 @@
 from flask import request,Flask,jsonify
 from flask_cors import CORS,cross_origin
-from datetime import datetime
 from pymongo.mongo_client import MongoClient
 import pymongo
 
@@ -184,19 +183,19 @@ def add_task():
     ttt = 0
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
-
-
-    date_start = datetime.strptime(data["date_start"], '%Y-%m-%d')
-    date_end = datetime.strptime(data["date_end"], '%Y-%m-%d')
+    
+    timestart = data["timestart"]
+    timeend = data["timeend"]
+    time = timestart +"-"+ timeend
 
     new_task = {
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
-        "content": data["content"],
         "finish": False,
-        "date_start": date_start,
-        "date_end": date_end
+        "date_start": data["date_start"],
+        "date_end": data["date_end"],
+        "time" : time
     }
 
     try:
