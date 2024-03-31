@@ -12,6 +12,7 @@ import Remail from './frontend/resetmail.js';
 import Yearbar from './frontend/yearbar.js';
 import Week from './frontend/week.js';
 import Adding from './frontend/adding.js';
+import Forget from './frontend/forget.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -30,6 +31,7 @@ export default function App() {
         <Stack.Screen name="Adding"  component={Adding} /*options={{ headerShown: false }}*//>
         <Stack.Screen name="ResetPass" component={Reset} options={{ headerShown: true }}/>
         <Stack.Screen name="Changemail" component={Remail} options={{ headerShown: true }}/>
+        <Stack.Screen name="Forget" component={Forget} options={{ headerShown: true }}/>
 
       </Stack.Navigator>
     </NavigationContainer>
