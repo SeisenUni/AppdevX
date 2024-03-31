@@ -1,16 +1,44 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground  } from 'react-native';
+import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button,TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { target } from './keytime';
+import { target,week} from './keytime';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 
 export default function App() {
   const navigation =useNavigation();
+  const [show,setShow]=useState(false);
+  const [show1,setShow1]=useState(false);
+  const [plus,setPlus]=useState(false);
+  const [title,setTiltle]=useState('');
+  const [start,setStart]=useState('');
+  const [end,setEnd]=useState('');
+  const [startT,setStartT]=useState('');
+  const [endT,setEndT]=useState('');
 
+  const changemail =()=>
+  {
+    navigation.navigate("Changemail");
+    setShow(false);
+  }
+  const reset_pass =()=>
+  {
+    navigation.navigate("ResetPass");
+    setShow(false);
+  }
+  const adding =()=>
+  {
+    navigation.navigate("Adding");
+  }
+  const getaccess =(value)=>
+  {
+    target(value);
+    navigation.navigate("Bar")
+  }
     const findfile =(item)=>
     {
       switch(item)
@@ -36,13 +64,13 @@ export default function App() {
     { value: '1', label: '2025' },
    
   ]);
-
-  const handleIconPress = () => {
-    Alert.alert(
-      "Not available now",
-      "This function is coming soon",
-      [
-        { text: "Cancel", 
+    
+    const handleIconPress = () => {
+      Alert.alert(
+        "Not available now",
+        "This function is coming soon",
+        [
+          { text: "Cancel", 
           onPress: () => setValue(null) 
         },
         {
@@ -52,14 +80,48 @@ export default function App() {
         }
       ],
       { cancelable: false }
-    );
-  };
-  const getaccess =(value)=>
-  {
-    target(value);
-    navigation.navigate("Bar")
+      );
+      //navigation.navigate("Login")
+    };
 
-  }
+    // const getdropdown = () =>{
+      const [priority, setPriority] = useState(null);
+      const [openpiority, setOpenpiority] = useState(false);
+      const [piority1, setPiority1] = useState([
+        { value: '1', label: 'Do' ,},
+        { value: '2', label: 'Decide' ,},
+        { value: '3', label: 'Delegate' ,},
+        { value: '4', label: 'Dump' ,},
+      ]);
+      // return (
+    //     <DropDownPicker
+    //         open={openpiority}
+    //         value={value}
+    //         items={piority1}
+    //         setOpen={setOpenpiority}
+    //         setValue={setValuep}
+    //         setItems={setPiority1}
+    //         style={styles.boxdroppiority}
+    //         placeholder='Piority'
+    //         placeholderStyle={styles.yearst}
+    //         dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+    //         // onSelectItem={onClicksave}
+    //         textStyle={styles.yearst}
+    //       />
+    //   );
+    // }
+
+   
+    // const handleIconPiority = () => 
+    // {
+    //    setValue(null) 
+    // };
+
+  const gotologin = () => {
+    navigation.navigate("Login")
+  };
+
+ 
  const data =[];
  for (let i = 1; i <= 12; i++) {
     data.push({ key: i, month: `${i}` });
@@ -78,11 +140,124 @@ const printmonth = ({ item }) => {
     );
 };
  
+const onClicksave=()=>{
+  console.log("Save !!")
+  console.log(priority)
+  const data={
+      title:title,
+      priority:priority,
+      start:start,
+      end:end,
+      startT:startT,
+      endT:endT
+  }
+  axios.post("http://10.64.43.110:5000/add_task",data)
+  .then(response=>{
+    console.log(response.data)
+    // navigation.navigate("Year")
+    setPlus(!plus)
+    setTiltle("")
+    setStart("")
+    setEnd("")
+    setStartT("")
+    setEndT("") 
+    setPriority(null)
+  })
+  .catch(error=>{
+    console.log(error.response)
+   
+  })
+}
+
+
   return (
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
-      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
+      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icon.Button>
+      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icon.Button>
+          <Modal
+              transparent={true}
+              visible={plus}
+              onRequestClose={()=>{
+                setPlus(!plus)
+              }}
+            >
+                <View style={styles.test2}>
+                <View style={styles.center}>
+
+                    <View style={styles.test4}>
+
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Create Your Planner</Title>
+                          <Card style={styles.cardContainerin1}>
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input}
+                                onChangeText={setTiltle}
+                                value={title}
+                                placeholder="Title: "
+                                placeholderTextColor={'black'}/>
+                            </Card>
+                            <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
+                              <Card style={styles.iconstyle}>
+                              <DropDownPicker
+                                open={openpiority}
+                                value={priority}
+                                items={piority1}
+                                setOpen={setOpenpiority}
+                                setValue={setPriority}
+                                setItems={setPiority1}
+                                style={styles.boxdroppiority}
+                                placeholder='Piority'
+                                placeholderStyle={styles.yearst}
+                                dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+                                // onSelectItem={onClicksave}
+                                textStyle={styles.yearst}
+                              />
+                                
+                              </Card>
+                            </View>
+
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStart}
+                                  value={start}
+                                  placeholder="Start:  dd-mm-yyyy"
+                                  placeholderTextColor={'black'}/>
+                              <TextInput style={styles.input2}
+                              onChangeText={setEnd}
+                              value={end}
+                              placeholder="End:  dd-mm-yyyy"
+                              placeholderTextColor={'black'}/>
+                              
+                            </Card>
+
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStartT}
+                                  value={startT}
+                                  placeholder="Start:  hh:mm"
+                                  placeholderTextColor={'black'}/>
+                              <TextInput style={styles.input2}
+                              onChangeText={setEndT}
+                              value={endT}
+                              placeholder="End:  hh:mm"
+                              placeholderTextColor={'black'}/>
+                              
+                            </Card>
+
+                          </Card>
+                        </Card>
+                        <Card style={styles.butright}>
+                          <Button title='Save' onPress={onClicksave}/>
+                        </Card>
+                        <Card style={styles.butleft}>
+                          <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                        </Card>
+                    </View>
+                </View>
+                </View>
+            </Modal>
+
       <View style={styles.yearbar}>
         <Text style={styles.Calendar}>Yearly Calendar</Text>
         <Text style={styles.yearfont}>2024</Text>
@@ -104,8 +279,75 @@ const printmonth = ({ item }) => {
         />
         
       </Card>
-      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icons.Button>
+      <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}> </Icons.Button>
+            <Modal
+              transparent={true}
+              visible={show}
+              onRequestClose={()=>{
+                setShow(!show)
+              }}
+            >
+                <View style={styles.test2}>
+                <View style={styles.center}>
 
+                    <View style={styles.test3}>
+
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Setting</Title>
+                          <Card style={styles.cardContainerin1}>
+
+                            <Card style={styles.butsetting}>
+                              <Button title='Change Email' onPress={changemail}/>
+                            </Card>
+
+                            <Card style={styles.butsetting}>
+                              <Button title='Reset Password' onPress={reset_pass}/>
+                            </Card>
+
+                            <Card style={styles.butsetting}>
+                              <Button title='Theme' onPress={()=> setShow1(true)}/>
+                              <Modal
+                                transparent={true}
+                                visible={show1}
+                                onRequestClose={()=>{
+                                  setShow1(!show1)
+                                }}>
+                                <View style={styles.center}>
+                                  <View style={styles.test3}>
+                                    <Card style={styles.cardContainer}>
+                                    <Title style={styles.title}>{"\n"}Theme</Title>
+                                        <Card style={styles.cardContainerin1}>
+
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Light'/>
+                                          </Card>
+
+                                          <Card style={styles.butsetting}>
+                                            <Button title='Dark'/>
+                                          </Card>
+
+                                        </Card>
+                                    </Card>
+                                    <Card style={styles.butright}>
+                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                  </Card>
+                                </View>
+                              </View>
+                            
+                            </Modal>
+                            </Card>
+
+                          </Card>
+
+                        </Card>
+
+                        <Card style={styles.butright}>
+                          <Button title='exit' onPress={()=> setShow(!show)}/>
+                        </Card>
+                    </View>
+                </View>
+                </View>
+            </Modal>
          </View>
          <View style={{backgroundColor:'white' ,alignItems: 'center',justifyContent: 'center',}}>
          <FlatList
@@ -122,11 +364,14 @@ const printmonth = ({ item }) => {
 }
 
 const styles = StyleSheet.create({
+  center:{
+    justifyContent:'center',
+    alignItems:'center'
+  },
   bar: {
 
     marginTop: 10,
     borderRadius: 0,
-  
     alignItems: 'center',
     justifyContent: 'right',
     flexDirection: 'row',
@@ -180,6 +425,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
+  boxdroppiority: { 
+    marginLeft:28,
+    height: 50,
+    width: 420,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    alignItems:'center',
+    justifyContent:'center',
+  },
   yearst: {
     fontSize: 20.5,
     textAlign: 'center',
@@ -187,6 +443,16 @@ const styles = StyleSheet.create({
   dropdownchoose:{
     height: 40,
     width: 150,
+    borderColor: 'gray',
+    color:'red',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  dropdownchoosepiority:{
+    marginLeft:28,
+    height: 200,
+    width: 420,
     borderColor: 'gray',
     color:'red',
     borderWidth: 0.5,
@@ -216,6 +482,110 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 235, 
     height: 200, 
+  },
+
+  test2:{
+    backgroundColor:"#000000aa",
+    flex:1,
+  },
+  test3:{
+    backgroundColor:"white",
+    margin:350,
+    marginTop:200,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
+  },
+  test4:{
+    backgroundColor:"white",
+    margin:350,
+    marginTop:100,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
+  },
+  butright:{
+    backgroundColor:"white",
+    marginLeft:390,
+    marginTop:-70,
+    height:40,
+    width:60,
+    borderRadius:5
+  },
+  butleft:{
+    backgroundColor:"white",
+    marginLeft:-30,
+    marginTop:-40,
+    height:40,
+    width:60,
+    borderRadius:5
+  },
+  title:{
+    fontSize:40,
+    // backgroundColor:'pink',
+    width:490,
+    height:60,
+    textAlign:'center',
+    color:"white",
+    // flexDirection:'row'
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    height:80,
+    width:500,
+    marginLeft:-40,
+    marginTop:-42,
+    backgroundColor:'gray',
+    borderRadius:5
+  },
+  cardContainerin1: {
+    flexDirection: 'row',
+    height:450,
+    width:500,
+    marginTop:10,
+    backgroundColor:'pink',
+    borderRadius:5,
+  },
+  butsetting:{
+    backgroundColor:"white",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
+  },
+  input: {
+    height: 50,
+    // marginLeft: 70,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:420,
+    borderColor:'gray'
+  },
+  input1: {
+    height: 50,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:210,
+    marginEnd:210,
+    borderColor:'gray'
+  },
+  input2: {
+    height: 50,
+    marginLeft: 70,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius:5,
+    width:210,
+    marginStart:210,
+    marginTop:-50,
+    borderColor:'gray'
   },
 
 });

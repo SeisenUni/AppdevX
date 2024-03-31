@@ -10,42 +10,34 @@ export default function App() {
 
     const navigation =useNavigation();
 
-    const [username,setUsername]=useState("");
-    const [password,setPassword]=useState("");
-    const [login, setLogin] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [check,setCheck]=useState("");
+    const [phone_number,setPhoneNumber]=useState('');
+    const [forget, setForget] = useState('');
 
-    const toggleShowPassword = () => { 
-      setShowPassword(!showPassword); 
-    };
 
     const onClicklog=()=>{
-      console.log("login")
-      navigation.navigate("Year")
-
+      console.log("forget")
+      
       const data={
-        username:username,
-        password:password
-      }
-      axios.post("http://10.64.43.110:5000/login",data)
-      .then(response=>{
-        console.log(response.data)
-        setUsername("")
-        setPassword("")
-        setLogin("")
+          check:check,
+          phone_number:phone_number
+        }
+        axios.post("http://10.64.43.110:5000/forget",data)
+        .then(response=>{
+            console.log(response.data)
+            navigation.navigate("ResetPass")
+            setCheck("")
+            setPhoneNumber("")
+            setForget("")
       })
       .catch(error=>{
         console.log(error.response)
-        setLogin("Something wrong!!!")
+        setForget("Something wrong!!!")
       })
     }
 
     return(
         <SafeAreaView style={styles.container}>
-            {/* <Text>Teest login</Text> */}
-
-              {/* <View style={styles.cardContainer}> */}
-
           <Card style={styles.card1}>
 
             <ImageBackground source={bg} style={styles.img}>
@@ -53,56 +45,33 @@ export default function App() {
                       <View style={styles.container2}>
               
                       <Card style={styles.card}>
-                        <Text style={styles.text}>Login</Text> 
+                        <Text style={styles.text}>Forget</Text> 
                           <TextInput 
                           style={styles.input}
-                          onChangeText={setUsername}
-                          value={username}
-                          placeholder="Username"
+                          onChangeText={setCheck}
+                          value={check}
+                          placeholder="Username or Email"
                           />
                           <View style={styles.input}>
 
                           <TextInput 
-                          // style={styles.input}
-                          onChangeText={setPassword}
-                          value={password}
-                          placeholder="Password"
-                          secureTextEntry={!showPassword}
+                          onChangeText={setPhoneNumber}
+                          value={phone_number}
+                          placeholder="Phone Number"
                           />
-                          <MaterialCommunityIcons 
-                          name={showPassword ? 'eye-off' : 'eye'} 
-                          size={24} 
-                          color="#aaa"
-                          style={styles.icon} 
-                          onPress={toggleShowPassword} 
-                          /> 
+                         
                           </View>
-                          <Text style={styles.wrong}>{login}</Text>
+                          <Text style={styles.wrong}>{forget}</Text>
                          
                         <View style={styles.center}>
-                          <Card style={styles.card2}>
+                          <Card style={styles.card3}>
                             <Button 
-                            title="Login"
+                            title="Reset Password"
                             color="green"
                             onPress={onClicklog}
                             />
                           </Card>
-                          <Card style={styles.card3}>
-                            <Button 
-                            title="Create account"
-                            color="green"
-                            onPress={() =>navigation.navigate("Regis")}
-                            // onPress={}
-                            />
-                          </Card>
-                          <Card style={styles.card4}>
-                            <Button 
-                            title="Forget Password"
-                            color="green"
-                            onPress={() =>navigation.navigate("Forget")}
-                            // onPress={}
-                            />
-                          </Card>
+                            <Text> </Text>
                             <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
                       </Card>
@@ -170,7 +139,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontFamily: 'Cochin',
       color:'blue',
-      marginTop:-10
     },
     center: {
       justifyContent: 'center',
@@ -181,17 +149,13 @@ const styles = StyleSheet.create({
       marginTop:-20
     },
     card2:{
-      margin:10,
+      margin:20,
       backgroundColor:'white',
       width:80,
       height:40
     },
     card3:{
       margin:0,
-      backgroundColor:'white',
-    },
-    card4:{
-      margin:10,
       backgroundColor:'white',
     },
     img:{

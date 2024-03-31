@@ -5,8 +5,9 @@ import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 export default function App() {
-
+    const navigation =useNavigation();
     const [worng,setWrong]=useState("");
     const [newpassword,setNewpassword]=useState("");
     const [conpassword,setConpassword]=useState("");
@@ -24,6 +25,7 @@ export default function App() {
       axios.post("http://10.64.43.110:5000/reset_pass",data)
       .then(response=>{
         console.log(response.data)
+        navigation.navigate("Login")
         setNewpassword("")
         setConpassword("")
         setWrong("")
@@ -69,7 +71,7 @@ export default function App() {
                               <View style={styles.center}>
                                 <Card style={styles.card2}>
                                     <Button 
-                                    title="Reset Password"
+                                    title="Change Password"
                                     color="green"
                                     onPress={onClickpass}
                                     />

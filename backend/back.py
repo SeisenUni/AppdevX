@@ -10,7 +10,7 @@ client = MongoClient(uri)
 db = client["planlendar"]
 collection = db["planlendar_info"]
 info_in_plan = collection.find()
-use = ""
+use = "iamdb"
 
 id_db =client["ID"]
 id_collection =id_db["ID_info"]
@@ -121,30 +121,93 @@ def update_password():
     
         return jsonify({"message": "Password updated successfully"}), 200
 
+@app.route("/reset_email", methods=["POST"])     #changeemail
+def update_email():
+    data = request.get_json() 
+    global use
+    
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
+   
+    
+   
+    email= data["email"]
+    newemail= data["newemail"]
+    
+    
+    # Check  have user?
+    user = id_collection.find_one({"username": use})
+    if not user:
+        return jsonify({"error": "Invalid username or password"}), 401
+     
+     # Update password
+    if user and email == newemail :
+        id_collection.update_one({"username": use}, {"$set": {"email": email}})
+    
+        return jsonify({"message": "Password updated successfully"}), 200
 
-@app.route("/add_task", methods=["POST"])  #infoplan
+
+@app.route("/forget",methods=["POST"])
+@cross_origin()
+def forget():
+    data=request.get_json()
+    global use
+    check=data["check"]
+    phone_number=data["phone_number"]
+    
+    check_id=id_collection.find_one({"username":check})
+    
+    check_email=id_collection.find_one({"email":check})
+    check_number=id_collection.find_one({"phone_number":phone_number})
+    if check_email  :
+        if check_number :
+            use= check_number["username"]
+            return jsonify({"message": "Can reset password"}), 200
+    if check_id  :
+        if check_number :
+            use= check_id["username"]
+            return jsonify({"message": "Can reset password"}), 200   
+            
+    return jsonify({"message": "invalid"}),401    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+@app.route("/add_task", methods=["POST"]) #infoplan
 @cross_origin()
 def add_task():
+    global use
     data = request.get_json()
     count = len(info_plan)
     ttt = 0
     if count != 0:
         ttt = info_plan[-1]["_id"] + 1
+    
+    timestart = data["startT"]
+    timeend = data["endT"]
+    time = timestart +"-"+ timeend
 
     new_task = {
-
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
-        "content": data["content"],
         "finish": False,
-
-        "date_start": data["date_start"],
-        "date_end": data["date_end"]
+        "username":use,
+        "date_start": data["start"],
+        "date_end": data["end"],
+        "time" : time
     }
-
+    info_plan.append(new_task)
     try:
-
         collection.insert_one(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
@@ -168,8 +231,18 @@ def delete_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/get_by_user", methods=["GET"])
+def get_user():
+    global use
+   
+    filter = {"username": use}
 
-
+    users = list(collection.find(filter))
+    
+    if users:
+        return jsonify(users), 200
+    else:
+        return jsonify({"error": "No users found"}), 404
 
 
 if __name__ == "__main__":
