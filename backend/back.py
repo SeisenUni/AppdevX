@@ -259,19 +259,20 @@ def delete_task(task_id):
 def date_check():
     global use
     global info_in_plan
-    day = "01"
-    month= "02"
-    str= "2024"+month+day
-    date_input = datetime.strptime(str, "%Y-%m-%d")
-    arr=[]
-    for i in info_in_plan:
-        date_end = info_plan["date_end"]
-        date_start = info_plan["date_start"]
-        if date_end - date_input >=timedelta(0):
-            if date_start - date_input <=timedelta(0):
-                arr.append(i)
+    day = "30"
+    month = "05"
+    year = "2024"
+    date_str = year + "-" + month + "-" + day
+    date_input = datetime.strptime(date_str, "%Y-%m-%d")
+    arr = []
+    for document in collection.find():
+    # Assuming date_end and date_start are fields in the documents
+        date_end = document.get("date_end")
+        date_start = document.get("date_start")
+        if date_end >= date_input >= date_start:
+                arr.append(document)
     
-    return jsonify(arr),200            
+    return jsonify(arr), 200
         
     
     
