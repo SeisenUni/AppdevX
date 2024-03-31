@@ -85,7 +85,7 @@ export default function App() {
     };
 
     // const getdropdown = () =>{
-      const [piority, setPiority] = useState(null);
+      const [priority, setPriority] = useState(null);
       const [openpiority, setOpenpiority] = useState(false);
       const [piority1, setPiority1] = useState([
         { value: '1', label: 'Do' ,},
@@ -142,25 +142,26 @@ const printmonth = ({ item }) => {
  
 const onClicksave=()=>{
   console.log("Save !!")
-  console.log(piority)
+  console.log(priority)
   const data={
       title:title,
-      piority:piority,
+      priority:priority,
       start:start,
       end:end,
       startT:startT,
       endT:endT
   }
-  axios.post("http://10.64.43.110:5000/reset_pass",data)
+  axios.post("http://10.64.43.110:5000/add_task",data)
   .then(response=>{
     console.log(response.data)
-    navigation.navigate("Login")
+    // navigation.navigate("Year")
+    setPlus(!plus)
     setTiltle("")
     setStart("")
     setEnd("")
     setStartT("")
     setEndT("") 
-    setPiority(null)
+    setPriority(null)
   })
   .catch(error=>{
     console.log(error.response)
@@ -200,10 +201,10 @@ const onClicksave=()=>{
                               <Card style={styles.iconstyle}>
                               <DropDownPicker
                                 open={openpiority}
-                                value={piority}
+                                value={priority}
                                 items={piority1}
                                 setOpen={setOpenpiority}
-                                setValue={setPiority}
+                                setValue={setPriority}
                                 setItems={setPiority1}
                                 style={styles.boxdroppiority}
                                 placeholder='Piority'
