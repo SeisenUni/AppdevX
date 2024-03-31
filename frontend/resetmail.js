@@ -5,12 +5,14 @@ import { Card, Title } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import bg from './login-piccard.png'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 export default function App() {
-
+    const navigation =useNavigation();
     const [email,setEmail]=useState("");
     const [newemail,setNewemail]=useState("");
     const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [worng,setWrong]=useState("");
     // const toggleShowPassword = () => { 
     //   setShowPassword(!showPassword); 
     // };
@@ -21,14 +23,18 @@ export default function App() {
           email:email,
           newemail:newemail
       }
-      axios.get("http://10.64.43.110:5000/login",data)
+      axios.post("http://10.64.43.110:5000/reset_email",data)
       .then(response=>{
         console.log(response.data)
         setEmail("")
         setNewemail("")
+        setWrong("")
+        navigation.navigate("Year")
       })
       .catch(error=>{
         console.log(error.response)
+        setWrong("Something Wrong")
+        
       })
     }
 
