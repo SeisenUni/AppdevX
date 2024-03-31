@@ -1,6 +1,15 @@
 let month = '1';
 let lock ='1';
 let weeks ='1';
+let canbuild = false;
+export const gotcommand =(value) =>
+{
+    canbuild = value;
+}
+export const sendcomand =()=>
+{
+    return canbuild;
+}
 export const choose = (value) => 
 {
     month = value; 
