@@ -2,6 +2,7 @@ from flask import request,Flask,jsonify
 from flask_cors import CORS,cross_origin
 from pymongo.mongo_client import MongoClient
 import pymongo
+from datetime import datetime
 
 
 
@@ -195,33 +196,35 @@ def add_task():
     timestart = data["startT"]
     timeend = data["endT"]
     time = timestart +"-"+ timeend
-    str1=data["start"]
-    str2 =str1[0:2]
-    int(str2)
+    # str1=data["start"]
+    # str2 =str1[0:2]
+    # int(str2)
     
-    str4 =str1[3:5]
-    int(str4)
+    # str4 =str1[3:5]
+    # int(str4)
     
-    str3=data["end"]
-    str5 =str3[0:2]
-    int(str5)
+    # str3=data["end"]
+    # str5 =str3[0:2]
+    # int(str5)
     
-    str6 =str3[3:5]
-    int(str6)
+    # str6 =str3[3:5]
+    # int(str6)
 
+    date_object = datetime.strptime(data["start"], "%Y-%m-%d")
+    date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")
     new_task = {
         "_id": ttt,
         "title": data["title"],
         "priority": data["priority"],
         "finish": False,
         "username":use,
-        "date_start": data["start"],
-        "date_end": data["end"],
-        "time" : time ,
-        "day_start": int(str2),
-        "month_start": int(str4),
-        "day_end": int(str5),
-        "month_end":int(str6)
+        "date_start": date_object,
+        "date_end": date_object2,
+        "time" : time 
+        # "day_start": int(str2),
+        # "month_start": int(str4),
+        # "day_end": int(str5),
+        # "month_end":int(str6)
     }
     info_plan.append(new_task)
     try:
@@ -257,24 +260,83 @@ def date_check():
     date_start="date_start"
     date_end="05-04-2024"
     
-    
-    
-    # arr=[]
-    #     for i in info_in_plan:
-    #         if             
+    day_start = []
+
+    # Iterate over documents in the collection
+    for document in collection.find():
+        # Extract the value of the "ddb" field from each document
+        a = document.get("day_start")
+
+        # Append the field value to the list
+        if day_start is not None:
+            day_start.append(a)
+        
+    day_end = []
+
+    # Iterate over documents in the collection
+    for document in collection.find():
+        # Extract the value of the "ddb" field from each document
+        a = document.get("day_end")
+
+        # Append the field value to the list
+        if day_end is not None:
+            day_end.append(a)        
             
-  
-    users = list(collection.find(date_end))
-    
-    if users:
-        return jsonify(users), 200
-    else:
-        return jsonify({"error": "No users found"}), 404
+    month_start = []
+
+    # Iterate over documents in the collection
+    for document in collection.find():
+        # Extract the value of the "ddb" field from each document
+        a = document.get("month_start")
+
+        # Append the field value to the list
+        if month_start is not None:
+           month_start.append(a)     
+     
+    month_end = []
+
+    # # Iterate over documents in the collection
+    # for document in collection.find():
+    #     # Extract the value of the "ddb" field from each document
+    #     a = document.get("month_end")
+
+    #     # Append the field value to the list
+    #     if month_end is not None:
+    #        month_end.append(a)            
+           
+    # for i in collection.find():
+    #     if month_start[i] > month :
+    #          return jsonify({"message": "not in range"}), 404
+    #     if month_start == month:
+    #          if day_start <= day and day <= day_end :
+                 
+                 
+
+              
+                    
 
 
 
 
+@app.route('/get_data_in_range', methods=['GET'])
+def get_data_in_range():
+    # Define the start and end dates of the range
+    start_date = datetime(2024, 2, 3)
+    end_date = datetime(2024, 3, 4)
 
+    # Define the query filter to compare dates within the range
+    filter = {
+        "date_field": {"$gte": start_date, "$lte": end_date}
+    }
+
+    # Perform the query to select data from the database
+    cursor = collection.find(filter)
+
+    # Convert cursor to a list of dictionaries
+    selected_data = list(cursor)
+
+    # Return the selected data as JSON
+    return jsonify(selected_data), 200
 
 
 
