@@ -7,30 +7,25 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 export default function App() {
-    const [allData, setAllData] = useState([]);
+    
 
-
-    useEffect(() => {
-        axios.get('http://192.168.227.165:5000/get_by_user')
-            .then(response => {
-                const infoArray = response.data;
-                setAllData(infoArray);
-            })
-            .catch(error => {
-                console.error('Error fetching info:', error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios.get('http://192.168.227.165:5000/get_by_user')
+    //         .then(response => {
+    //             const infoArray = response.data;
+    //             setAllData(infoArray);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching info:', error);
+    //         });
+    // }, []);
 
 
 
 
     // const list = Array.from({ length: 13 }, () => Array(40).fill());
 
-    const data = [];
-    for (let i = 1; i < 40; i++) {
-        data.push({ key: i, title: `${i}` });
-    }
-    var countday = 0;
+    
     // let send = 
     // const send =()=>{
     // return 
@@ -60,73 +55,119 @@ export default function App() {
     //     });
     // }
     // let valuebuild = 0 ;
-    useEffect(() => {
-        allData.forEach(info => {
-            data.forEach(item => {
-                console.log("check");
-                if (item.title <= Number(info.date_start.substring(0, 2))) {
-                    console.log("getnow");
-                }
-                else {
+    // useEffect(() => {
+    //     allData.forEach(info => {
+    //         data.forEach(item => {
+    //             console.log("check");
+    //             if (item.title <= Number(info.date_start.substring(0, 2))) {
+    //                 console.log("getnow");
+    //             }
+    //             else {
 
-                }
+    //             }
+    //         });
+
+    //     });
+    // }, [allData]);
+    const route=(value)=>
+    {
+        switch(value)
+        {
+            case 1: return '01';
+            case 2: return '02';
+            case 3: return '03';
+            case 4: return '04';
+            case 5: return '05';
+            case 6: return '06';
+            case 7: return '07';
+            case 8: return '08';
+            case 9: return '09';
+            default :return value;
+
+        }
+    }
+    const data = [];
+    for (let i = 1; i < 40; i++) {
+        data.push({ key: i, title: `${i}` });
+    }
+    var countday = 0;
+    const createonselect=(value)=>
+    {
+        console.log("flow this = ",value);
+        return (
+            <Card style={styles.selectday}>
+                <Title style={styles.textst}>{value}</Title>
+                <Paragraph>Algorithm</Paragraph>
+                <Paragraph>18:30 - 19:40</Paragraph>
+            </Card>
+        );
+    }
+    const createnormal=(value)=>
+    {
+        return (
+            <Card style={styles.card}>
+                <Title style={styles.textst}>{value}</Title>
+            </Card>
+        );
+    }
+    let key = 999;
+    axios.get('http://192.168.227.165:5000/get_by_user')
+            .then(response => {
+                
+                key = 1;
+                render(); 
+            })
+            .catch(error => {
+               
+                key = 0; 
+                render(); 
             });
-
-        });
-    }, [allData]);
-
-
     const createday = ({ item }) => {
-        // console.log("kuy ",dequeue());
-        // console.log("wher is td ",gettd());
-
-        //console.log(dequeue());
+        let newday = item.title - countday;
+        let start = route(newday) + '-' + gotmonth();
+        let time = '0';
+    
+    
         if (countday >= oldd() && item.title <= newm() + 2) {
-            let newday = (item.title - countday);
-            //console.log("neday ",newday);
-            if (newday) {
+            if (key === 1) {
                 return (
                     <Card style={styles.selectday}>
                         <Title style={styles.textst}>{newday}</Title>
                         <Paragraph>Algorithm</Paragraph>
-                        <Paragraph>18:30 - 19:40</Paragraph>
+                        <Paragraph>19:40-13:00</Paragraph>
                     </Card>
                 );
-
-            } else {
+            } else if(key ===0){
                 return (
-                    <Card style={styles.card}>
+                    <Card style={styles.card} key={item.key}>
                         <Title style={styles.textst}>{newday}</Title>
                     </Card>
                 );
             }
-        }
-        else {
+        } else {
             countday++;
             if (item.title < oldm()) {
                 let setto = oldm() - oldd();
-                let newday2 = (setto + countday);
+                let newday2 = setto + countday;
                 if (newday2 >= 0 && newday2 <= 1) {
                     return (
-                        <Card style={styles.selectday}>
+                        <Card style={styles.selectday} key={item.key}>
                             <Title style={styles.textst}>{newday2}</Title>
                             <Paragraph>Abstract</Paragraph>
                             <Paragraph>18:30 - 19:40</Paragraph>
                         </Card>
                     );
-
                 } else {
                     return (
-                        <Card style={styles.oldmonth}>
+                        <Card style={styles.oldmonth} key={item.key}>
                             <Title style={styles.textst}>{newday2}</Title>
                         </Card>
                     );
                 }
             }
         }
-
+        return null;
     };
-
 
     return (
         <SafeAreaView style={styles.container}>
