@@ -63,25 +63,62 @@ export default function App() {
     { value: '1', label: '2025' },
    
   ]);
+    
+    const handleIconPress = () => {
+      Alert.alert(
+        "Not available now",
+        "This function is coming soon",
+        [
+          { text: "Cancel", 
+          onPress: () => setValue(null) 
+        },
+        {
+          text: "OK",
+          onPress: () => setValue(null),
+          style: "cancel"
+        }
+      ],
+      { cancelable: false }
+      );
+      //navigation.navigate("Login")
+    };
 
-  const handleIconPress = () => {
-    // Alert.alert(
-    //   "Not available now",
-    //   "This function is coming soon",
-    //   [
-    //     { text: "Cancel", 
-    //       onPress: () => setValue(null) 
-    //     },
-    //     {
-    //       text: "OK",
-    //       onPress: () => setValue(null),
-    //       style: "cancel"
-    //     }
-    //   ],
-    //   { cancelable: false }
-    // );
+    const getdropdown = () =>{
+      const [valuep, setValuep] = useState(null);
+      const [openpiority, setOpenpiority] = useState(false);
+      const [piority, setPiority] = useState([
+        { value: '1', label: 'Do' ,},
+        { value: '2', label: 'Decide' ,},
+        { value: '3', label: 'Delegate' ,},
+        { value: '4', label: 'Dump' ,},
+      ]);
+      return (
+        <DropDownPicker
+            open={openpiority}
+            value={valuep}
+            items={piority}
+            setOpen={setOpenpiority}
+            setValue={setValuep}
+            setItems={setPiority}
+            style={styles.boxdroppiority}
+            placeholder='Piority'
+            placeholderStyle={styles.yearst}
+            dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+            // onSelectItem={handleIconPiority}
+            textStyle={styles.yearst}
+          />
+      );
+    }
+
+    // const handleIconPiority = () => 
+    // {
+    //    setValue(null) 
+    // };
+
+  const gotologin = () => {
     navigation.navigate("Login")
   };
+
  
  const data =[];
  for (let i = 1; i <= 12; i++) {
@@ -104,7 +141,7 @@ const printmonth = ({ item }) => {
   return (
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
-      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={handleIconPress}></Icon.Button>
+      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icon.Button>
       <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icon.Button>
           <Modal
               transparent={true}
@@ -128,6 +165,12 @@ const printmonth = ({ item }) => {
                                 placeholder="Title: "
                                 placeholderTextColor={'black'}/>
                             </Card>
+                            <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
+                              <Card style={styles.iconstyle}>
+                                {getdropdown()}
+                                
+                              </Card>
+                            </View>
 
                             <Card style={styles.butsetting}>
                               <TextInput style={styles.input1}
@@ -337,6 +380,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
+  boxdroppiority: { 
+    marginLeft:28,
+    height: 50,
+    width: 420,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    alignItems:'center',
+    justifyContent:'center',
+  },
   yearst: {
     fontSize: 20.5,
     textAlign: 'center',
@@ -344,6 +398,16 @@ const styles = StyleSheet.create({
   dropdownchoose:{
     height: 40,
     width: 150,
+    borderColor: 'gray',
+    color:'red',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  dropdownchoosepiority:{
+    marginLeft:28,
+    height: 200,
+    width: 420,
     borderColor: 'gray',
     color:'red',
     borderWidth: 0.5,
