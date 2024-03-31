@@ -2,13 +2,31 @@ let month = '1';
 let lock ='1';
 let weeks ='1';
 let canbuild = false;
+let startday =0;
+let know =0;
+export const startd=(value)=>
+{
+    startday = value;
+}
+export const stacked=(value)=>
+{
+    know = know +value;
+}
+export const dequeue=()=>
+{
+    return know;
+}
+export const gettd =()=>
+{
+    return startday;
+}
 export const gotcommand =(value) =>
 {
-    canbuild = value;
+    return canbuild;
 }
 export const sendcomand =()=>
 {
-    return canbuild;
+    canbuild = value;
 }
 export const choose = (value) => 
 {
