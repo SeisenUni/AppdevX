@@ -2,34 +2,87 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { oldd, newm, oldm} from './keytime.js';
+import { oldd, newm, oldm,gotmonth} from './keytime.js';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function App() {
-   
+    // const [allData, setAllData] = useState([]);
+    // useEffect(() => {
+    //     axios.get('http://your-api-url/info')
+    //       .then(response => {
+    //         const info = response.data;
+    //         console.log(info.name); // "John"
+    //         console.log(info.age);  // 30
+    //         console.log(info.gender); // "male"
+    //       })
+    //       .catch(error => {
+    //         console.error('Error fetching info:', error);
+    //       });
+    //   }, []);
+
     const data = [];
-    for (let i = 1; i < 36; i++) {
+    for (let i = 1; i < 40; i++) {
          data.push({ key: i, title: `${i}` });
     }
     var countday = 0;
     const createday = ({ item }) => {
+        let newday = (item.title - countday);
+        
         if (countday >= oldd() && item.title <= newm() + 2) {
-            let newday = (item.title - countday);
-            if (newday >= 1 && newday <= 10) {
-                return (
-                    <Card style={styles.selectday}>
-                        <Title style={styles.textst}>{newday}</Title>
-                        <Paragraph>Algorithm</Paragraph>
-                        <Paragraph>18:30 - 19:40</Paragraph>
-                    </Card>
-                );
+            if(newday < 10)
+            {
 
-            } else {
-                return (
-                    <Card style={styles.card}>
-                        <Title style={styles.textst}>{newday}</Title>
-                    </Card>
-                );
+                let cp = '0'+newday+'-'+  gotmonth()+'-'+'2024';
+                let month = gotmonth();
+                let day = '0'+newday;
+               // console.log(month);
+                console.log(Number(day));
+               // console.log(cp);
+
+                //newday = '0'+ newday;
+                if ((newday >= 1 && newday <= 10) && gotmonth() == 2) {
+                    return (
+                        <Card style={styles.selectday}>
+                            <Title style={styles.textst}>{newday}</Title>
+                            <Paragraph>Algorithm</Paragraph>
+                            <Paragraph>18:30 - 19:40</Paragraph>
+                        </Card>
+                    );
+    
+                } else {
+                    return (
+                        <Card style={styles.card}>
+                            <Title style={styles.textst}>{newday}</Title>
+                        </Card>
+                    );
+                }
             }
+            else
+            {
+                let cp1 = newday+'-'+  gotmonth()+'-'+'2024';
+                let month1 = gotmonth();
+                let day1 = newday;
+                //console.log(month1);
+                console.log(day1);
+                if (newday >= 1 && newday <= 10 && gotmonth() == 2) {
+                    return (
+                        <Card style={styles.selectday}>
+                            <Title style={styles.textst}>{newday}</Title>
+                            <Paragraph>Algorithm</Paragraph>
+                            <Paragraph>18:30 - 19:40</Paragraph>
+                        </Card>
+                    );
+    
+                } else {
+                    return (
+                        <Card style={styles.card}>
+                            <Title style={styles.textst}>{newday}</Title>
+                        </Card>
+                    );
+                }
+            }
+            
         }
         else {
             countday++;
