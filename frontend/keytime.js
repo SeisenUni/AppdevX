@@ -36,7 +36,7 @@ export const target =(value) =>
 {
     lock = value;
     month = lock;
-    console.log("glow target");
+    console.log("flow target");
     console.log(lock);
 }
 export const week =(value)=>
