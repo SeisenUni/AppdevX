@@ -3,6 +3,7 @@ from flask_cors import CORS,cross_origin
 from pymongo.mongo_client import MongoClient
 import pymongo
 from datetime import datetime
+from datetime import datetime, timedelta
 
 
 
@@ -261,9 +262,17 @@ def date_check():
     day = "01"
     month= "02"
     str= "2024"+month+day
+    date_input = datetime.strptime(str, "%Y-%m-%d")
     arr=[]
-    # for i in info_in_plan
+    for i in info_in_plan:
+        date_end = info_plan["date_end"]
+        date_start = info_plan["date_start"]
+        if date_end - date_input >=timedelta(0):
+            if date_start - date_input <=timedelta(0):
+                arr.append(i)
     
+    return jsonify(arr),200            
+        
     
     
    
