@@ -3,6 +3,7 @@ import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
+import Iconss from 'react-native-vector-icons/Entypo';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { target,week} from './keytime';
 import { useNavigation } from '@react-navigation/native';
@@ -248,10 +249,10 @@ const onClicksave=()=>{
                           </Card>
                         </Card>
                         <Card style={styles.butright}>
-                          <Button title='Save' onPress={onClicksave}/>
+                          <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave}/>
                         </Card>
                         <Card style={styles.butleft}>
-                          <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)}/>
                         </Card>
                     </View>
                 </View>
@@ -507,20 +508,22 @@ const styles = StyleSheet.create({
     width:500,
   },
   butright:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:390,
     marginTop:-70,
-    height:40,
+    height:60,
     width:60,
     borderRadius:5
   },
   butleft:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:-30,
-    marginTop:-40,
-    height:40,
+    marginTop:-60,
+    height:50,
     width:60,
-    borderRadius:5
+    borderRadius:6,
+    alignItems:'center',
+    justifyContent:'center'
   },
   title:{
     fontSize:40,
