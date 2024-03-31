@@ -69,7 +69,7 @@ export default function App() {
                               <View style={styles.center}>
                                 <Card style={styles.card2}>
                                     <Button 
-                                    title="Reset Password"
+                                    title="Change Password"
                                     color="green"
                                     onPress={onClickpass}
                                     />
