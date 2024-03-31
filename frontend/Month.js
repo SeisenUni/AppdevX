@@ -8,18 +8,34 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
     
+// Const [allData,setAllData] =useState();
 
-    // useEffect(() => {
-    //     axios.get('http://192.168.227.165:5000/get_by_user')
-    //         .then(response => {
-    //             const infoArray = response.data;
-    //             setAllData(infoArray);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching info:', error);
-    //         });
-    // }, []);
+//     useEffect(() => {
+//         axios.get('http://192.168.227.165:5000/get_by_user')
+//             .then(response => {
+//                 const infoArray = response.data;
+//                 setAllData(infoArray);
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching info:', error);
+//             });
+//     }, []);
+const [key, setKey] = useState(999); // เก็บค่า key และกำหนดค่าเริ่มต้นเป็น 999
 
+
+useEffect(() => {
+    axios.get('http://192.168.227.165:5000/get_by_user')
+        .then(response => {
+          
+            console.log("success i sad");
+            setKey(1); 
+        })
+        .catch(error => {
+            console.log("nokub i sad");
+
+            setKey(0); 
+        });
+}, []);
 
 
 
@@ -110,18 +126,6 @@ export default function App() {
             </Card>
         );
     }
-    let key = 999;
-    axios.get('http://192.168.227.165:5000/get_by_user')
-            .then(response => {
-                
-                key = 1;
-                render(); 
-            })
-            .catch(error => {
-               
-                key = 0; 
-                render(); 
-            });
     const createday = ({ item }) => {
         let newday = item.title - countday;
         let start = route(newday) + '-' + gotmonth();
@@ -137,7 +141,7 @@ export default function App() {
                         <Paragraph>19:40-13:00</Paragraph>
                     </Card>
                 );
-            } else if(key ===0){
+            } else{
                 return (
                     <Card style={styles.card} key={item.key}>
                         <Title style={styles.textst}>{newday}</Title>
