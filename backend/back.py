@@ -10,7 +10,7 @@ client = MongoClient(uri)
 db = client["planlendar"]
 collection = db["planlendar_info"]
 info_in_plan = collection.find()
-use = ""
+use = "iamdb"
 
 id_db =client["ID"]
 id_collection =id_db["ID_info"]
@@ -222,8 +222,18 @@ def delete_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/get_by_user", methods=["GET"])
+def get_user():
+    global use
+   
+    filter = {"username": use}
 
-
+    users = list(collection.find(filter))
+    
+    if users:
+        return jsonify(users), 200
+    else:
+        return jsonify({"error": "No users found"}), 404
 
 
 if __name__ == "__main__":
