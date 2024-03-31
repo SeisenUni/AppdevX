@@ -96,7 +96,14 @@ export default function App() {
                             // onPress={}
                             />
                           </Card>
-                            <Text> </Text>
+                          <Card style={styles.card4}>
+                            <Button 
+                            title="Forget Password"
+                            color="green"
+                            onPress={() =>navigation.navigate("Forget")}
+                            // onPress={}
+                            />
+                          </Card>
                             <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
                       </Card>
@@ -164,6 +171,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontFamily: 'Cochin',
       color:'blue',
+      marginTop:-10
     },
     center: {
       justifyContent: 'center',
@@ -174,13 +182,17 @@ const styles = StyleSheet.create({
       marginTop:-20
     },
     card2:{
-      margin:20,
+      margin:10,
       backgroundColor:'white',
       width:80,
       height:40
     },
     card3:{
       margin:0,
+      backgroundColor:'white',
+    },
+    card4:{
+      margin:10,
       backgroundColor:'white',
     },
     img:{
