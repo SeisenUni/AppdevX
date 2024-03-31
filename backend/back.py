@@ -208,7 +208,7 @@ def add_task():
     }
 
     try:
-        collection.insert_one(new_task)
+        collection.insert(new_task)
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
 
