@@ -3,6 +3,7 @@ from flask_cors import CORS,cross_origin
 from pymongo.mongo_client import MongoClient
 import pymongo
 from datetime import datetime
+from datetime import datetime, timedelta
 
 
 
@@ -97,6 +98,7 @@ def check_credentials():
 
 
 @app.route("/reset_pass", methods=["POST"])
+@cross_origin()
 def update_password():
     data = request.get_json() 
     global use
@@ -122,7 +124,8 @@ def update_password():
     
         return jsonify({"message": "Password updated successfully"}), 200
 
-@app.route("/reset_email", methods=["POST"])     #changeemail
+@app.route("/reset_email", methods=["POST"]) 
+@cross_origin()#changeemail
 def update_email():
     data = request.get_json() 
     global use
@@ -252,64 +255,27 @@ def delete_task(task_id):
 
 
 @app.route("/date_check", methods=["GET"])
+@cross_origin()
 def date_check():
     global use
     global info_in_plan
-    day = 1
-    month= 2
-    date_start="date_start"
-    date_end="05-04-2024"
+    day = "01"
+    month= "02"
+    str= "2024"+month+day
+    date_input = datetime.strptime(str, "%Y-%m-%d")
+    arr=[]
+    for i in info_in_plan:
+        date_end = info_plan["date_end"]
+        date_start = info_plan["date_start"]
+        if date_end - date_input >=timedelta(0):
+            if date_start - date_input <=timedelta(0):
+                arr.append(i)
     
-    day_start = []
-
-    # Iterate over documents in the collection
-    for document in collection.find():
-        # Extract the value of the "ddb" field from each document
-        a = document.get("day_start")
-
-        # Append the field value to the list
-        if day_start is not None:
-            day_start.append(a)
+    return jsonify(arr),200            
         
-    day_end = []
-
-    # Iterate over documents in the collection
-    for document in collection.find():
-        # Extract the value of the "ddb" field from each document
-        a = document.get("day_end")
-
-        # Append the field value to the list
-        if day_end is not None:
-            day_end.append(a)        
-            
-    month_start = []
-
-    # Iterate over documents in the collection
-    for document in collection.find():
-        # Extract the value of the "ddb" field from each document
-        a = document.get("month_start")
-
-        # Append the field value to the list
-        if month_start is not None:
-           month_start.append(a)     
-     
-    month_end = []
-
-    # # Iterate over documents in the collection
-    # for document in collection.find():
-    #     # Extract the value of the "ddb" field from each document
-    #     a = document.get("month_end")
-
-    #     # Append the field value to the list
-    #     if month_end is not None:
-    #        month_end.append(a)            
-           
-    # for i in collection.find():
-    #     if month_start[i] > month :
-    #          return jsonify({"message": "not in range"}), 404
-    #     if month_start == month:
-    #          if day_start <= day and day <= day_end :
-                 
+    
+    
+   
                  
 
               
@@ -318,31 +284,13 @@ def date_check():
 
 
 
-@app.route('/get_data_in_range', methods=['GET'])
-def get_data_in_range():
-    # Define the start and end dates of the range
-    start_date = datetime(2024, 2, 3)
-    end_date = datetime(2024, 3, 4)
-
-    # Define the query filter to compare dates within the range
-    filter = {
-        "date_field": {"$gte": start_date, "$lte": end_date}
-    }
-
-    # Perform the query to select data from the database
-    cursor = collection.find(filter)
-
-    # Convert cursor to a list of dictionaries
-    selected_data = list(cursor)
-
-    # Return the selected data as JSON
-    return jsonify(selected_data), 200
 
 
 
 
 
 @app.route("/get_by_user", methods=["GET"])
+@cross_origin()
 def get_user():
     global use
    
@@ -354,6 +302,31 @@ def get_user():
         return jsonify(users), 200
     else:
         return jsonify({"error": "No users found"}), 404
+
+
+@app.route("/test", methods=["POST"])
+@cross_origin()
+def test():
+    
+    data=request.get_json()
+   
+    tt = data["value"]
+    
+   
+    if tt==2 :
+            return jsonify(tt), 200
+    else:
+         return jsonify({"error": "No users found"}), 404
+   
+   
+    
+    
+   
+
+
+
+
+
 
 
 if __name__ == "__main__":

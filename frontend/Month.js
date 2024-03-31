@@ -8,17 +8,37 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
     
+// Const [allData,setAllData] =useState();
 
-    // useEffect(() => {
-    //     axios.get('http://192.168.227.165:5000/get_by_user')
-    //         .then(response => {
-    //             const infoArray = response.data;
-    //             setAllData(infoArray);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching info:', error);
-    //         });
-    // }, []);
+//     useEffect(() => {
+//         axios.get('http://192.168.227.165:5000/get_by_user')
+//             .then(response => {
+//                 const infoArray = response.data;
+//                 setAllData(infoArray);
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching info:', error);
+//             });
+//     }, []); 
+
+const [key, setKey] = useState(999);
+// for(let i = 1;i<40;i++)
+// {
+//     useEffect(() => {
+//         axios.post('http://192.168.227.165:5000/test',{value : i})
+//             .then(response => {
+              
+//                 console.log("success i sad");
+//                 setKey(1); 
+//             })
+//             .catch(error => {
+//                 console.log("nokub i sad");
+    
+//                 //setKey(0); 
+//             });
+//     }, []);
+// }
+
 
 
 
@@ -110,18 +130,6 @@ export default function App() {
             </Card>
         );
     }
-    let key = 999;
-    axios.get('http://192.168.227.165:5000/get_by_user')
-            .then(response => {
-                
-                key = 1;
-                render(); 
-            })
-            .catch(error => {
-               
-                key = 0; 
-                render(); 
-            });
     const createday = ({ item }) => {
         let newday = item.title - countday;
         let start = route(newday) + '-' + gotmonth();
@@ -129,7 +137,28 @@ export default function App() {
     
     
         if (countday >= oldd() && item.title <= newm() + 2) {
-            if (key === 1) {
+            console.log(newday);
+        axios.post("http://192.168.227.165:5000/test",{value : newday+3})
+        .then(response => {
+                  
+            console.log("success i sad");
+           // createonselect(newday);
+             setKey(1);
+             return; 
+             //return;
+            // return;
+            // setKey(9999);
+        })
+        .catch(error => {
+           // console.log("nokub i sad");
+        //    createnormal(newday)
+        //time++;
+            //setKey(0); 
+        });
+            if (key == 1) 
+            {
+                //setKey(9999999); 
+                //console.log(key);
                 return (
                     <Card style={styles.selectday}>
                         <Title style={styles.textst}>{newday}</Title>
@@ -137,7 +166,7 @@ export default function App() {
                         <Paragraph>19:40-13:00</Paragraph>
                     </Card>
                 );
-            } else if(key ===0){
+            } else if (key ==999){
                 return (
                     <Card style={styles.card} key={item.key}>
                         <Title style={styles.textst}>{newday}</Title>
