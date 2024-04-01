@@ -199,6 +199,8 @@ def add_task():
     timestart = data["startT"]
     timeend = data["endT"]
     time = timestart +"-"+ timeend
+    pri =data["priority"]
+    int(pri)
     
 
     date_object = datetime.strptime(data["start"], "%Y-%m-%d")
@@ -206,7 +208,7 @@ def add_task():
     new_task = {
         "_id": ttt,
         "title": data["title"],
-        "priority": data["priority"],
+        "priority": int(pri),
         "finish": False,
         "username":use,
         "date_start": date_object,
@@ -285,6 +287,7 @@ def get_user():
     filter = {"username": use}
 
     users = list(collection.find(filter))
+    users.sort(key=lambda x: x['priority'])
     
     if users:
         return jsonify(users), 200
