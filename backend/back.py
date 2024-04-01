@@ -62,11 +62,12 @@ def register():
     user_s = data["username"]
     check_mail = data["email"]
     x= check_mail.find("@gmail.com")
+    y= check_mail.find("@hotmail.com")
     
     if id_collection.find_one({"username": user_s}) :
          return jsonify({"error": "Invalid credentials"}), 401
     else:      
-           if x !=-1 :
+           if x !=-1 or y!=-1 :
                 new_register = {                    #register user
                 "_id": ttt,
              "username": data["username"],
