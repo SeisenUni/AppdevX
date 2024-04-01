@@ -174,8 +174,8 @@ const onClicksave=()=>{
   return (
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
-      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icon.Button>
+      <Icons.Button name="login" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icons.Button>
+      <Icons.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icons.Button>
           <Modal
               transparent={true}
               visible={plus}

@@ -12,7 +12,7 @@ import Iconss from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 
 export default function App() {
-  console.log(gotmonth());
+  //console.log(gotmonth());
   const navigation = useNavigation();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -100,8 +100,8 @@ export default function App() {
   return (
     <View style={{ flexDirection: 'column', backgroundColor: 'white', flex: 1 }}>
       <View style={styles.menubar}>
-        <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={back}></Icon.Button>
-        <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={() => setPlus(true)}></Icon.Button>
+        <Icons.Button name="back" color="black" backgroundColor="white" size={40} onPress={back}></Icons.Button>
+        <Icons.Button name="plus" color="black" backgroundColor="white" size={40} onPress={() => setPlus(true)}></Icons.Button>
         <Modal
           transparent={true}
           visible={plus}
