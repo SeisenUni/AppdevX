@@ -74,12 +74,17 @@ export default function App() {
                                     <Card style={styles.card2}>
                                         <Button 
                                         title="Change Email"
-                                        color="green"
+                                        color="black"
                                         onPress={onClicklog}
                                         />
                                     </Card>
-                                    <Text> </Text>
-                                    <Text style={styles.text}> {"\n"}Planner</Text>
+                                    <Card style={styles.card3}>
+                                        <Button 
+                                        title="Return to Login"
+                                        color="black"
+                                        onPress={()=>navigation.navigate("Login")}
+                                        />
+                                    </Card>
                                 </View>
                             </Card>
                         </View>
@@ -132,7 +137,7 @@ const styles = StyleSheet.create({
       padding: 1,
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white",
+      backgroundColor:"#b4b4b4",
       borderColor:'#b0b0b0'
     },
     cardContainer: {
@@ -140,9 +145,9 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      color:'blue',
+     // fontWeight: 'bold',
+      //fontFamily: 'Cochin',
+      color:'black',
     },
     center: {
       justifyContent: 'center',
