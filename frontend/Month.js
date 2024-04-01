@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
     
-// Const [allData,setAllData] =useState();
+
 
 //     useEffect(() => {
 //         axios.get('http://192.168.227.165:5000/get_by_user')
@@ -22,6 +22,10 @@ export default function App() {
 //     }, []); 
 
 const [key, setKey] = useState(999);
+const [newpost, setStart] = useState(999);
+const [rmonth, getmonth] = useState(999);
+
+
 // for(let i = 1;i<40;i++)
 // {
 //     useEffect(() => {
@@ -133,18 +137,22 @@ const [key, setKey] = useState(999);
     const createday = ({ item }) => {
         let newday = item.title - countday;
         let start = route(newday) + '-' + gotmonth();
-        let time = '0';
-    
+        let time = 1;
+        
     
         if (countday >= oldd() && item.title <= newm() + 2) {
             console.log(newday);
-        axios.post("http://192.168.227.165:5000/test",{value : newday+3})
+        axios.post("http://192.168.227.165:5000/test",{value : newday})
         .then(response => {
                   
             console.log("success i sad");
            // createonselect(newday);
-             setKey(1);
-             return; 
+            setStart(newday);
+            console.log(time);
+             setKey(3);
+             getmonth(3);
+            // console.log(rmonth);
+             //time++;
              //return;
             // return;
             // setKey(9999);
@@ -155,24 +163,26 @@ const [key, setKey] = useState(999);
         //time++;
             //setKey(0); 
         });
-            if (key == 1) 
+        // if(newday < key)
+        // {
+        console.log(Number(gotmonth()));
+            if ( (newpost+key >= newday && newday >= newpost) && rmonth == Number(gotmonth()) )   
             {
-                //setKey(9999999); 
-                //console.log(key);
                 return (
                     <Card style={styles.selectday}>
                         <Title style={styles.textst}>{newday}</Title>
-                        <Paragraph>Algorithm</Paragraph>
-                        <Paragraph>19:40-13:00</Paragraph>
+                        <Paragraph>Have someting...</Paragraph>
                     </Card>
                 );
-            } else if (key ==999){
+            } else {
                 return (
                     <Card style={styles.card} key={item.key}>
                         <Title style={styles.textst}>{newday}</Title>
                     </Card>
                 );
             }
+        // }
+            
         } else {
             countday++;
             if (item.title < oldm()) {
