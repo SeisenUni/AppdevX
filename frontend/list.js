@@ -24,10 +24,10 @@ export default function App() {
     }, []);
     const sortingprio = (value) => {
         switch (value) {
-            case '1': return 'Do';
-            case '2': return 'Decide';
-            case '3': return 'Delegate';
-            case '4': return 'Dump';
+            case 1: return 'Do';
+            case 2: return 'Decide';
+            case 3: return 'Delegate';
+            case 4: return 'Dump';
             default: return 'Not found any Piority';
 
         }
@@ -36,24 +36,24 @@ export default function App() {
         let iconColor, iconName,style;
     
         switch (value) {
-            case '1':
-                iconColor = 'red';
+            case 1:
+                iconColor = '#FF6565';
                 iconName = 'circle';
                 style = 'piored';
                 break;
-            case '2':
-                iconColor = 'orange';
+            case 2:
+                iconColor = '#FFA841';
                 iconName = 'circle';
                 style = 'pioorange';
                 break;
-            case '3':
-                iconColor = 'blue';
+            case 3:
+                iconColor = '#6587FF';
                 iconName = 'circle';
                 style = 'pioblue';
 
                 break;
-            case '4':
-                iconColor = 'green';
+            case 4:
+                iconColor = '#78c388';
                 iconName = 'circle';
                 style = 'piogreen';
 
@@ -80,10 +80,10 @@ export default function App() {
     {
         switch(value)
         {
-            case '1' : return 'listred';
-            case '2' : return 'listorange';
-            case '3' : return 'listblue';
-            case '4' : return 'listgreen';
+            case 1 : return 'listred';
+            case 2 : return 'listorange';
+            case 3 : return 'listblue';
+            case 4 : return 'listgreen';
             default: return 'listlec';
         }
     }
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: 'red',
+        color: '#FF6565',
     },
     piogreen: {
         fontSize: 25,
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: 'green',
+        color: '#78c388',
     },
     pioblue: {
         fontSize: 25,
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: 'blue',
+        color: '#6587FF',
     },
     pioorange: {
         fontSize: 25,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        color: 'orange',
+        color: '#FFA841',
     },
     piogray: {
         fontSize: 25,
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     },
     listred:
     {
-        borderColor: 'red',
+        borderColor: '#FF6565',
         borderRadius: 10,
         backgroundColor: 'white',
         borderWidth: 4,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     },
     listorange:
     {
-        borderColor: 'orange',
+        borderColor: '#FFA841',
         borderRadius: 10,
         backgroundColor: 'white',
         borderWidth: 4,
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
     },
     listblue:
     {
-        borderColor: 'blue',
+        borderColor: '#6587FF',
         borderRadius: 10,
         backgroundColor: 'white',
         borderWidth: 4,
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
     },
     listgreen:
     {
-        borderColor: 'green',
+        borderColor: '#78c388',
         borderRadius: 10,
         backgroundColor: 'white',
         borderWidth: 4,
