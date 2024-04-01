@@ -239,7 +239,7 @@ def delete_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/date_check", methods=["GET"])
+@app.route("/date_check", methods=["POST"])
 @cross_origin()
 def date_check():
     data= request.get_json()
