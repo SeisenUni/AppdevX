@@ -21,14 +21,14 @@ export default function App() {
 
     const onClicklog=()=>{
       console.log("login")
-      navigation.navigate("Year")
-
+      
       const data={
         username:username,
         password:password
       }
       axios.post("http://10.64.43.110:5000/login",data)
       .then(response=>{
+        navigation.navigate("Year")
         console.log(response.data)
         setUsername("")
         setPassword("")
