@@ -14,7 +14,7 @@ export default function App() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://192.168.1.54:5000/get_by_user")
+        axios.get("http://10.64.72.161:5000/get_by_user")
             .then(response => {
                 setData(response.data);
             })
@@ -143,9 +143,9 @@ export default function App() {
             {
               text: 'Yes i finish now',
               onPress: () => {
-                axios.delete(`http://192.168.1.54:5000/delete_info/${id}`)
+                axios.delete(`http://10.64.72.161:5000/delete_info/${id}`)
                   .then(response => {
-                    axios.get("http://192.168.1.54:5000/get_by_user")
+                    axios.get("http://10.64.72.161:5000/get_by_user")
                       .then(response => {
                         setData(response.data);
                       })

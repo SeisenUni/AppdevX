@@ -22,7 +22,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Year">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Regis" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Year"  component={Yearbar} options={{ headerShown: false }}/>
