@@ -4,6 +4,7 @@ import{Card} from 'react-native-paper';
 import Setto from './frontend/setting.js';
 import Login from './frontend/Login.js';
 import Month from './frontend/Month.js';
+import List from './frontend/list.js';
 import Register from './frontend/register.js';
 import Mainmonth from './frontend/MainMonth.js';
 import Bar from './frontend/menubar.js';
@@ -32,6 +33,7 @@ export default function App() {
         <Stack.Screen name="ResetPass" component={Reset} options={{ headerShown: true }}/>
         <Stack.Screen name="Changemail" component={Remail} options={{ headerShown: true }}/>
         <Stack.Screen name="Forget" component={Forget} options={{ headerShown: true }}/>
+        <Stack.Screen name="List"  component={List} options={{ headerShown: false }}/>
 
       </Stack.Navigator>
     </NavigationContainer>
