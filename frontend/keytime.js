@@ -1,15 +1,7 @@
 let month = '1';
 let lock ='1';
 let weeks ='1';
-let canbuild = false;
-export const gotcommand =(value) =>
-{
-    canbuild = value;
-}
-export const sendcomand =()=>
-{
-    return canbuild;
-}
+
 export const choose = (value) => 
 {
     month = value; 
@@ -18,7 +10,7 @@ export const target =(value) =>
 {
     lock = value;
     month = lock;
-    console.log("glow target");
+    console.log("flow target");
     console.log(lock);
 }
 export const week =(value)=>
@@ -120,7 +112,7 @@ export const getmonth = () => {
         default: return 'January';
     }
 }
-export const renderMonth = () => {
+export const renderMonth = () => { //TODO
     switch(month) {
         case '1': return 'January';
         case '2': return 'February';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button,TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
+import Iconss from 'react-native-vector-icons/Entypo';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { target,week} from './keytime';
+import { target} from './keytime';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -30,14 +30,14 @@ export default function App() {
     navigation.navigate("ResetPass");
     setShow(false);
   }
-  const adding =()=>
+  const gotolist =()=>
   {
-    navigation.navigate("Adding");
+    navigation.navigate("List");
   }
   const getaccess =(value)=>
   {
     target(value);
-    navigation.navigate("Bar")
+    navigation.navigate("Month")
   }
     const findfile =(item)=>
     {
@@ -93,30 +93,7 @@ export default function App() {
         { value: '3', label: 'Delegate' ,},
         { value: '4', label: 'Dump' ,},
       ]);
-      // return (
-    //     <DropDownPicker
-    //         open={openpiority}
-    //         value={value}
-    //         items={piority1}
-    //         setOpen={setOpenpiority}
-    //         setValue={setValuep}
-    //         setItems={setPiority1}
-    //         style={styles.boxdroppiority}
-    //         placeholder='Piority'
-    //         placeholderStyle={styles.yearst}
-    //         dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
-    //         // onSelectItem={onClicksave}
-    //         textStyle={styles.yearst}
-    //       />
-    //   );
-    // }
-
-   
-    // const handleIconPiority = () => 
-    // {
-    //    setValue(null) 
-    // };
-
+      
   const gotologin = () => {
     navigation.navigate("Login")
   };
@@ -134,7 +111,6 @@ const printmonth = ({ item }) => {
               source={findfile(item.month)}
               style={styles.png}
               ></ImageBackground>
-                {/* <Title>{renderMonth(item.month)}</Title> */}
             </Card>
         </TouchableOpacity>
     );
@@ -151,10 +127,10 @@ const onClicksave=()=>{
       startT:startT,
       endT:endT
   }
-  axios.post("http://10.64.43.110:5000/add_task",data)
+  axios.post("http://192.168.185.166:5000/add_task",data)
   .then(response=>{
     console.log(response.data)
-    // navigation.navigate("Year")
+    navigation.navigate("Year")
     setPlus(!plus)
     setTiltle("")
     setStart("")
@@ -173,8 +149,8 @@ const onClicksave=()=>{
   return (
     <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'white',}}>
       <View style={styles.bar}>
-      <Icon.Button name="reply" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icon.Button>
-      <Icon.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icon.Button>
+      <Icons.Button name="login" color="black" backgroundColor="white" size={40} onPress={gotologin}></Icons.Button>
+      <Icons.Button name="plus" color="black" backgroundColor="white" size={40} onPress={()=>setPlus(true)}></Icons.Button>
           <Modal
               transparent={true}
               visible={plus}
@@ -195,7 +171,9 @@ const onClicksave=()=>{
                                 onChangeText={setTiltle}
                                 value={title}
                                 placeholder="Title: "
-                                placeholderTextColor={'black'}/>
+                                placeholderTextColor={'#b0b0b0'}
+                                borderRadius={10}
+                                backgroundColor={'white'}/>
                             </Card>
                             <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
                               <Card style={styles.iconstyle}>
@@ -217,41 +195,62 @@ const onClicksave=()=>{
                               </Card>
                             </View>
 
-                            <Card style={styles.butsetting}>
+                            <Card style={styles.butsetting2}>
                               <TextInput style={styles.input1}
                                   onChangeText={setStart}
                                   value={start}
-                                  placeholder="Start:  dd-mm-yyyy"
-                                  placeholderTextColor={'black'}/>
+                                  placeholder="Start:  yyyy-mm-dd"
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
                               <TextInput style={styles.input2}
                               onChangeText={setEnd}
                               value={end}
-                              placeholder="End:  dd-mm-yyyy"
-                              placeholderTextColor={'black'}/>
+                              placeholder="End:  yyyy-mm-dd"
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
+
+                              />
                               
                             </Card>
 
-                            <Card style={styles.butsetting}>
+                            <Card style={styles.butsetting2}>
                               <TextInput style={styles.input1}
                                   onChangeText={setStartT}
                                   value={startT}
                                   placeholder="Start:  hh:mm"
-                                  placeholderTextColor={'black'}/>
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
                               <TextInput style={styles.input2}
                               onChangeText={setEndT}
                               value={endT}
                               placeholder="End:  hh:mm"
-                              placeholderTextColor={'black'}/>
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderRadius={0}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
+                              />
                               
                             </Card>
 
                           </Card>
                         </Card>
                         <Card style={styles.butright}>
-                          <Button title='Save' onPress={onClicksave}/>
+                          <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave} color="black"/>
                         </Card>
                         <Card style={styles.butleft}>
-                          <Button title='exit' onPress={()=> setPlus(!plus)}/>
+                          
+                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)} color ="black"/>
                         </Card>
                     </View>
                 </View>
@@ -280,6 +279,8 @@ const onClicksave=()=>{
         
       </Card>
       <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}> </Icons.Button>
+      <Icons.Button name="book" color="black" backgroundColor="white" size={40} onPress={gotolist}> </Icons.Button>
+
             <Modal
               transparent={true}
               visible={show}
@@ -296,16 +297,16 @@ const onClicksave=()=>{
                           <Title style={styles.title}>{"\n"}Setting</Title>
                           <Card style={styles.cardContainerin1}>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Change Email' onPress={changemail}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Change Email' onPress={changemail} color ="black"/>
                             </Card>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Reset Password' onPress={reset_pass}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Reset Password' onPress={reset_pass} color ="black"/>
                             </Card>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Theme' onPress={()=> setShow1(true)}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Theme' onPress={()=> setShow1(true)} color ="black"/>
                               <Modal
                                 transparent={true}
                                 visible={show1}
@@ -318,18 +319,18 @@ const onClicksave=()=>{
                                     <Title style={styles.title}>{"\n"}Theme</Title>
                                         <Card style={styles.cardContainerin1}>
 
-                                          <Card style={styles.butsetting}>
-                                            <Button title='Light'/>
+                                          <Card style={styles.butsetting3}>
+                                            <Button title='Light' color="black"/>
                                           </Card>
 
-                                          <Card style={styles.butsetting}>
-                                            <Button title='Dark'/>
+                                          <Card style={styles.butsetting3}>
+                                            <Button title='Dark' color="black"/>
                                           </Card>
 
                                         </Card>
                                     </Card>
                                     <Card style={styles.butright}>
-                                      <Button title='exit' onPress={()=> setShow1(!show1)}/>
+                                    <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow1(!show1)} color="black"/>
                                   </Card>
                                 </View>
                               </View>
@@ -342,7 +343,7 @@ const onClicksave=()=>{
                         </Card>
 
                         <Card style={styles.butright}>
-                          <Button title='exit' onPress={()=> setShow(!show)}/>
+                        <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow(!show)} color="black"/>
                         </Card>
                     </View>
                 </View>
@@ -416,7 +417,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginBottom: 20,
   },
-  boxdrop: { // Use containerStyle instead of style
+  boxdrop: { 
     marginRight:10,
     height: 50,
     width: 150,
@@ -489,7 +490,8 @@ const styles = StyleSheet.create({
     flex:1,
   },
   test3:{
-    backgroundColor:"white",
+    
+    backgroundColor:"transparent",
     margin:350,
     marginTop:200,
     padding:40,
@@ -498,7 +500,8 @@ const styles = StyleSheet.create({
     width:500,
   },
   test4:{
-    backgroundColor:"white",
+    
+    backgroundColor:"transparent",
     margin:350,
     marginTop:100,
     padding:40,
@@ -507,29 +510,30 @@ const styles = StyleSheet.create({
     width:500,
   },
   butright:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:390,
     marginTop:-70,
-    height:40,
+    height:60,
     width:60,
     borderRadius:5
   },
   butleft:{
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     marginLeft:-30,
-    marginTop:-40,
-    height:40,
+    marginTop:-60,
+    height:50,
     width:60,
-    borderRadius:5
+    borderRadius:6,
+    alignItems:'center',
+    justifyContent:'center'
   },
   title:{
-    fontSize:40,
-    // backgroundColor:'pink',
+    fontSize:35,
+    marginBottom:5,
     width:490,
     height:60,
     textAlign:'center',
-    color:"white",
-    // flexDirection:'row'
+    color:"black",
   },
   cardContainer: {
     flexDirection: 'row',
@@ -537,18 +541,36 @@ const styles = StyleSheet.create({
     width:500,
     marginLeft:-40,
     marginTop:-42,
-    backgroundColor:'gray',
-    borderRadius:5
+    backgroundColor:'white',
+    borderTopRightRadius:25,
+    borderTopLeftRadius:25,
+    borderBottomLeftRadius:0,
+    borderBottomRightRadius:0,
+
+
   },
   cardContainerin1: {
     flexDirection: 'row',
     height:450,
     width:500,
     marginTop:10,
-    backgroundColor:'pink',
+    backgroundColor:'#E8E7E7',
     borderRadius:5,
+    borderBottomRightRadius:25,
+    borderBottomLeftRadius:25,
+
   },
   butsetting:{
+    backgroundColor:"transparent",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
+  },
+  butsetting3:{
     backgroundColor:"white",
     marginLeft:40,
     height:50,
@@ -556,11 +578,21 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderRadius:5,
     alignItems:'center',
+    justifyContent:'center',
+    marginTop:10
+  },
+  butsetting2:{   
+    backgroundColor:"transparent",  //TODO 
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
     marginTop:10
   },
   input: {
     height: 50,
-    // marginLeft: 70,
     borderWidth: 1,
     padding: 10,
     borderRadius:5,
@@ -581,7 +613,10 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     borderWidth: 1,
     padding: 10,
-    borderRadius:5,
+
+    borderBottomRightRadius:5,
+    borderTopRightRadius:5,
+
     width:210,
     marginStart:210,
     marginTop:-50,

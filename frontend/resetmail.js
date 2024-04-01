@@ -13,9 +13,7 @@ export default function App() {
     const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [worng,setWrong]=useState("");
-    // const toggleShowPassword = () => { 
-    //   setShowPassword(!showPassword); 
-    // };
+
 
     const onClicklog=()=>{
       console.log("Change mail !!")
@@ -23,7 +21,7 @@ export default function App() {
           email:email,
           newemail:newemail
       }
-      axios.post("http://10.64.43.110:5000/reset_email",data)
+      axios.post("http://192.168.185.166:5000/reset_email",data)
       .then(response=>{
         console.log(response.data)
         setEmail("")
@@ -59,27 +57,26 @@ export default function App() {
                                     onChangeText={setNewemail}
                                     value={newemail}
                                     placeholder="Confirm Email"
-                                    //   secureTextEntry={!showPassword}
+                                    
                                     />
-                                    {/* <MaterialCommunityIcons 
-                                    name={showPassword ? 'eye-off' : 'eye'} 
-                                    size={24} 
-                                    color="#aaa"
-                                    style={styles.icon} 
-                                    onPress={toggleShowPassword} 
-                                    />  */}
+                      
                                 </View>
                                     
                                 <View style={styles.center}>
                                     <Card style={styles.card2}>
                                         <Button 
                                         title="Change Email"
-                                        color="green"
+                                        color="black"
                                         onPress={onClicklog}
                                         />
                                     </Card>
-                                    <Text> </Text>
-                                    <Text style={styles.text}> {"\n"}Planner</Text>
+                                    <Card style={styles.card3}>
+                                        <Button 
+                                        title="Return to Login"
+                                        color="black"
+                                        onPress={()=>navigation.navigate("Login")}
+                                        />
+                                    </Card>
                                 </View>
                             </Card>
                         </View>
@@ -132,7 +129,7 @@ const styles = StyleSheet.create({
       padding: 1,
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white",
+      backgroundColor:"#b4b4b4",
       borderColor:'#b0b0b0'
     },
     cardContainer: {
@@ -140,9 +137,7 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      color:'blue',
+      color:'black',
     },
     center: {
       justifyContent: 'center',

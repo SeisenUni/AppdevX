@@ -21,14 +21,14 @@ export default function App() {
 
     const onClicklog=()=>{
       console.log("login")
-      navigation.navigate("Year")
-
+      
       const data={
         username:username,
         password:password
       }
-      axios.post("http://10.64.43.110:5000/login",data)
+      axios.post("http://192.168.185.166:5000/login",data)
       .then(response=>{
+        navigation.navigate("Year")
         console.log(response.data)
         setUsername("")
         setPassword("")
@@ -42,10 +42,6 @@ export default function App() {
 
     return(
         <SafeAreaView style={styles.container}>
-            {/* <Text>Teest login</Text> */}
-
-              {/* <View style={styles.cardContainer}> */}
-
           <Card style={styles.card1}>
 
             <ImageBackground source={bg} style={styles.img}>
@@ -63,7 +59,6 @@ export default function App() {
                           <View style={styles.input}>
 
                           <TextInput 
-                          // style={styles.input}
                           onChangeText={setPassword}
                           value={password}
                           placeholder="Password"
@@ -83,27 +78,25 @@ export default function App() {
                           <Card style={styles.card2}>
                             <Button 
                             title="Login"
-                            color="green"
+                            color="#545454"
                             onPress={onClicklog}
                             />
                           </Card>
                           <Card style={styles.card3}>
                             <Button 
                             title="Create account"
-                            color="green"
+                            color="#545454"
                             onPress={() =>navigation.navigate("Regis")}
-                            // onPress={}
                             />
                           </Card>
                           <Card style={styles.card4}>
                             <Button 
                             title="Forget Password"
-                            color="green"
+                            color="#545454"
                             onPress={() =>navigation.navigate("Forget")}
-                            // onPress={}
                             />
                           </Card>
-                            <Text style={styles.text}> {"\n"}Planner</Text>
+                            
                             </View>
                       </Card>
                       </View>
@@ -111,7 +104,6 @@ export default function App() {
             </ImageBackground>
           </Card>
 
-              {/* </View> */}
            
         </SafeAreaView>
     );
@@ -124,7 +116,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'no',
       padding: 60,
-      // borderWidth:1
     },
     container2: {
       flex: 1,
@@ -132,7 +123,6 @@ const styles = StyleSheet.create({
       alignItems: 'flex-end',
       backgroundColor: 'no',
       padding: 60,
-      // borderWidth:1
     },
     cardContainer: {
       flexDirection: 'row',
@@ -159,7 +149,7 @@ const styles = StyleSheet.create({
       padding: 1,
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white",
+      backgroundColor:"#b4b4b4",
       borderColor:'#b0b0b0'
     },
     cardContainer: {
@@ -167,10 +157,8 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      color:'blue',
-      marginTop:-10
+      color:'black',
+      margin:10
     },
     center: {
       justifyContent: 'center',
@@ -199,8 +187,7 @@ const styles = StyleSheet.create({
     },
     wrong:{
       fontSize: 15,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
+      marginTop:-7,
       color:'red',
       paddingLeft:12
     }

@@ -1,4 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
+import Icons from 'react-native-vector-icons/AntDesign';
+
 import { StyleSheet, Text, View,TextInput, Button,ImageBackground, SafeAreaView } from 'react-native';
 import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
@@ -22,7 +24,7 @@ export default function App() {
           check:check,
           phone_number:phone_number
         }
-        axios.post("http://10.64.43.110:5000/forget",data)
+        axios.post("http://192.168.185.166:5000/forget",data)
         .then(response=>{
             console.log(response.data)
             navigation.navigate("ResetPass")
@@ -38,6 +40,18 @@ export default function App() {
 
     return(
         <SafeAreaView style={styles.container}>
+          <View style={{alignItems:'right',justifyContent:'right'}}>
+          <View style={{ alignSelf: 'flex-start', marginLeft: -530, marginTop: -100 }}>
+    <Icons.Button
+      name="back"
+      color="black"
+      backgroundColor="transparent"
+      size={40}
+      underlayColor="transparent"
+      onPress={() => navigation.navigate("Login")}
+    />
+  </View>
+          </View>
           <Card style={styles.card1}>
 
             <ImageBackground source={bg} style={styles.img}>
@@ -67,21 +81,16 @@ export default function App() {
                           <Card style={styles.card3}>
                             <Button 
                             title="Reset Password"
-                            color="green"
+                            color="black"                           
                             onPress={onClicklog}
                             />
                           </Card>
-                            <Text> </Text>
-                            <Text style={styles.text}> {"\n"}Planner</Text>
                             </View>
                       </Card>
                       </View>
                     </View>
             </ImageBackground>
           </Card>
-
-              {/* </View> */}
-           
         </SafeAreaView>
     );
 
@@ -93,7 +102,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'no',
       padding: 60,
-      // borderWidth:1
+      flexDirection:'column'
     },
     container2: {
       flex: 1,
@@ -101,7 +110,6 @@ const styles = StyleSheet.create({
       alignItems: 'flex-end',
       backgroundColor: 'no',
       padding: 60,
-      // borderWidth:1
     },
     cardContainer: {
       flexDirection: 'row',
@@ -128,7 +136,7 @@ const styles = StyleSheet.create({
       padding: 1,
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white",
+      backgroundColor:"#b4b4b4",
       borderColor:'#b0b0b0'
     },
     cardContainer: {
@@ -136,9 +144,9 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      color:'blue',
+      //fontWeight: 'bold',
+      //fontFamily: 'Cochin',
+      color:'black',
     },
     center: {
       justifyContent: 'center',
@@ -155,11 +163,12 @@ const styles = StyleSheet.create({
       height:40
     },
     card3:{
-      margin:0,
+      marginTop:40,
       backgroundColor:'white',
     },
     img:{
-      borderRadius:5
+      borderRadius:5,
+      zIndex:2000,
     },
     wrong:{
       fontSize: 15,
