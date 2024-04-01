@@ -16,8 +16,6 @@ export default function App() {
     const createday = ({ item }) => {
         let newday = item.title - countday;
         let time = 1;
-        
-    
         if (countday >= oldd() && item.title <= newm() + 2) 
         {
             return (
