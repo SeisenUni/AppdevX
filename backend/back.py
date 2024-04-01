@@ -257,7 +257,7 @@ def date_check():
         date_end = document.get("date_end")
         date_start = document.get("date_start")
         if date_end >= date_input >= date_start:
-                arr.append(document["date_end"])
+                arr.append(document)
     
     return jsonify(arr), 200
         
