@@ -10,22 +10,13 @@ import { useNavigation } from '@react-navigation/native';
 export default function App() {
   const navigation = useNavigation();
   const [person, setPerson] = useState([]);
-  // useEffect(()=>{
-  //   onClick();
-  // },[]);
-  // const Profile ={ uri:'https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg',
-  // width: 250,
-  // height: 150,};
+ 
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [phone_number, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  // const [create, setcreate] = useState(false);
-  // const myInputRef1= React.createRef();
-  // const myInputRef2= React.createRef();
-  // const myInputRef3= React.createRef();
-  // const myInputRef4= React.createRef();
+  
   const onClickcreat = () => {
     const data = {
       email: email,
@@ -56,7 +47,6 @@ export default function App() {
    
       <ScrollView >
         <SafeAreaView style={styles.container}>
-          {/* <Text>Teest login</Text> */}
           
           <View style={styles.cardContainer}>
             <Card style={styles.card1}>
@@ -89,17 +79,14 @@ export default function App() {
                       style={styles.input}
                       onChangeText={setPhoneNumber}
                       value={phone_number}
-                      // ref={myInputRef3}
                       placeholder="Telephone Number"
                     />
 
                     <View style={styles.input}>
 
                       <TextInput
-                        // style={styles.input}
                         onChangeText={setPassword}
                         value={password}
-                        // ref={myInputRef4}
                         placeholder="Password"
                         secureTextEntry={!showPassword}
 
@@ -120,7 +107,6 @@ export default function App() {
                           color="#545454"
                           
                           onPress={onClickcreat}
-                        // onPress={() =>navigation.navigate("Login")}
                         />
                       </Card>
   
@@ -130,7 +116,6 @@ export default function App() {
               </View>
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.center}>
-                  {/* <Text style={styles.text}>Back</Text> */}
                 </View>
 
               </View>
@@ -190,8 +175,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30,
-    //fontWeight: 'bold',
-   // fontFamily: 'Cochin',
     color: 'black'
   },
   center: {

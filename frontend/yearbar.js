@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView,FlatList, Text, TouchableOpacity, Alert,ImageBackground,Modal,Button,TextInput } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import Iconss from 'react-native-vector-icons/Entypo';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { target,week} from './keytime';
+import { target} from './keytime';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -38,7 +37,7 @@ export default function App() {
   const getaccess =(value)=>
   {
     target(value);
-    navigation.navigate("Bar")
+    navigation.navigate("Month")
   }
     const findfile =(item)=>
     {
@@ -112,7 +111,6 @@ const printmonth = ({ item }) => {
               source={findfile(item.month)}
               style={styles.png}
               ></ImageBackground>
-                {/* <Title>{renderMonth(item.month)}</Title> */}
             </Card>
         </TouchableOpacity>
     );
@@ -132,7 +130,7 @@ const onClicksave=()=>{
   axios.post("http://10.64.43.110:5000/add_task",data)
   .then(response=>{
     console.log(response.data)
-    // navigation.navigate("Year")
+    navigation.navigate("Year")
     setPlus(!plus)
     setTiltle("")
     setStart("")
@@ -419,7 +417,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginBottom: 20,
   },
-  boxdrop: { // Use containerStyle instead of style
+  boxdrop: { 
     marginRight:10,
     height: 50,
     width: 150,
@@ -532,12 +530,10 @@ const styles = StyleSheet.create({
   title:{
     fontSize:35,
     marginBottom:5,
-    // backgroundColor:'pink',
     width:490,
     height:60,
     textAlign:'center',
     color:"black",
-    // flexDirection:'row'
   },
   cardContainer: {
     flexDirection: 'row',
@@ -597,7 +593,6 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    // marginLeft: 70,
     borderWidth: 1,
     padding: 10,
     borderRadius:5,
@@ -611,7 +606,6 @@ const styles = StyleSheet.create({
     borderRadius:5,
     width:210,
     marginEnd:210,
-    //borderBottomLeftRadius:25,
     borderColor:'gray'
   },
   input2: {

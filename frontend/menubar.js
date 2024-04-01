@@ -5,7 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { renderMonth, choose, renderweek, week, gotmonth } from './keytime';
+import { renderMonth, choose} from './keytime';
 import MonthComponent from './Month.js'; // Import month.js component
 import { useNavigation } from '@react-navigation/native';
 import Iconss from 'react-native-vector-icons/Entypo';

@@ -13,9 +13,7 @@ export default function App() {
     const [login, setLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [worng,setWrong]=useState("");
-    // const toggleShowPassword = () => { 
-    //   setShowPassword(!showPassword); 
-    // };
+
 
     const onClicklog=()=>{
       console.log("Change mail !!")
@@ -59,15 +57,9 @@ export default function App() {
                                     onChangeText={setNewemail}
                                     value={newemail}
                                     placeholder="Confirm Email"
-                                    //   secureTextEntry={!showPassword}
+                                    
                                     />
-                                    {/* <MaterialCommunityIcons 
-                                    name={showPassword ? 'eye-off' : 'eye'} 
-                                    size={24} 
-                                    color="#aaa"
-                                    style={styles.icon} 
-                                    onPress={toggleShowPassword} 
-                                    />  */}
+                      
                                 </View>
                                     
                                 <View style={styles.center}>
@@ -145,8 +137,6 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-     // fontWeight: 'bold',
-      //fontFamily: 'Cochin',
       color:'black',
     },
     center: {

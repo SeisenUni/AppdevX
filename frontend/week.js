@@ -3,9 +3,8 @@ import { StyleSheet, View, FlatList, SafeAreaView, TouchableOpacity, Text, Image
 import { Card,Title } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { renderweek, week, getmonth, getweek,gotmonth,renderMonth,limitold,stoldd,maxmonth, choose} from './keytime';
+import { week, getweek,gotmonth,renderMonth,limitold,stoldd,maxmonth} from './keytime';
 import { useNavigation } from '@react-navigation/native';
-import { target } from './keytime';
 import Iconss from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 

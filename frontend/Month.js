@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList, SafeAreaView } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import { oldd, newm, oldm, gotmonth} from './keytime.js';
+import { oldd, newm, oldm} from './keytime.js';
 
 
 
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
         height: 120,
         justifyContent: 'top',
         alignItems: 'left',
-        borderWidth: 2, // กำหนดความหนาของเส้น
-        borderColor: 'black', // กำหนดสีของเส้น
+        borderWidth: 2,
+        borderColor: 'black', 
     },
     selectday: {
         marginTop: 4,
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
         height: 120,
         justifyContent: 'top',
         alignItems: 'left',
-        borderWidth: 2, // กำหนดความหนาของเส้น
-        borderColor: 'black', // กำหนดสีของเส้น
+        borderWidth: 2, 
+        borderColor: 'black', 
     },
     menubar: {
         marginBottom: 5,
