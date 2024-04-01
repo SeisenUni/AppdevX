@@ -31,9 +31,9 @@ export default function App() {
     navigation.navigate("ResetPass");
     setShow(false);
   }
-  const adding =()=>
+  const gotolist =()=>
   {
-    navigation.navigate("Adding");
+    navigation.navigate("List");
   }
   const getaccess =(value)=>
   {
@@ -252,6 +252,7 @@ const onClicksave=()=>{
                           <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave}/>
                         </Card>
                         <Card style={styles.butleft}>
+                          
                           <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)}/>
                         </Card>
                     </View>
@@ -281,6 +282,8 @@ const onClicksave=()=>{
         
       </Card>
       <Icons.Button name="setting" color="black" backgroundColor="white" size={40} onPress={()=> setShow(true)}> </Icons.Button>
+      <Icons.Button name="book" color="black" backgroundColor="white" size={40} onPress={gotolist}> </Icons.Button>
+
             <Modal
               transparent={true}
               visible={show}
