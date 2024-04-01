@@ -242,10 +242,12 @@ def delete_task(task_id):
 @app.route("/date_check", methods=["GET"])
 @cross_origin()
 def date_check():
+    data= request.get_json()
+    
     global use
     global info_in_plan
-    day = "30"
-    month = "05"
+    day = data["day"]
+    month = data["month"]
     year = "2024"
     date_str = year + "-" + month + "-" + day
     date_input = datetime.strptime(date_str, "%Y-%m-%d")
