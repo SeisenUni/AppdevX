@@ -103,88 +103,110 @@ export default function App() {
         <Icons.Button name="back" color="black" backgroundColor="white" size={40} onPress={back}></Icons.Button>
         <Icons.Button name="plus" color="black" backgroundColor="white" size={40} onPress={() => setPlus(true)}></Icons.Button>
         <Modal
-          transparent={true}
-          visible={plus}
-          onRequestClose={() => {
-            setPlus(!plus)
-          }}
-        >
-          <View style={styles.test2}>
-            <View style={styles.center}>
+              transparent={true}
+              visible={plus}
+              onRequestClose={()=>{
+                setPlus(!plus)
+              }}
+            >
+                <View style={styles.test2}>
+                <View style={styles.center}>
 
-              <View style={styles.test4}>
+                    <View style={styles.test4}>
 
-                <Card style={styles.cardContainer}>
-                  <Title style={styles.title}>{"\n"}Create Your Planner</Title>
-                  <Card style={styles.cardContainerin1}>
-                    <Card style={styles.butsetting}>
-                      <TextInput style={styles.input}
-                        onChangeText={setTiltle}
-                        value={title}
-                        placeholder="Title: "
-                        placeholderTextColor={'black'} />
-                    </Card>
+                      <Card style={styles.cardContainer}>
+                          <Title style={styles.title}>{"\n"}Create Your Planner</Title>
+                          <Card style={styles.cardContainerin1}>
+                            <Card style={styles.butsetting}>
+                              <TextInput style={styles.input}
+                                onChangeText={setTiltle}
+                                value={title}
+                                placeholder="Title: "
+                                placeholderTextColor={'#b0b0b0'}
+                                borderRadius={10}
+                                backgroundColor={'white'}/>
+                            </Card>
+                            <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
+                              <Card style={styles.iconstyle}>
+                              <DropDownPicker
+                                open={openpiority}
+                                value={priority}
+                                items={piority1}
+                                setOpen={setOpenpiority}
+                                setValue={setPriority}
+                                setItems={setPiority1}
+                                style={styles.boxdroppiority}
+                                placeholder='Piority'
+                                placeholderStyle={styles.yearst}
+                                dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
+                                // onSelectItem={onClicksave}
+                                textStyle={styles.yearst}
+                              />
+                                
+                              </Card>
+                            </View>
 
-                    <View style={{ flexDirection: 'column', zIndex: 30000, backgroundColor: 'transparent', }}>
-                      <Card style={styles.iconstyle}>
-                        <DropDownPicker
-                          open={openpiority}
-                          value={priority}
-                          items={piority1}
-                          setOpen={setOpenpiority}
-                          setValue={setPriority}
-                          setItems={setPiority1}
-                          style={styles.boxdroppiority}
-                          placeholder='Piority'
-                          placeholderStyle={styles.yearst}
-                          dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
-                          // onSelectItem={onClicksave}
-                          textStyle={styles.yearst}
-                        />
+                            <Card style={styles.butsetting2}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStart}
+                                  value={start}
+                                  placeholder="Start:  yyyy-mm-dd"
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
+                              <TextInput style={styles.input2}
+                              onChangeText={setEnd}
+                              value={end}
+                              placeholder="End:  yyyy-mm-dd"
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
 
-                      </Card>
+                              />
+                              
+                            </Card>
+
+                            <Card style={styles.butsetting4}>
+                              <TextInput style={styles.input1}
+                                  onChangeText={setStartT}
+                                  value={startT}
+                                  placeholder="Start:  hh:mm"
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
+                              <TextInput style={styles.input2}
+                              onChangeText={setEndT}
+                              value={endT}
+                              placeholder="End:  hh:mm"
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderRadius={0}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
+                              />
+                              
+                            </Card>
+
+                          </Card>
+                        </Card>
+                        <Card style={styles.butright}>
+                          <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave} color="black"/>
+                        </Card>
+                        <Card style={styles.butleft}>
+                          
+                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)} color ="black"/>
+                        </Card>
                     </View>
-
-                    <Card style={styles.butsetting}>
-                      <TextInput style={styles.input1}
-                        onChangeText={setStart}
-                        value={start}
-                        placeholder="Start:  yyyy-mm-dd"
-                        placeholderTextColor={'black'} />
-                      <TextInput style={styles.input2}
-                        onChangeText={setEnd}
-                        value={end}
-                        placeholder="End:  yyyy-mm-dd"
-                        placeholderTextColor={'black'} />
-
-                    </Card>
-
-                    <Card style={styles.butsetting}>
-                      <TextInput style={styles.input1}
-                        onChangeText={setStartT}
-                        value={startT}
-                        placeholder="Start:  hh:mm"
-                        placeholderTextColor={'black'} />
-                      <TextInput style={styles.input2}
-                        onChangeText={setEndT}
-                        value={endT}
-                        placeholder="End:  hh:mm"
-                        placeholderTextColor={'black'} />
-
-                    </Card>
-
-                  </Card>
-                </Card>
-                <Card style={styles.butright}>
-                  <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave} />
-                </Card>
-                <Card style={styles.butleft}>
-                  <Iconss.Button name='cross' backgroundColor="transparent" size={40} onPress={() => setPlus(!plus)} />
-                </Card>
-              </View>
-            </View>
-          </View>
-        </Modal>
+                </View>
+                </View>
+            </Modal>
         <View style={styles.Monthbar}>
           <Text style={styles.monthfont}>{renderMonth()}</Text>
           <Text style={styles.yearfont}>2024</Text>
@@ -226,16 +248,16 @@ export default function App() {
                   <Title style={styles.title}>{"\n"}Setting</Title>
                   <Card style={styles.cardContainerin1}>
 
-                    <Card style={styles.butsetting}>
-                      <Button title='Change Email' onPress={changemail} />
+                    <Card style={styles.butsetting3}>
+                      <Button title='Change Email' onPress={changemail} color="black"/>
                     </Card>
 
-                    <Card style={styles.butsetting}>
-                      <Button title='Reset Password' onPress={reset_pass} />
+                    <Card style={styles.butsetting3}>
+                      <Button title='Reset Password' onPress={reset_pass} color="black"/>
                     </Card>
 
-                    <Card style={styles.butsetting}>
-                      <Button title='Theme' onPress={() => setShow1(true)} />
+                    <Card style={styles.butsetting3}>
+                      <Button title='Theme' onPress={() => setShow1(true)} color="black"/>
                       <Modal
                         transparent={true}
                         visible={show1}
@@ -249,18 +271,18 @@ export default function App() {
                               <Title style={styles.title}>{"\n"}Theme</Title>
                               <Card style={styles.cardContainerin1}>
 
-                                <Card style={styles.butsetting}>
-                                  <Button title='Light' />
+                                <Card style={styles.butsetting3}>
+                                  <Button title='Light'  color="black"/>
                                 </Card>
 
-                                <Card style={styles.butsetting}>
-                                  <Button title='Dark' />
+                                <Card style={styles.butsetting3}>
+                                  <Button title='Dark' color="black"/>
                                 </Card>
 
                               </Card>
                             </Card>
                             <Card style={styles.butright}>
-                              <Iconss.Button name='cross' backgroundColor="transparent" size={40} onPress={() => setShow1(!show1)} />
+                              <Iconss.Button name='cross' backgroundColor="transparent" size={40} onPress={() => setShow1(!show1)} color="black"/>
                             </Card>
                           </View>
                         </View>
@@ -273,7 +295,7 @@ export default function App() {
                 </Card>
 
                 <Card style={styles.butright}>
-                  <Iconss.Button name='cross' backgroundColor="transparent" size={40} onPress={() => setShow(!show)} />
+                  <Iconss.Button name='cross' backgroundColor="transparent" size={40} onPress={() => setShow(!show)} color="black"/>
                 </Card>
               </View>
             </View>
@@ -364,107 +386,154 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
-  test2: {
-    backgroundColor: "#000000aa",
-    flex: 1,
+  test2:{
+    backgroundColor:"#000000aa",
+    flex:1,
   },
-  test3: {
-    backgroundColor: "white",
-    margin: 350,
-    marginTop: 200,
-    padding: 40,
-    borderRadius: 10,
-    height: 500,
-    width: 500,
+  test3:{
+    
+    backgroundColor:"transparent",
+    margin:350,
+    marginTop:200,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
   },
-  test4: {
-    backgroundColor: "white",
-    margin: 350,
-    marginTop: 100,
-    padding: 40,
-    borderRadius: 10,
-    height: 500,
-    width: 500,
+  test4:{
+    
+    backgroundColor:"transparent",
+    margin:350,
+    marginTop:100,
+    padding:40,
+    borderRadius:10,
+    height:500,
+    width:500,
   },
-  butright: {
-    backgroundColor: "transparent",
-    marginLeft: 390,
-    marginTop: -70,
-    height: 60,
-    width: 60,
-    borderRadius: 5
+  butright:{
+    backgroundColor:"transparent",
+    marginLeft:390,
+    marginTop:-70,
+    height:60,
+    width:60,
+    borderRadius:5
   },
-  butleft: {
-    backgroundColor: "transparent",
-    marginLeft: -30,
-    marginTop: -60,
-    height: 50,
-    width: 60,
-    borderRadius: 5
+  butleft:{
+    backgroundColor:"transparent",
+    marginLeft:-30,
+    marginTop:-60,
+    height:50,
+    width:60,
+    borderRadius:6,
+    alignItems:'center',
+    justifyContent:'center'
   },
-  title: {
-    fontSize: 40,
+  title:{
+    fontSize:35,
+    marginBottom:5,
     // backgroundColor:'pink',
-    width: 490,
-    height: 60,
-    textAlign: 'center',
-    color: "white",
+    width:490,
+    height:60,
+    textAlign:'center',
+    color:"black",
     // flexDirection:'row'
   },
   cardContainer: {
     flexDirection: 'row',
-    height: 80,
-    width: 500,
-    marginLeft: -40,
-    marginTop: -42,
-    backgroundColor: 'gray',
-    borderRadius: 5
+    height:80,
+    width:500,
+    marginLeft:-40,
+    marginTop:-42,
+    backgroundColor:'white',
+    borderTopRightRadius:25,
+    borderTopLeftRadius:25,
+    borderBottomLeftRadius:0,
+    borderBottomRightRadius:0,
+
+
   },
   cardContainerin1: {
     flexDirection: 'row',
-    height: 450,
-    width: 500,
-    marginTop: 10,
-    backgroundColor: 'pink',
-    borderRadius: 5,
+    height:450,
+    width:500,
+    marginTop:10,
+    backgroundColor:'#E8E7E7',
+    borderRadius:5,
+    borderBottomRightRadius:25,
+    borderBottomLeftRadius:25,
+
   },
-  butsetting: {
-    backgroundColor: "white",
-    marginLeft: 40,
-    height: 50,
-    width: 420,
-    borderWidth: 1,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginTop: 10
+  butsetting:{
+    backgroundColor:"transparent",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
+  },
+  butsetting3:{
+    backgroundColor:"white",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:10
+  },
+  butsetting4:{
+    backgroundColor:"transparent",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:10
+  },
+  butsetting2:{   
+    backgroundColor:"transparent",  //TODO 
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
   },
   input: {
     height: 50,
     // marginLeft: 70,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 5,
-    width: 420,
-    borderColor: 'gray'
+    borderRadius:5,
+    width:420,
+    borderColor:'gray'
   },
   input1: {
     height: 50,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 5,
-    width: 210,
-    marginEnd: 210,
-    borderColor: 'gray'
+    borderRadius:5,
+    width:210,
+    marginEnd:210,
+    borderColor:'gray'
   },
+  
   input2: {
     height: 50,
     marginLeft: 70,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 5,
+    borderTopRightRadius: 5,
     width: 210,
     marginStart: 210,
     marginTop: -50,
+
     borderColor: 'gray'
   },
   center: {
