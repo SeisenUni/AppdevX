@@ -127,7 +127,7 @@ const onClicksave=()=>{
       startT:startT,
       endT:endT
   }
-  axios.post("http://10.64.43.110:5000/add_task",data)
+  axios.post("http://192.168.185.166:5000/add_task",data)
   .then(response=>{
     console.log(response.data)
     navigation.navigate("Year")

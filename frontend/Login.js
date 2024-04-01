@@ -26,7 +26,7 @@ export default function App() {
         username:username,
         password:password
       }
-      axios.post("http://10.64.43.110:5000/login",data)
+      axios.post("http://192.168.185.166:5000/login",data)
       .then(response=>{
         navigation.navigate("Year")
         console.log(response.data)

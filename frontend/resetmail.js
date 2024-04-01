@@ -21,7 +21,7 @@ export default function App() {
           email:email,
           newemail:newemail
       }
-      axios.post("http://10.64.43.110:5000/reset_email",data)
+      axios.post("http://192.168.185.166:5000/reset_email",data)
       .then(response=>{
         console.log(response.data)
         setEmail("")

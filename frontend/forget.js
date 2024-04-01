@@ -24,7 +24,7 @@ export default function App() {
           check:check,
           phone_number:phone_number
         }
-        axios.post("http://10.64.43.110:5000/forget",data)
+        axios.post("http://192.168.185.166:5000/forget",data)
         .then(response=>{
             console.log(response.data)
             navigation.navigate("ResetPass")

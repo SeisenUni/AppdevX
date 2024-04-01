@@ -148,17 +148,19 @@ def update_email():
     
     email= data["email"]
     newemail= data["newemail"]
-    
+    x= email.find("@gmail.com")    #check @gmail 
+    y= email.find("@hotmail.com")  #check @hotmail 
+
     # Check  have user?
     user = id_collection.find_one({"username": use})
     if not user:
-        return jsonify({"error": "Invalid username or password"}), 401
+        return jsonify({"error": "Invalid username "}), 401
      
      # Update password
-    if user and email == newemail :
+    if user and email == newemail and x!=-1 and y!=-1 :
         id_collection.update_one({"username": use}, {"$set": {"email": email}})
     
-        return jsonify({"message": "Password updated successfully"}), 200
+        return jsonify({"message": "email updated successfully"}), 200
 
 
 
