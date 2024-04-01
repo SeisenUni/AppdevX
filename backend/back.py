@@ -7,25 +7,27 @@ from datetime import datetime, timedelta
 
 
 
-uri = "mongodb+srv://kitti:bun12345@cluster0.bxs0qg3.mongodb.net/"
+uri = "mongodb+srv://kitti:bun12345@cluster0.bxs0qg3.mongodb.net/"  #urlmongo
 client = MongoClient(uri)
-db = client["planlendar"]
-collection = db["planlendar_info"]
-info_in_plan = collection.find()
-use = "iamdb"
 
-id_db =client["ID"]
-id_collection =id_db["ID_info"]
-info_in_ID = id_collection.find()
+db = client["planlendar"]   #db_planner
+collection = db["planlendar_info"]#collection_planner
+info_in_plan = collection.find()      #all  
+use = "iamdb"       #username
 
-info_id=[]
+id_db =client["ID"]   #db_id
+id_collection =id_db["ID_info"]  #collection_id
+info_in_ID = id_collection.find()  
+
+info_id=[]               #arrary collect all id
 for i in info_in_ID:
     info_id.append(i)
 
 
-info_plan=[]
+info_plan=[]        #arrary collect all planner
 for i in info_in_plan:
     info_plan.append(i)
+    
 app = Flask(__name__) 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -51,33 +53,44 @@ def get_all_id_info():
 @cross_origin()
 def register():
     data = request.get_json()
-    
-    
-    count = len(info_id)
+    count = len(info_id)                        #id not same
     ttt = 0
+    
     if count != 0:
         ttt = info_id[-1]["_id"] + 1
     
-    new_register = {
-        "_id": ttt,
-        "username": data["username"],
-        "password": data["password"],
-        "email": data["email"],
-        "phone_number": data["phone_number"]
-    }
+    user_s = data["username"]
+    check_mail = data["email"]
+    x= check_mail.find("@gmail.com")    #check @gmail 
+    y= check_mail.find("@hotmail.com")  #check @hotmail 
     
-    info_id.append(new_register)
+    if id_collection.find_one({"username": user_s}) :    #username same
+         return jsonify({"error": "Invalid credentials"}), 401
+    else:      
+           if x !=-1 or y!=-1 :
+                new_register = {                    #register user
+            "_id": ttt,
+            "username": data["username"],
+            "password": data["password"],
+            "email": data["email"],
+            "phone_number": data["phone_number"]
+                         }
+           else :
+                return jsonify({"error": "Invalid credentials"}), 401
+                   
+
+    info_id.append(new_register)   #put into arrary
     
     try:
-        # Insert into MongoDB
-        id_collection.insert_one(new_register)
+      
+        id_collection.insert_one(new_register)   #insert into mongodb
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  # Internal Server Error
     
     return jsonify(info_id), 200
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST"])      #login
 @cross_origin()
 def check_credentials():
     global use
@@ -89,7 +102,7 @@ def check_credentials():
     user = id_collection.find_one({"username": username, "password": password})
     if user:
         
-        use=username
+        use=username  #collect username 
         return jsonify({"message": "Credentials match"}), 200
     else:
         return jsonify({"error": "Invalid credentials"}), 401
@@ -97,7 +110,7 @@ def check_credentials():
 
 
 
-@app.route("/reset_pass", methods=["POST"])
+@app.route("/reset_pass", methods=["POST"]) #reset password
 @cross_origin()
 def update_password():
     data = request.get_json() 
@@ -105,27 +118,27 @@ def update_password():
     
     if not data:
         return jsonify({"error": "No data provided"}), 400
-    
-   
-    
    
     newpassword= data["newpassword"]
     conpassword = data["conpassword"]
     
-    
-    # Check if username and old password match
+    # Check username
     user = id_collection.find_one({"username": use})
     if not user:
         return jsonify({"error": "Invalid username or password"}), 401
      
      # Update password
-    if user and newpassword ==conpassword :
+    if user and newpassword ==conpassword : #password and confrim password match
         id_collection.update_one({"username": use}, {"$set": {"password": newpassword}})
     
         return jsonify({"message": "Password updated successfully"}), 200
 
-@app.route("/reset_email", methods=["POST"]) 
-@cross_origin()#changeemail
+
+
+
+
+@app.route("/reset_email", methods=["POST"])   #reset email
+@cross_origin()
 def update_email():
     data = request.get_json() 
     global use
@@ -133,12 +146,8 @@ def update_email():
     if not data:
         return jsonify({"error": "No data provided"}), 400
     
-   
-    
-   
     email= data["email"]
     newemail= data["newemail"]
-    
     
     # Check  have user?
     user = id_collection.find_one({"username": use})
@@ -152,7 +161,12 @@ def update_email():
         return jsonify({"message": "Password updated successfully"}), 200
 
 
-@app.route("/forget",methods=["POST"])
+
+
+
+
+
+@app.route("/forget",methods=["POST"])    #forgetpassword
 @cross_origin()
 def forget():
     data=request.get_json()
@@ -164,29 +178,23 @@ def forget():
     
     check_email=id_collection.find_one({"email":check})
     check_number=id_collection.find_one({"phone_number":phone_number})
-    if check_email  :
-        if check_number :
-            use= check_number["username"]
+    if check_email  : #if email match
+        if check_number : #if number match
+            use= check_number["username"]   #collect username
             return jsonify({"message": "Can reset password"}), 200
-    if check_id  :
-        if check_number :
-            use= check_id["username"]
+    if check_id  :  #if username match
+        if check_number :  #if number match
+            use= check_id["username"]  #collect username
             return jsonify({"message": "Can reset password"}), 200   
             
     return jsonify({"message": "invalid"}),401    
     
-    
-    
-    
 
 
 
 
 
-
-
-
-@app.route("/add_task", methods=["POST"]) #infoplan
+@app.route("/add_task", methods=["POST"]) #add to planner
 @cross_origin()
 def add_task():
     global use
@@ -202,9 +210,8 @@ def add_task():
     pri =data["priority"]
     int(pri)
     
-
-    date_object = datetime.strptime(data["start"], "%Y-%m-%d")
-    date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")
+    date_object = datetime.strptime(data["start"], "%Y-%m-%d") #change string to date
+    date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")   #change string to date
     new_task = {
         "_id": ttt,
         "title": data["title"],
@@ -218,7 +225,7 @@ def add_task():
     }
     info_plan.append(new_task)
     try:
-        collection.insert_one(new_task)
+        collection.insert_one(new_task) 
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
 
@@ -227,7 +234,8 @@ def add_task():
 
 
 
-@app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete info plan
+
+@app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete planner
 @cross_origin()
 def delete_task(task_id):
     try:
@@ -241,45 +249,10 @@ def delete_task(task_id):
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/date_check", methods=["POST"])
-@cross_origin()
-def date_check():
-    data= request.get_json()
-    
-    global use
-    global info_in_plan
-    day = data["day"]
-    month = data["month"]
-    year = "2024"
-    date_str = year + "-" + month + "-" + day
-    date_input = datetime.strptime(date_str, "%Y-%m-%d")
-    arr = []
-    for document in collection.find():
-    # Assuming date_end and date_start are fields in the documents
-        date_end = document.get("date_end")
-        date_start = document.get("date_start")
-        if date_end >= date_input >= date_start:
-                arr.append(document)
-    
-    return jsonify(arr), 200
-        
-    
-    
-   
-                 
-
-              
-                    
 
 
 
-
-
-
-
-
-
-@app.route("/get_by_user", methods=["GET"])
+@app.route("/get_by_user", methods=["GET"])     #get all planner by user
 @cross_origin()
 def get_user():
     global use
@@ -295,30 +268,6 @@ def get_user():
         return jsonify({"error": "No users found"}), 404
 
 
-@app.route("/test", methods=["POST"])
-@cross_origin()
-def test():
-    
-    data=request.get_json()
    
-    tt = data["value"]
-    
-   
-    if tt==2 :
-            return jsonify(tt), 200
-    else:
-         return jsonify({"error": "No users found"}), 404
-   
-   
-    
-    
-   
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=5000,debug=True)
