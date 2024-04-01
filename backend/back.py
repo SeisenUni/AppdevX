@@ -9,8 +9,9 @@ from datetime import datetime, timedelta
 
 uri = "mongodb+srv://kitti:bun12345@cluster0.bxs0qg3.mongodb.net/"  #urlmongo
 client = MongoClient(uri)
+
 db = client["planlendar"]   #db_planner
-collection = db["planlendar_info"]   #collection_planner
+collection = db["planlendar_info"]#collection_planner
 info_in_plan = collection.find()      #all  
 use = "iamdb"       #username
 
@@ -52,10 +53,9 @@ def get_all_id_info():
 @cross_origin()
 def register():
     data = request.get_json()
-    
-    
     count = len(info_id)                        #id not same
     ttt = 0
+    
     if count != 0:
         ttt = info_id[-1]["_id"] + 1
     
@@ -78,7 +78,7 @@ def register():
            else :
                 return jsonify({"error": "Invalid credentials"}), 401
                    
-    
+
     info_id.append(new_register)   #put into arrary
     
     try:
@@ -118,13 +118,9 @@ def update_password():
     
     if not data:
         return jsonify({"error": "No data provided"}), 400
-    
-   
-    
    
     newpassword= data["newpassword"]
     conpassword = data["conpassword"]
-    
     
     # Check username
     user = id_collection.find_one({"username": use})
@@ -137,6 +133,10 @@ def update_password():
     
         return jsonify({"message": "Password updated successfully"}), 200
 
+
+
+
+
 @app.route("/reset_email", methods=["POST"])   #reset email
 @cross_origin()
 def update_email():
@@ -146,12 +146,8 @@ def update_email():
     if not data:
         return jsonify({"error": "No data provided"}), 400
     
-   
-    
-   
     email= data["email"]
     newemail= data["newemail"]
-    
     
     # Check  have user?
     user = id_collection.find_one({"username": use})
@@ -163,6 +159,11 @@ def update_email():
         id_collection.update_one({"username": use}, {"$set": {"email": email}})
     
         return jsonify({"message": "Password updated successfully"}), 200
+
+
+
+
+
 
 
 @app.route("/forget",methods=["POST"])    #forgetpassword
@@ -188,6 +189,8 @@ def forget():
             
     return jsonify({"message": "invalid"}),401    
     
+
+
 
 
 
@@ -230,6 +233,8 @@ def add_task():
 
 
 
+
+
 @app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete planner
 @cross_origin()
 def delete_task(task_id):
@@ -242,6 +247,8 @@ def delete_task(task_id):
             return jsonify({"error": "Task not found"}), 404
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 
 
