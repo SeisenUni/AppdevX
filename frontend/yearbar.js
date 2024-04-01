@@ -94,30 +94,7 @@ export default function App() {
         { value: '3', label: 'Delegate' ,},
         { value: '4', label: 'Dump' ,},
       ]);
-      // return (
-    //     <DropDownPicker
-    //         open={openpiority}
-    //         value={value}
-    //         items={piority1}
-    //         setOpen={setOpenpiority}
-    //         setValue={setValuep}
-    //         setItems={setPiority1}
-    //         style={styles.boxdroppiority}
-    //         placeholder='Piority'
-    //         placeholderStyle={styles.yearst}
-    //         dropDownContainerStyle={[styles.dropdownchoosepiority, open && { color: 'red' }]}
-    //         // onSelectItem={onClicksave}
-    //         textStyle={styles.yearst}
-    //       />
-    //   );
-    // }
-
-   
-    // const handleIconPiority = () => 
-    // {
-    //    setValue(null) 
-    // };
-
+      
   const gotologin = () => {
     navigation.navigate("Login")
   };
@@ -196,7 +173,9 @@ const onClicksave=()=>{
                                 onChangeText={setTiltle}
                                 value={title}
                                 placeholder="Title: "
-                                placeholderTextColor={'black'}/>
+                                placeholderTextColor={'#b0b0b0'}
+                                borderRadius={10}
+                                backgroundColor={'white'}/>
                             </Card>
                             <View style = {{ flexDirection: 'column',zIndex:30000,backgroundColor:'transparent',}}>
                               <Card style={styles.iconstyle}>
@@ -218,42 +197,62 @@ const onClicksave=()=>{
                               </Card>
                             </View>
 
-                            <Card style={styles.butsetting}>
+                            <Card style={styles.butsetting2}>
                               <TextInput style={styles.input1}
                                   onChangeText={setStart}
                                   value={start}
                                   placeholder="Start:  yyyy-mm-dd"
-                                  placeholderTextColor={'black'}/>
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
                               <TextInput style={styles.input2}
                               onChangeText={setEnd}
                               value={end}
                               placeholder="End:  yyyy-mm-dd"
-                              placeholderTextColor={'black'}/>
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
+
+                              />
                               
                             </Card>
 
-                            <Card style={styles.butsetting}>
+                            <Card style={styles.butsetting2}>
                               <TextInput style={styles.input1}
                                   onChangeText={setStartT}
                                   value={startT}
                                   placeholder="Start:  hh:mm"
-                                  placeholderTextColor={'black'}/>
+                                  placeholderTextColor={'#b0b0b0'}
+                                  backgroundColor={'white'}
+                                  borderRadius={0}
+                                  borderBottomLeftRadius={10}
+                                  borderTopLeftRadius={10}
+                                  />
                               <TextInput style={styles.input2}
                               onChangeText={setEndT}
                               value={endT}
                               placeholder="End:  hh:mm"
-                              placeholderTextColor={'black'}/>
+                              placeholderTextColor={'#b0b0b0'}
+                              backgroundColor={'white'}
+                              borderRadius={0}
+                              borderBottomRightRadius={10}
+                              borderTopRightRadius={10}
+                              />
                               
                             </Card>
 
                           </Card>
                         </Card>
                         <Card style={styles.butright}>
-                          <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave}/>
+                          <Iconss.Button name='save' backgroundColor="transparent" size={40} onPress={onClicksave} color="black"/>
                         </Card>
                         <Card style={styles.butleft}>
                           
-                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)}/>
+                          <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setPlus(!plus)} color ="black"/>
                         </Card>
                     </View>
                 </View>
@@ -300,16 +299,16 @@ const onClicksave=()=>{
                           <Title style={styles.title}>{"\n"}Setting</Title>
                           <Card style={styles.cardContainerin1}>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Change Email' onPress={changemail}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Change Email' onPress={changemail} color ="black"/>
                             </Card>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Reset Password' onPress={reset_pass}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Reset Password' onPress={reset_pass} color ="black"/>
                             </Card>
 
-                            <Card style={styles.butsetting}>
-                              <Button title='Theme' onPress={()=> setShow1(true)}/>
+                            <Card style={styles.butsetting3}>
+                              <Button title='Theme' onPress={()=> setShow1(true)} color ="black"/>
                               <Modal
                                 transparent={true}
                                 visible={show1}
@@ -322,18 +321,18 @@ const onClicksave=()=>{
                                     <Title style={styles.title}>{"\n"}Theme</Title>
                                         <Card style={styles.cardContainerin1}>
 
-                                          <Card style={styles.butsetting}>
-                                            <Button title='Light'/>
+                                          <Card style={styles.butsetting3}>
+                                            <Button title='Light' color="black"/>
                                           </Card>
 
-                                          <Card style={styles.butsetting}>
-                                            <Button title='Dark'/>
+                                          <Card style={styles.butsetting3}>
+                                            <Button title='Dark' color="black"/>
                                           </Card>
 
                                         </Card>
                                     </Card>
                                     <Card style={styles.butright}>
-                                    <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow1(!show1)}/>
+                                    <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow1(!show1)} color="black"/>
                                   </Card>
                                 </View>
                               </View>
@@ -346,7 +345,7 @@ const onClicksave=()=>{
                         </Card>
 
                         <Card style={styles.butright}>
-                        <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow(!show)}/>
+                        <Iconss.Button name='cross'  backgroundColor="transparent" size={40} onPress={()=> setShow(!show)} color="black"/>
                         </Card>
                     </View>
                 </View>
@@ -493,7 +492,8 @@ const styles = StyleSheet.create({
     flex:1,
   },
   test3:{
-    backgroundColor:"white",
+    
+    backgroundColor:"transparent",
     margin:350,
     marginTop:200,
     padding:40,
@@ -502,7 +502,8 @@ const styles = StyleSheet.create({
     width:500,
   },
   test4:{
-    backgroundColor:"white",
+    
+    backgroundColor:"transparent",
     margin:350,
     marginTop:100,
     padding:40,
@@ -529,12 +530,13 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   title:{
-    fontSize:40,
+    fontSize:35,
+    marginBottom:5,
     // backgroundColor:'pink',
     width:490,
     height:60,
     textAlign:'center',
-    color:"white",
+    color:"black",
     // flexDirection:'row'
   },
   cardContainer: {
@@ -543,23 +545,52 @@ const styles = StyleSheet.create({
     width:500,
     marginLeft:-40,
     marginTop:-42,
-    backgroundColor:'gray',
-    borderRadius:5
+    backgroundColor:'white',
+    borderTopRightRadius:25,
+    borderTopLeftRadius:25,
+    borderBottomLeftRadius:0,
+    borderBottomRightRadius:0,
+
+
   },
   cardContainerin1: {
     flexDirection: 'row',
     height:450,
     width:500,
     marginTop:10,
-    backgroundColor:'pink',
+    backgroundColor:'#E8E7E7',
     borderRadius:5,
+    borderBottomRightRadius:25,
+    borderBottomLeftRadius:25,
+
   },
   butsetting:{
+    backgroundColor:"transparent",
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
+    borderRadius:5,
+    alignItems:'center',
+    marginTop:10
+  },
+  butsetting3:{
     backgroundColor:"white",
     marginLeft:40,
     height:50,
     width:420,
     borderWidth:1,
+    borderRadius:5,
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:10
+  },
+  butsetting2:{   
+    backgroundColor:"transparent",  //TODO 
+    marginLeft:40,
+    height:50,
+    width:420,
+    borderWidth:0,
     borderRadius:5,
     alignItems:'center',
     marginTop:10
@@ -580,6 +611,7 @@ const styles = StyleSheet.create({
     borderRadius:5,
     width:210,
     marginEnd:210,
+    //borderBottomLeftRadius:25,
     borderColor:'gray'
   },
   input2: {
@@ -587,7 +619,10 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     borderWidth: 1,
     padding: 10,
-    borderRadius:5,
+
+    borderBottomRightRadius:5,
+    borderTopRightRadius:5,
+
     width:210,
     marginStart:210,
     marginTop:-50,
