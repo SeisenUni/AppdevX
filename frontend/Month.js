@@ -137,20 +137,21 @@ const [rmonth, getmonth] = useState(999);
     const createday = ({ item }) => {
         let newday = item.title - countday;
         let start = route(newday) + '-' + gotmonth();
+        console.log(start);
         let time = 1;
         
     
         if (countday >= oldd() && item.title <= newm() + 2) {
-            console.log(newday);
-        axios.post("http://192.168.227.165:5000/test",{value : newday})
+            // console.log(newday);
+        axios.post("http://192.168.227.165:5000/date_check",{day : route(newday),month :gotmonth()})
         .then(response => {
                   
-            console.log("success i sad");
+            //console.log("get la i sus",response.day);
            // createonselect(newday);
             setStart(newday);
             console.log(time);
              setKey(3);
-             getmonth(3);
+             getmonth(gotmonth());
             // console.log(rmonth);
              //time++;
              //return;
