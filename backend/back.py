@@ -199,19 +199,7 @@ def add_task():
     timestart = data["startT"]
     timeend = data["endT"]
     time = timestart +"-"+ timeend
-    # str1=data["start"]
-    # str2 =str1[0:2]
-    # int(str2)
     
-    # str4 =str1[3:5]
-    # int(str4)
-    
-    # str3=data["end"]
-    # str5 =str3[0:2]
-    # int(str5)
-    
-    # str6 =str3[3:5]
-    # int(str6)
 
     date_object = datetime.strptime(data["start"], "%Y-%m-%d")
     date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")
@@ -224,10 +212,7 @@ def add_task():
         "date_start": date_object,
         "date_end": date_object2,
         "time" : time 
-        # "day_start": int(str2),
-        # "month_start": int(str4),
-        # "day_end": int(str5),
-        # "month_end":int(str6)
+       
     }
     info_plan.append(new_task)
     try:
@@ -259,19 +244,20 @@ def delete_task(task_id):
 def date_check():
     global use
     global info_in_plan
-    day = "01"
-    month= "02"
-    str= "2024"+month+day
-    date_input = datetime.strptime(str, "%Y-%m-%d")
-    arr=[]
-    for i in info_in_plan:
-        date_end = info_plan["date_end"]
-        date_start = info_plan["date_start"]
-        if date_end - date_input >=timedelta(0):
-            if date_start - date_input <=timedelta(0):
-                arr.append(i)
+    day = "30"
+    month = "05"
+    year = "2024"
+    date_str = year + "-" + month + "-" + day
+    date_input = datetime.strptime(date_str, "%Y-%m-%d")
+    arr = []
+    for document in collection.find():
+    # Assuming date_end and date_start are fields in the documents
+        date_end = document.get("date_end")
+        date_start = document.get("date_start")
+        if date_end >= date_input >= date_start:
+                arr.append(document)
     
-    return jsonify(arr),200            
+    return jsonify(arr), 200
         
     
     
