@@ -56,8 +56,7 @@ export default function App() {
   const gotoweek = () => {
     navigation.navigate("Week");
   }
-  const gotolist =()=>
-  {
+  const gotolist = () => {
     navigation.navigate("List");
   }
   const [priority, setPriority] = useState(null);
