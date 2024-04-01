@@ -1,4 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
+import Icons from 'react-native-vector-icons/AntDesign';
+
 import { StyleSheet, Text, View,TextInput, Button,ImageBackground, SafeAreaView } from 'react-native';
 import React,{useState,useEffect} from 'react';
 import { Card, Title } from 'react-native-paper';
@@ -37,7 +39,8 @@ export default function App() {
     }
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>   
+         {/* // <Icons.Button name="back" color="black" backgroundColor="transparent" size={40} marginLeft={1} marginTop={-10} underlayColor="black" justifyContent='right' alignItems = 'right' onPress={()=>navigation.navigate("Login")}/> */}
             <Card style={styles.card1}>
               <ImageBackground source={bg} style={styles.img}>
                   <View style={styles.cardContainer}>
@@ -72,12 +75,17 @@ export default function App() {
                                 <Card style={styles.card2}>
                                     <Button 
                                     title="Change Password"
-                                    color="green"
+                                    color="black"
                                     onPress={onClickpass}
                                     />
                                 </Card>
-                                <Text> </Text>
-                                <Text style={styles.text}> {"\n"}Planner</Text>
+                                <Card style={styles.card3}>
+                                    <Button 
+                                    title="Return to login"
+                                    color="black"
+                                    onPress={()=>navigation.navigate("Login")}
+                                    />
+                                </Card>
                               </View>
                         </Card>
                     </View>
@@ -139,7 +147,7 @@ const styles = StyleSheet.create({
       padding: 1,
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor:"white",
+      backgroundColor:"#b4b4b4",
       borderColor:'#b0b0b0'
     },
     cardContainer: {
@@ -147,9 +155,9 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 30,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
-      color:'blue',
+      //fontWeight: 'bold',
+      //fontFamily: 'Cochin',
+      color:'black',
     },
     center: {
       justifyContent: 'center',
@@ -163,13 +171,17 @@ const styles = StyleSheet.create({
         margin:20,
         backgroundColor:'white'
     },
+    card3:{
+      marginTop:0,
+      backgroundColor:'white'
+  },
     img:{
       borderRadius:5
     },
     wrong:{
       fontSize: 15,
-      fontWeight: 'bold',
-      fontFamily: 'Cochin',
+      //fontWeight: 'bold',
+     // fontFamily: 'Cochin',
       color:'red',
       paddingLeft:12
     }
