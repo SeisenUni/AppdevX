@@ -134,7 +134,6 @@ export default function App() {
     );
     
     const del = (id) => {
-        // แสดง Confirm Alert ก่อนลบ
         Alert.alert(
           'Finish???',
           'Are you already finish??',
