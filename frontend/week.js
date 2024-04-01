@@ -141,7 +141,7 @@ export default function App() {
                 count++;
                 return (
                     <Card style={styles.selected}>
-                        <Text style={{ color: 'white', margin: 10, fontSize: 20 }}>{newnum}</Text>
+                        <Text style={{ color: 'black', margin: 10, fontSize: 20 }}>{newnum}</Text>
                     </Card>
                 );
             }
@@ -681,7 +681,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         borderColor: 'black',
         borderWidth: 2,
-        backgroundColor: 'grey',
+        backgroundColor: '#E8E7E7',
     },
     Toch: {
         width: 250,
