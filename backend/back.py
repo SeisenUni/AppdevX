@@ -61,28 +61,28 @@ def register():
     
     user_s = data["username"]
     check_mail = data["email"]
-    x= check_mail.find("@gmail.com")
-    y= check_mail.find("@hotmail.com")
+    x= check_mail.find("@gmail.com")    #check @gmail 
+    y= check_mail.find("@hotmail.com")  #check @hotmail 
     
-    if id_collection.find_one({"username": user_s}) :
+    if id_collection.find_one({"username": user_s}) :    #username same
          return jsonify({"error": "Invalid credentials"}), 401
     else:      
            if x !=-1 or y!=-1 :
                 new_register = {                    #register user
-                "_id": ttt,
-             "username": data["username"],
-                "password": data["password"],
-             "email": data["email"],
-             "phone_number": data["phone_number"]
+            "_id": ttt,
+            "username": data["username"],
+            "password": data["password"],
+            "email": data["email"],
+            "phone_number": data["phone_number"]
                          }
            else :
                 return jsonify({"error": "Invalid credentials"}), 401
                    
     
-    info_id.append(new_register)
+    info_id.append(new_register)   #put into arrary
     
     try:
-        # Insert into MongoDB
+      
         id_collection.insert_one(new_register)   #insert into mongodb
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  # Internal Server Error
@@ -110,7 +110,7 @@ def check_credentials():
 
 
 
-@app.route("/reset_pass", methods=["POST"])
+@app.route("/reset_pass", methods=["POST"]) #reset password
 @cross_origin()
 def update_password():
     data = request.get_json() 
@@ -126,19 +126,19 @@ def update_password():
     conpassword = data["conpassword"]
     
     
-    # Check if username and old password match
+    # Check username
     user = id_collection.find_one({"username": use})
     if not user:
         return jsonify({"error": "Invalid username or password"}), 401
      
      # Update password
-    if user and newpassword ==conpassword :
+    if user and newpassword ==conpassword : #password and confrim password match
         id_collection.update_one({"username": use}, {"$set": {"password": newpassword}})
     
         return jsonify({"message": "Password updated successfully"}), 200
 
-@app.route("/reset_email", methods=["POST"]) 
-@cross_origin()#changeemail
+@app.route("/reset_email", methods=["POST"])   #reset email
+@cross_origin()
 def update_email():
     data = request.get_json() 
     global use
@@ -165,7 +165,7 @@ def update_email():
         return jsonify({"message": "Password updated successfully"}), 200
 
 
-@app.route("/forget",methods=["POST"])
+@app.route("/forget",methods=["POST"])    #forgetpassword
 @cross_origin()
 def forget():
     data=request.get_json()
@@ -177,19 +177,19 @@ def forget():
     
     check_email=id_collection.find_one({"email":check})
     check_number=id_collection.find_one({"phone_number":phone_number})
-    if check_email  :
-        if check_number :
-            use= check_number["username"]
+    if check_email  : #if email match
+        if check_number : #if number match
+            use= check_number["username"]   #collect username
             return jsonify({"message": "Can reset password"}), 200
-    if check_id  :
-        if check_number :
-            use= check_id["username"]
+    if check_id  :  #if username match
+        if check_number :  #if number match
+            use= check_id["username"]  #collect username
             return jsonify({"message": "Can reset password"}), 200   
             
     return jsonify({"message": "invalid"}),401    
     
 
-@app.route("/add_task", methods=["POST"]) #infoplan
+@app.route("/add_task", methods=["POST"]) #add to planner
 @cross_origin()
 def add_task():
     global use
@@ -205,8 +205,8 @@ def add_task():
     pri =data["priority"]
     int(pri)
     
-    date_object = datetime.strptime(data["start"], "%Y-%m-%d")
-    date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")
+    date_object = datetime.strptime(data["start"], "%Y-%m-%d") #change string to date
+    date_object2 = datetime.strptime(data["end"], "%Y-%m-%d")   #change string to date
     new_task = {
         "_id": ttt,
         "title": data["title"],
@@ -220,7 +220,7 @@ def add_task():
     }
     info_plan.append(new_task)
     try:
-        collection.insert_one(new_task)
+        collection.insert_one(new_task) 
     except pymongo.errors.PyMongoError as e:
         return jsonify({"error": str(e)}), 500  
 
@@ -228,7 +228,7 @@ def add_task():
 
 
 
-@app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete info plan
+@app.route("/delete_info/<task_id>", methods=["DELETE"])  #delete planner
 @cross_origin()
 def delete_task(task_id):
     try:
@@ -243,7 +243,7 @@ def delete_task(task_id):
 
 
 
-@app.route("/get_by_user", methods=["GET"])
+@app.route("/get_by_user", methods=["GET"])     #get all planner by user
 @cross_origin()
 def get_user():
     global use
