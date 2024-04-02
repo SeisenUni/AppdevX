@@ -1,8 +1,10 @@
 
-import { StyleSheet, Text, View, TextInput, Button, Image, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, SafeAreaView, ScrollView,ImageBackground } from 'react-native';
 import Icons from 'react-native-vector-icons/AntDesign';
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-native-paper';
+import bg from './createacc-piccard.png';
+
 import axios from "axios";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -50,8 +52,9 @@ export default function App() {
           
           <View style={styles.cardContainer}>
             <Card style={styles.card1}>
-          
-            <Icons.Button name="back" color="black" backgroundColor="transparent" size={40} marginLeft={-10} marginTop={-10} underlayColor="transparent" onPress={()=>navigation.navigate("Login")}/>
+
+            <ImageBackground source={bg} style={styles.img}>
+            <Icons.Button name="back" color="black" backgroundColor="transparent" size={40} marginLeft={-10} marginTop={10} underlayColor="transparent" onPress={()=>navigation.navigate("Login")}/>
         
 
               <View style={styles.cardContainer}>
@@ -113,7 +116,8 @@ export default function App() {
                     </View>
                   </Card>
                 </View>
-              </View>
+             </View>
+              </ImageBackground>
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.center}>
                 </View>
@@ -188,5 +192,10 @@ const styles = StyleSheet.create({
   card2: {
     marginTop: 40,
     backgroundColor: 'white',
+  },
+  img:{
+    height:750,
+    marginTop:-30,
+    borderRadius:5,
   },
 });
