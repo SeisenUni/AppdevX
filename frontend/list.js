@@ -151,6 +151,7 @@ export default function App() {
                         
                       })
                       .catch(error => {
+                        navigation.navigate("Year");
                         //console.error('Error fetching data:', error);
                       });
                   })
