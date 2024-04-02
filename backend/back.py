@@ -157,10 +157,10 @@ def update_email():
         return jsonify({"error": "Invalid username "}), 401
      
      # Update password
-    if user and email == newemail and x!=-1 and y!=-1 :
-        id_collection.update_one({"username": use}, {"$set": {"email": email}})
-    
-        return jsonify({"message": "email updated successfully"}), 200
+    if user and email == newemail: 
+        if x!=-1 or y!=-1 :
+         id_collection.update_one({"username": use}, {"$set": {"email": email}})
+         return jsonify({"message": "email updated successfully"}), 200
 
 
 
