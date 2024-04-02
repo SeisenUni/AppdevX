@@ -146,10 +146,9 @@ export default function App() {
                   .then(response => {
                     axios.get("http://192.168.185.166:5000/get_by_user")
                       .then(response => {
-                        if(response.date != null)
-                        {
+                       
                             setData(response.data);
-                        }
+                        
                       })
                       .catch(error => {
                         //console.error('Error fetching data:', error);
