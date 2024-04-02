@@ -10,6 +10,7 @@ Member in AppdevX
 -----------For Front-end-----------
 1.npm install
 2.npm install react-native-paper
+2.1 npm install --save moment react-moment
 (Now I will update the package and you didn't download anymore) 
 3.We Find if you cannot run list just
 
