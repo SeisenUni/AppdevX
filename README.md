@@ -14,4 +14,6 @@ Member in AppdevX
 (Now I will update the package and you didn't download anymore) 
 3.We Find if you cannot run list just
 
+4.if we want run just ;npm start or update nodejs first
+
 
